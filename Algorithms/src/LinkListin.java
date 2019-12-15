@@ -1,14 +1,14 @@
 
-class Node {
+class LinkNode {
 	
-	Node head, tail, next;
+	LinkNode head, tail, next;
 	int data;
 	
-	public Node() {
+	public LinkNode() {
 		head = tail = next = null;
 	}
 	
-	public Node(int data) {
+	public LinkNode(int data) {
 		this.data = data;
 	}
 }
@@ -16,10 +16,10 @@ class Node {
 
 public class LinkListin {
 	
-	Node list = null;
+	LinkNode list = null;
 	
 	public LinkListin() {
-		list = new Node();
+		list = new LinkNode();
 	}
 	
 
@@ -49,36 +49,36 @@ public class LinkListin {
 	
 	
 	public void createList(int thisData) {
-		Node thisNode = new Node(thisData);
+		LinkNode thisLinkNode = new LinkNode(thisData);
 		if(list.head == null) {
-			list.head = thisNode;
-			list.tail = thisNode;
+			list.head = thisLinkNode;
+			list.tail = thisLinkNode;
 			return;
 		} 
-		list.tail.next = thisNode;
-		list.tail = thisNode;
+		list.tail.next = thisLinkNode;
+		list.tail = thisLinkNode;
 	}
 	
 	
 	public void deleteData(int thisData) {
-		Node thisNode = list.head;
-		if(thisNode.data == thisData) {
-			list.head = thisNode.next;
+		LinkNode thisLinkNode = list.head;
+		if(thisLinkNode.data == thisData) {
+			list.head = thisLinkNode.next;
 			return;
 		}
-		while(thisNode.next.data != thisData) {
-			thisNode = thisNode.next;
+		while(thisLinkNode.next.data != thisData) {
+			thisLinkNode = thisLinkNode.next;
 		}
-		thisNode.next = thisNode.next.next;
+		thisLinkNode.next = thisLinkNode.next.next;
 	}
 	
 	
 	public void removeDuplicates() {
 		
-		Node current = list.head;
+		LinkNode current = list.head;
 		
 		while(current != null) {
-			Node temp = current;
+			LinkNode temp = current;
 			
 			while(temp.next != null) {
 				if(temp.next.data == current.data) {
@@ -93,22 +93,22 @@ public class LinkListin {
 	
 	
 	public void addAtEnd(int data) {
-		Node current = list.head;
+		LinkNode current = list.head;
 		while(current.next != null) {
 			current = current.next;
 		}
-		Node newNode = new Node(data);
-		current.next = newNode;
+		LinkNode newLinkNode = new LinkNode(data);
+		current.next = newLinkNode;
 	}
 	
 	
 	public void addAtFront(int data) {
-		Node newFront = new Node(data);
+		LinkNode newFront = new LinkNode(data);
 		newFront.next = list.head;
 		list.head = newFront;
-		/*Node current = list.head;
-		Node newFront = new Node(data);
-		Node temp = current;
+		/*LinkNode current = list.head;
+		LinkNode newFront = new LinkNode(data);
+		LinkNode temp = current;
 		list.head = newFront;
 		list.head.next = temp;*/
 	}
@@ -116,8 +116,8 @@ public class LinkListin {
 	
 	public void addAfterIndex(int index, int data) {
 		
-		Node newNode = new Node(data);
-		Node current = list.head;
+		LinkNode newLinkNode = new LinkNode(data);
+		LinkNode current = list.head;
 		int count = 0;
 		
 		while(index != count) {
@@ -125,17 +125,17 @@ public class LinkListin {
 			count++;
 		}
 		if(index == count) {
-			Node next = current.next;
-			current.next = newNode;
-			newNode.next = next;
+			LinkNode next = current.next;
+			current.next = newLinkNode;
+			newLinkNode.next = next;
 		}
 	}
 	
 	
 	public void reverse() {
-		Node current = list.head;
-		Node next = null;
-		Node prev = null;
+		LinkNode current = list.head;
+		LinkNode next = null;
+		LinkNode prev = null;
 		while(current != null) {
 			next = current.next;
 			current.next = prev;
@@ -148,7 +148,7 @@ public class LinkListin {
 	
 	public void print(String message) {
 		System.out.println(message);
-		Node current = list.head;
+		LinkNode current = list.head;
 		while(current != null) {
 			System.out.print(current.data+", ");
 			current = current.next;
