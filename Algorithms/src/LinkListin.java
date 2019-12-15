@@ -1,18 +1,4 @@
 
-class LinkNode {
-	
-	LinkNode head, tail, next;
-	int data;
-	
-	public LinkNode() {
-		head = tail = next = null;
-	}
-	
-	public LinkNode(int data) {
-		this.data = data;
-	}
-}
-
 
 public class LinkListin {
 	
@@ -156,5 +142,18 @@ public class LinkListin {
 		System.out.println();
 		System.out.println();
 	}
+}
 
+class LinkNode {
+	
+	LinkNode head, tail, next;
+	int data;
+	
+	public LinkNode() {
+		head = tail = next = null;
+	}
+	
+	public LinkNode(int data) {
+		this.data = data;
+	}
 }

@@ -1,21 +1,5 @@
 
 
-class BSTNode {
-	
-	BSTNode left, right, root;
-	int data;
-	
-	public BSTNode() {
-		this.root = null;
-	}
-	
-	public BSTNode(int data) {
-		this.data = data;
-		left = right = null;
-	}
-	
-}
-
 public class BinarySearchTree {
 	
 	BSTNode root;
@@ -29,13 +13,13 @@ public class BinarySearchTree {
 		BinarySearchTree bst = new BinarySearchTree();
 		BSTNode thisRoot = bst.root;
 		
-		int[] arr = {5,3,7,8,4,6,9, 2, 1, 0};
+		int[] arr = {5,3,7,1,4,0,6,9,2,8};
 		
 		for(int i = 0; i < arr.length; i++) {
 			thisRoot = bst.insert(arr[i], thisRoot);
 		}
 		bst.printInOrder(thisRoot);
-		System.out.println("\n");
+		System.out.println();
 		bst.printInOrder(thisRoot, 1);
 		
 		BSTNode foundNode = bst.findNode(thisRoot, 5);
@@ -44,6 +28,17 @@ public class BinarySearchTree {
 		System.out.println("\nHeight = "+bst.height(thisRoot));
 		
 		System.out.println("\nBalanced? = "+bst.balance(thisRoot));
+		
+		System.out.println("Smallest Node = "+bst.smallestNode(thisRoot));
+
+		System.out.println("After deleting 5");
+		BSTNode newestRoot = bst.delete(thisRoot, 5);
+		System.out.println("The Root node is: "+newestRoot.data);
+		bst.printInOrder(newestRoot);
+		System.out.println();
+		bst.printInOrder(newestRoot, 1);
+		
+		System.out.println("Count Nodes = "+bst.countNodes(newestRoot));
 
 	}
 	
@@ -108,5 +103,76 @@ public class BinarySearchTree {
 		System.out.println("Left = "+left+", right = "+right);
 		return height(thisRoot.left) == height(thisRoot.right);
 	}
+	
+	
+	public int smallestNode(BSTNode thisRoot) {
+		if(thisRoot.left == null) {
+			return thisRoot.data;
+		}
+		return smallestNode(thisRoot.left);
+	}
+	
+	
+	public BSTNode delete(BSTNode thisNode, int data) {
+		
+		// if null
+		if(thisNode == null) {
+			return thisNode;
+		}
+		
+		// delete node date == data
+		if(thisNode.data == data) {
+			
+			if(thisNode.left == null) {
+				return thisNode.right;
+				
+			} else if(thisNode.right == null) {
+				return thisNode.left;
+			}
+			else {
+				if(thisNode.right.left == null) {
+					thisNode.data = thisNode.right.data;
+					thisNode.right = thisNode.right.right;
+					
+				} else {
+					thisNode.data = smallestNode(thisNode.right);
+					return thisNode;
+				}
+			}
+		}
+		
+		// if delete node data < || > data
+		if(thisNode.data > data) {
+			thisNode.left = delete(thisNode.left, data);
+		} else if(thisNode.data < data) {
+			thisNode.right = delete(thisNode.right, data);
+		}
+				
+		return thisNode;
+	}
+	
+	
+	public int countNodes(BSTNode thisNode) {
+		if(thisNode == null) {
+			return 0;
+		}
+		return (countNodes(thisNode.left) + 1 + countNodes(thisNode.right));
+	}
+	
+}
 
+
+class BSTNode {
+	
+	BSTNode left, right, root;
+	int data;
+	
+	public BSTNode() {
+		this.root = null;
+	}
+	
+	public BSTNode(int data) {
+		this.data = data;
+		left = right = null;
+	}
 }
