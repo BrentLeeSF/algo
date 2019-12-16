@@ -39,6 +39,8 @@ public class BinarySearchTree {
 		bst.printInOrder(newestRoot, 1);
 		
 		System.out.println("Count Nodes = "+bst.countNodes(newestRoot));
+		
+		
 
 	}
 	
