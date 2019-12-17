@@ -25,9 +25,10 @@ public class FirstThread extends Thread {
 		System.out.println("Main thread new priority: "+ t.getPriority()); 
 		
 		
-		for (int i = 0; i < 5; i++) { 
+		/*for (int i = 0; i < 5; i++) { 
 			System.out.println("Main thread"); 
-		} 
+		} */
+		System.out.println();
 		
 		// Main thread creating a child thread 
 		ChildThread ct = new ChildThread(); 
