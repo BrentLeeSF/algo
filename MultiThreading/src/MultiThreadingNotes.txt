@@ -1,0 +1,25 @@
+Every thread in Java is created and controlled by a unique object of the java, lang. Thread class. 
+When a standalone application is run, a user thread is automatically created to execute the main () method. This thread is called the main thread.
+					
+In Java, we can implement threads in one of two ways:				
+By implementing the java.lang, Runnable interface						
+By extending the java.lang. Thread class 
+
+Extending the Thread Class vs. Implementing the Runnable Interface
+When creating threads, there are two reasons why implementing the 
+Runnable interface may be prefer- able to extending the Thread class:
+• Java does not support multiple inheritance. Therefore, extending the 
+Thread class means that the subclass cannot extend any other class. 
+A class implementing the Runnable interface will be able to extend another class.
+• A class might only be interested in being runnable, and therefore, 
+inheriting the full overhead of the Thread class would be excessive.
+
+• Synchronization and Locks
+Threads within a given process share the same memory space, 
+which is both a positive and a negative. 
+It enables threads to share data, which can be valuable. 
+However, it also creates the opportunity for issues when two threads modify 
+a resource at the same time. Java provides synchronization in order to 
+control access to shared resources.
+
+The keyword synchronized and the lock form the basis for implementing synchronized execution of code.
