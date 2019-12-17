@@ -1,3 +1,5 @@
+
+
 // Java program to demonstrate thread states 
 class ThreadState implements Runnable { 
 	
