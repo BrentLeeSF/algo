@@ -101,6 +101,7 @@ public class MultithreadedDirectorySizeCalculator {
 	 * @param directory
 	 */
 	public void addDirectory(Path directory) {
+		
 		try {
 			if (Files.isDirectory(directory)) {
 				// Note that we now create a new runnable object and add it
@@ -135,6 +136,7 @@ public class MultithreadedDirectorySizeCalculator {
 
 		@Override
 		public void run() {
+			
 			try (DirectoryStream<Path> stream = Files.newDirectoryStream(directory)) {
 				long files = 0;
 				long bytes = 0;

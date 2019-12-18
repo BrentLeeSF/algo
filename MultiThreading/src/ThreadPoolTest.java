@@ -1,10 +1,28 @@
-// Java program to illustrate 
-// ThreadPool 
+
+
+// https://www.javatpoint.com/java-multithreading-interview-questions
+// https://www.geeksforgeeks.org/thread-pools-java/
 import java.text.SimpleDateFormat; 
 import java.util.Date; 
 import java.util.concurrent.ExecutorService; 
 import java.util.concurrent.Executors; 
 
+
+/** A thread pool reuses previously created threads to execute current tasks  
+ * Since the thread is already existing when the request arrives, 
+ * the delay introduced by thread creation is eliminated, making the application more responsive.
+ * 
+ * In case of a fixed thread pool, if all threads are being currently run by the executor then 
+ * the pending tasks are placed in a queue and are executed when a thread becomes idle.
+ * 
+ * This is an example of a thread pool executor- FixedThreadPool.
+ * 
+ * Steps to be followed
+ *
+ * 1. Create a task(Runnable Object) to execute
+ * 2. Create Executor Pool using Executors
+ * 3. Pass tasks to Executor Pool
+ * 4. Shutdown the Executor Pool */
 
 // Task class to be executed (Step 1) 
 class Task implements Runnable { 
@@ -22,23 +40,23 @@ class Task implements Runnable {
 		
 		try {
 			
-			for (int i = 0; i<=5; i++) { 
-				if (i==0) { 
+			for (int i = 0; i<= 5; i++) {
+				
+				if (i == 0) {
 					Date d = new Date(); 
 					SimpleDateFormat ft = new SimpleDateFormat("hh:mm:ss"); 
-					System.out.println("Initialization Time for"+ " task name - "+ name +" = " +ft.format(d)); 
 					//prints the initialization time for every task 
+					System.out.println("Initialization Time for"+ " task name - "+ name +" = " +ft.format(d)); 
 				} 
 				
-				else { 
+				else {
 					Date d = new Date(); 
 					SimpleDateFormat ft = new SimpleDateFormat("hh:mm:ss"); 
-					System.out.println("Executing Time for task name - "+ 
-							name +" = " +ft.format(d)); 
 					// prints the execution time for every task 
-				} 
+					System.out.println("Executing Time for task name - "+ name +" = " +ft.format(d)); 
+				}
 				Thread.sleep(1000); 
-			} 
+			}
 			System.out.println(name+" complete"); 
 		} 
 		
