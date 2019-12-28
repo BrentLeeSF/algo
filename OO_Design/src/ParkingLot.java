@@ -44,9 +44,9 @@ public class ParkingLot {
 		parkingSpaces[parkingLevel][parkingSpace].timeIn = timeIn;
 	}
 	
-	public int getParking(int parkingLevel, int parkingSpace, int timeOut) {
+	public int payParking(int parkingLevel, int parkingSpace, int timeOut) {
 		parkingSpaces[parkingLevel][parkingSpace].timeOut = timeOut;
-		parkingSpaces[parkingLevel][parkingSpace].spaceOccupied = true;
+		parkingSpaces[parkingLevel][parkingSpace].spaceOccupied = false;
 		return parkingSpaces[parkingLevel][parkingSpace].price = (timeOut - parkingSpaces[parkingLevel][parkingSpace].timeIn);
 	}
 	
@@ -54,7 +54,7 @@ public class ParkingLot {
 		ParkingLot pl = new ParkingLot();
 		pl.createParkingLot();
 		pl.setParking(3, 84, 1235);
-		System.out.println("Total price for parking floor 3, space 84 is "+pl.getParking(3, 84, 1425)+" cents");
+		System.out.println("Total price for parking floor 3, space 84 is "+pl.payParking(3, 84, 1425)+" cents");
 	}
 
 }
