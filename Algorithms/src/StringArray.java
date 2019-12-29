@@ -1,4 +1,5 @@
 
+import java.util.ArrayList;
 import java.util.Arrays;
 
 public class StringArray {
@@ -13,6 +14,8 @@ public class StringArray {
 	String compressString2 = "abcdef";
 	String reverseCompress = "a3b2c2d4e3f3";
 	String compressString3 = "cdefg";
+	
+	int[] primes = {2,4,7,6,9,11,12,15,16,17,18,19,21,22,23};
 
 	public static void main(String[] args) {
 		
@@ -30,9 +33,17 @@ public class StringArray {
 		System.out.println("Reverse Compress "+strArr.reverseCompress+" = "+strArr.reverseStringCompression(strArr.reverseCompress));
 		
 		System.out.println("Is "+strArr.compressString2+" a substring of "+strArr.compressString+" "+strArr.isSubString(strArr.compressString, strArr.compressString2));
+		
+		System.out.print("Prime numbers: ");
+		ArrayList<Integer> primeNums = strArr.countPrimeNumbers(strArr.primes);
+		for(int i = 0; i < primeNums.size(); i++) {
+			System.out.print(primeNums.get(i)+", ");
+		}
+		System.out.println();
 	}
 	
 	
+	/** Returns true if every character in string is unique */
 	public boolean uniqueString(String thisUnique) {
 		
 		char[] testUniqueChar = new char[128];
@@ -49,6 +60,7 @@ public class StringArray {
 	}
 	
 	
+	/** Sorts array with selection sort */
 	public int[] selectionSort(int[] arr) {
 		
 		for(int i = 0; i < arr.length; i++) {
@@ -67,6 +79,7 @@ public class StringArray {
 	}
 	
 	
+	/** Return the non duplicate value in array */
 	public int lonelyInt(int[] arr) {
 		int[] newArr = new int[arr.length];
 		int save = 0;
@@ -84,6 +97,7 @@ public class StringArray {
 	}
 	
 	
+	/** Compresses string ex. aaabbcccc -> a3b2c4 */
 	public String stringCompression(String compressThis) {
 		
 		StringBuilder str = new StringBuilder();
@@ -104,6 +118,8 @@ public class StringArray {
 	}
 	
 	
+	/** Reveres compressed string to regular string
+	 * ex. a3b2c4 -> aaabbcccc  */
 	public String reverseStringCompression(String compressThis) {
 		
 		StringBuilder str = new StringBuilder();
@@ -128,6 +144,7 @@ public class StringArray {
 		}
 		return str.toString();
 	}
+	
 	
 	/**check if both a1 and b2 are not empty 
 	 * loop through a1,
@@ -155,6 +172,32 @@ public class StringArray {
 			}
 		}
 		return countB-1 == b2.length();
+	}
+	
+	
+	/** Returns an ArrayList of all prime numbers */
+	public ArrayList<Integer> countPrimeNumbers(int[] arr) {
+		
+		ArrayList<Integer> allPrimes = new ArrayList<Integer>();
+		int count = 0, prime = 0, divide = 0;
+		
+		for(int i = 0; i< arr.length; i++) {
+			
+			prime = arr[i];
+			divide = prime-1;
+			count = 0;
+			
+			while(divide > 1) {
+				if(prime%divide == 0) {
+					count++;
+				}
+				divide--;
+			}
+			if(count == 0) {
+				allPrimes.add(prime);
+			}
+		}
+		return allPrimes;
 	}
 	
 }
