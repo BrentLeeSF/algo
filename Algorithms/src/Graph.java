@@ -2,6 +2,10 @@ import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.Stack;
 
+/** 
+ * BFS - https://www.geeksforgeeks.org/breadth-first-search-or-bfs-for-a-graph/
+ * DFS - https://www.geeksforgeeks.org/depth-first-search-or-dfs-for-a-graph/ 
+ * */
 
 public class Graph {
 	
@@ -153,6 +157,14 @@ public class Graph {
 		graph.addEdge(2, 0);
 		graph.addEdge(2, 3);
 		graph.addEdge(3, 3);
+		
+		/** 
+		 *  -0----->1  
+		 *  | ^	   ^
+		 *  | |   /
+		 *  | |  /
+		 *  v | /     	
+		 *S->2----->3<->  */
  
 		System.out.println("\nFollowing is Breadth First Traversal (BFS) "+ "(starting from vertex 2)");
 		graph.BFS(2);
