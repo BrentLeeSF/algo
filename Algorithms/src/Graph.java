@@ -154,17 +154,17 @@ public class Graph {
 		graph.addEdge(2, 3);
 		graph.addEdge(3, 3);
  
-        System.out.println("\nFollowing is Breadth First Traversal (BFS) "+ "(starting from vertex 2)");
-        graph.BFS(2);
+		System.out.println("\nFollowing is Breadth First Traversal (BFS) "+ "(starting from vertex 2)");
+		graph.BFS(2);
         
-        System.out.println("\n\nFollowing is Depth First Traversal (DFS) "+ "(starting from vertex 2)");
-        graph.DFS(2);
+		System.out.println("\n\nFollowing is Depth First Traversal (DFS) "+ "(starting from vertex 2)");
+		graph.DFS(2);
         
-        System.out.println("\n\nFollowing is a Topological sort of the given graph"); 
+		System.out.println("\n\nFollowing is a Topological sort of the given graph"); 
 		graph.topologicalSort();
 		System.out.println("\n");
         
-        Graph g = new Graph(6); 
+		Graph g = new Graph(6); 
 		g.addEdge(5, 2); 
 		g.addEdge(2, 3); 
 		g.addEdge(3, 1); 
@@ -174,12 +174,12 @@ public class Graph {
 
 		System.out.println("\nFollowing is a Topological sort of the given graph"); 
 		g.topologicalSort();
-		
+
 		System.out.println("\n\nFollowing is Breadth First Traversal (BFS) "+ "(starting from vertex 2)");
-        g.BFS(2);
-        
-        System.out.println("\n\nFollowing is Depth First Traversal (DFS) "+ "(starting from vertex 2)");
-        g.DFS(2);
+		g.BFS(2);
+
+		System.out.println("\n\nFollowing is Depth First Traversal (DFS) "+ "(starting from vertex 2)");
+		g.DFS(2);
 
 	}
 
