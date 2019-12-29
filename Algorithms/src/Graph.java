@@ -2,9 +2,11 @@ import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.Stack;
 
-/** 
+/** Graph with BFS, DFS and Topological Sort 
+ * 
  * BFS - https://www.geeksforgeeks.org/breadth-first-search-or-bfs-for-a-graph/
- * DFS - https://www.geeksforgeeks.org/depth-first-search-or-dfs-for-a-graph/ 
+ * DFS - https://www.geeksforgeeks.org/depth-first-search-or-dfs-for-a-graph/
+ *  
  * */
 
 public class Graph {
@@ -75,13 +77,6 @@ public class Graph {
 	}
 	
 	
-	/** DFS Traversal */
-	public void DFS(int start) {
-		
-		boolean[] visited = new boolean[numberOfVerticies];
-		DFSUtil(start, visited);
-	}
-	
 	
 	public void DFSUtil(int start, boolean visited[]) {
 		
@@ -98,6 +93,14 @@ public class Graph {
 				DFSUtil(vertex, visited);
 			}
 		}
+	}
+	
+	
+	/** DFS Traversal */
+	public void DFS(int start) {
+		
+		boolean[] visited = new boolean[numberOfVerticies];
+		DFSUtil(start, visited);
 	}
 	
 	
@@ -168,9 +171,11 @@ public class Graph {
  
 		System.out.println("\nFollowing is Breadth First Traversal (BFS) "+ "(starting from vertex 2)");
 		graph.BFS(2);
+		/** Prints 2, 0, 3, 1 */
         
 		System.out.println("\n\nFollowing is Depth First Traversal (DFS) "+ "(starting from vertex 2)");
 		graph.DFS(2);
+		/** Prints 2, 0, 1, 3 */
         
 		System.out.println("\n\nFollowing is a Topological sort of the given graph"); 
 		graph.topologicalSort();
@@ -189,7 +194,7 @@ public class Graph {
 
 		System.out.println("\n\nFollowing is Breadth First Traversal (BFS) "+ "(starting from vertex 2)");
 		g.BFS(2);
-
+		
 		System.out.println("\n\nFollowing is Depth First Traversal (DFS) "+ "(starting from vertex 2)");
 		g.DFS(2);
 
