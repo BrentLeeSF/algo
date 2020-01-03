@@ -12,13 +12,13 @@ public class LinkListin {
 	public static void main(String[] args) {
 		
 		LinkListin ls = new LinkListin();
-		int[] arr = { 3,6,8,1,3,0,5,3};
+		int[] arr = { 3,6,8,1,3,0,5,9};
 		for(int i = 0; i < arr.length; i++) {
 			ls.createList(arr[i]);
 		}
 		ls.print("Create List");
-		ls.deleteData(5);
-		ls.print("Delete Data 5");
+		ls.deleteData(9);
+		ls.print("Delete Data 9");
 		ls.removeDuplicates();
 		ls.print("Remove Duplicates");
 		ls.addAtEnd(5);
@@ -155,7 +155,9 @@ public class LinkListin {
 		System.out.println();
 		System.out.println();
 	}
+	
 }
+
 
 class LinkNode {
 	
