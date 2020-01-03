@@ -35,27 +35,40 @@ public class LinkListin {
 	
 	
 	public void createList(int thisData) {
-		LinkNode thisLinkNode = new LinkNode(thisData);
+		
 		if(list.head == null) {
-			list.head = thisLinkNode;
-			list.tail = thisLinkNode;
+			list.head = new LinkNode(thisData);
 			return;
-		} 
-		list.tail.next = thisLinkNode;
-		list.tail = thisLinkNode;
+		}
+		LinkNode current = list.head;
+		while(current.next != null) {
+			current = current.next;
+		}
+		current.next = new LinkNode(thisData);
 	}
 	
 	
 	public void deleteData(int thisData) {
-		LinkNode thisLinkNode = list.head;
-		if(thisLinkNode.data == thisData) {
-			list.head = thisLinkNode.next;
+		
+		LinkNode current = list.head;
+		
+		if(current == null) {
 			return;
 		}
-		while(thisLinkNode.next.data != thisData) {
-			thisLinkNode = thisLinkNode.next;
+		
+		if(current.data == thisData) {
+			list.head = current.next;
+			return;
 		}
-		thisLinkNode.next = thisLinkNode.next.next;
+		
+		while(current.next != null) {
+			if(current.next.data == thisData) {
+				current.next = current.next.next;
+				return;
+			}
+			current = current.next;
+		}
+		
 	}
 	
 	
@@ -146,11 +159,11 @@ public class LinkListin {
 
 class LinkNode {
 	
-	LinkNode head, tail, next;
+	LinkNode head, next;
 	int data;
 	
 	public LinkNode() {
-		head = tail = next = null;
+		head = next = null;
 	}
 	
 	public LinkNode(int data) {
