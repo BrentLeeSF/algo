@@ -1,6 +1,7 @@
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 public class StringArray {
 	
@@ -16,6 +17,8 @@ public class StringArray {
 	String compressString3 = "cdefg";
 	
 	int[] primes = {2,4,7,6,9,11,12,15,16,17,18,19,21,22,23};
+	
+	int[] combinationArray = {1,2,3,4,5};
 
 	public static void main(String[] args) {
 		
@@ -32,6 +35,7 @@ public class StringArray {
 		System.out.println("Compress "+strArr.compressString2+" = "+strArr.stringCompression(strArr.compressString2));
 		System.out.println("Reverse Compress "+strArr.reverseCompress+" = "+strArr.reverseStringCompression(strArr.reverseCompress));
 		
+		
 		System.out.println("Is "+strArr.compressString2+" a substring of "+strArr.compressString+" "+strArr.isSubString(strArr.compressString, strArr.compressString2));
 		
 		System.out.print("Prime numbers: ");
@@ -40,8 +44,119 @@ public class StringArray {
 			System.out.print(primeNums.get(i)+", ");
 		}
 		System.out.println();
+		
+		
+		int arr[] = {1, 2, 3, 4, 5}; 
+		int maxCombo = 3, arrLength = arr.length;
+		strArr.printCombination(arr, arrLength, maxCombo);
+		
+		
+		List<String> uh = strArr.generateParenthesis(3);
+		for(int i = 0; i < uh.size(); i++) {
+			System.out.print(uh.get(i)+", ");
+		}
+		System.out.println();
+		
+		strArr.staircase(5);
 	}
 	
+	
+	/** The main function that prints all combinations of size r 
+    * in arr[] of size n. This function mainly uses combinationUtil() */
+	public void printCombination(int arr[], int n, int maxCombo) {
+		
+		int data[] = new int[maxCombo];
+		combinationUtil(arr, n, maxCombo, 0, data, 0);
+		
+	}
+	
+	
+	/** arr[]  ---> Input Array 
+    data[] ---> Temporary array to store current combination 
+    start & end ---> Staring and Ending indexes in arr[] 
+    index  ---> Current index in data[] 
+    maxCombo ---> Size of a combination to be printed */
+	public void combinationUtil(int arr[], int n, int maxCombo, int index, int[] data, int i) {
+		
+		/** Current index combination is ready to be printed */
+		if(index == maxCombo) {
+			for(int j = 0; j < maxCombo; j++) {
+				System.out.print(data[j]+" ");
+			}
+			System.out.println();
+			return;
+		}
+		
+		/** When no more elements can be put in data[] */
+		if(i >= n) {
+			return;
+		}
+		
+		/** current index is included, put next location */
+		data[index] = arr[i];
+		combinationUtil(arr, n, maxCombo, index+1, data, i+1);
+		
+		/** current index is excluded, replace it with next 
+		 * (Note that i+1 is passed, but index is not changed) */
+		combinationUtil(arr, n, maxCombo, index, data, i+1);
+		
+	}
+
+	
+	
+	/** Given n pairs of parentheses, 
+	 * write a function to generate all combinations of well-formed parentheses.
+	For example, given n = 3, a solution set is:
+	[
+	  "((()))",
+	  "(()())",
+	  "(())()",
+	  "()(())",
+	  "()()()"
+	]*/
+	public List<String> generateParenthesis(int n) {
+        List<String> res = new ArrayList<>();
+        helper(0, 0, new StringBuilder(), n, res);
+        return res;
+    }
+    
+    private void helper(int left, int right, StringBuilder sb, int n, List<String> res) {
+        if(left == n && right == n) {
+            res.add(new String(sb.toString()));
+            return;
+        }
+        
+        if(left < n) {
+            sb.append("(");
+            helper(left + 1, right, sb, n, res);
+            sb.setLength(sb.length() - 1);
+        }
+        
+        if(right < left) {
+            sb.append(")");
+            helper(left, right + 1, sb, n, res);
+            sb.setLength(sb.length() - 1);
+        }
+    }
+    
+    public void staircase(int n) {
+    	
+    	for(int i = 0; i < n; i++) {
+    		
+    		int spaces = n-1-i;
+    		while(spaces > 0) {
+    			System.out.print(" ");
+    			spaces--;
+    		}
+    		
+    		int stairs = i;
+    		while(stairs >= 0) {
+    			System.out.print("#");
+    			stairs--;
+    		}
+    		System.out.println();
+    	}
+    }
 	
 	/** Returns true if every character in string is unique */
 	public boolean uniqueString(String thisUnique) {
