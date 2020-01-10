@@ -1,7 +1,21 @@
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
+
+
+class Roots {
+    public final double x1, x2;
+
+    public Roots(double x1, double x2) {         
+        this.x1 = x1;
+        this.x2 = x2;
+    }
+}
+
 
 public class StringArray {
 	
@@ -58,7 +72,93 @@ public class StringArray {
 		System.out.println();
 		
 		strArr.staircase(5);
+		
+		String[] names1 = new String[] {"Ava", "Emma", "Olivia"};
+        String[] names2 = new String[] {"Olivia", "Sophia", "Emma"};
+        String[] huh = strArr.uniqueNames(names1, names2); // should print Ava, Emma, Olivia, Sophia
+        for(int k = 0; k < huh.length; k++) {
+        	System.out.print(huh[k]+", ");
+        }
+        System.out.println();
+        
+        
+        Roots roots = strArr.findRoots(2, 10, 8);
+        System.out.println("Roots: " + roots.x1 + ", " + roots.x2);
+        
+        /*int[] students = {4, 73, 67, 38, 33};
+        List list = Arrays.asList(students);
+        strArr.gradingStudents(list);*/
 	}
+	
+	
+	/** If students grade < 38, return grade. If student's grade 1-2 points below %5
+	 * increase grade to %5 */
+	public void gradingStudents(List<Integer> grades) {
+        List<Integer> l1 = new ArrayList<Integer>(); 
+        int num = 0;
+        for(int i = 0; i < grades.size(); i++) {
+            num = (int)grades.get(i);
+            if(num >= 38 && num%5 > 2) {
+                int diff = Math.abs((num%5)-5);
+                num += diff;
+                l1.add(num);
+            } else {
+                l1.add(num);
+            }
+        }
+        for(int i = 0; i < l1.size(); i++) {
+        	System.out.print(l1.get(i)+", ");
+        }
+        System.out.println();
+    }
+	
+	
+	public  Roots findRoots(double a, double b, double c) {
+        double r1 = (-b + Math.sqrt(b * b - 4 * a * c)) / (2 * a);
+        double r2 = (-b - Math.sqrt(b * b - 4 * a * c)) / (2 * a);
+        System.out.println("First root = " + r1);
+        System.out.println("Second root = " + r2);
+        Roots roo = new Roots(r1, r2);
+        return roo;
+	}
+	
+	
+	/** 1. Merge NamesARRAYS
+		Implement the uniqueNames method. When passed two arrays of names, 
+		it will return an array containing the names that appear in either or both arrays. 
+		The returned array should have no duplicates.
+		For example, calling MergeNames.uniqueNames(new String[]{'Ava', 'Emma', 'Olivia'}, 
+		new String[]{'Olivia', 'Sophia', 'Emma'}) should return an array containing 
+		Ava, Emma, Olivia, and Sophia in any order.*/
+	public  String[] uniqueNames(String[] names1, String[] names2) {
+        
+        HashMap<String, Integer> hashin = new HashMap<String, Integer>();
+        
+        for(int i = 0; i < names1.length; i++) {
+            String name1 = names1[i];
+            hashin.put(name1, 1);
+        }
+        for(int k = 0; k < names2.length; k++) {
+            String name2 = names2[k];
+            if(!hashin.containsKey(name2)) {
+                hashin.put(name2, 1);
+            }
+        }
+        
+        int size = hashin.size();
+        String[] newArray = new String[size];
+        Iterator it = hashin.entrySet().iterator();
+        int count = 0;
+        
+        while (it.hasNext()) {
+            Map.Entry pair = (Map.Entry)it.next();
+			String word = (String) pair.getKey();
+            newArray[count] = word;
+            count++;
+            it.remove(); // avoids a ConcurrentModificationException
+        }
+        return newArray;
+    }
 	
 	
 	/** The main function that prints all combinations of size r 
