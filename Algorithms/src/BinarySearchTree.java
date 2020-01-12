@@ -66,7 +66,9 @@ public class BinarySearchTree {
 		System.out.println("Count Nodes = "+bst.countNodes(newestRoot));
 		
 		
-
+		/** Serialize and Deserialize Tree
+		 * https://www.programcreek.com/2014/05/leetcode-serialize-and-deserialize-binary-tree-java/
+		 */
 	}
 
 	/*public BSTNode insert(BSTNode root, int data) {
@@ -145,9 +147,9 @@ public class BinarySearchTree {
 			return curr;
 		}
 		if(curr.data > num) {
-			return findNode(curr.left, num);
+			return curr = findNode(curr.left, num);
 		}
-		return findNode(curr.right, num);
+		return curr = findNode(curr.right, num);
 	}
 
 

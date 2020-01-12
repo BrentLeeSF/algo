@@ -88,16 +88,52 @@ public class StringArray {
         /*int[] students = {4, 73, 67, 38, 33};
         List list = Arrays.asList(students);
         strArr.gradingStudents(list);*/
+        
+        int mat[][] = { { 4, 0, 0, 0 }, 
+                { 0, 7, 0, 0 }, 
+                { 0, 0, 5, 0 }, 
+                { 0, 0, 1, 1 } }; 
+
+        if (strArr.isDiagonalMatrix(mat, 4)) {
+        	System.out.println("Yes"); 
+        } else {
+        	System.out.println("No" );
+        }
+        
+        System.out.println("4^3 = "+strArr.power(4,3));
+        	
 	}
 	
+	public int power(int b,int e) {
+		if(e == 0) {
+			return 1;
+		} else {
+			return (b* power(b, e-1) ); 
+		} 
+	 }
+	
+	public boolean isDiagonalMatrix(int mat[][], int N) { 
+
+        for(int i = 0; i < N; i++) {
+        	for(int j = 0; j < N; j++) {
+                if((i != j) && (mat[i][j] != 0)) {
+                	return false; 
+                }
+        	}
+        }
+        return true; 
+    } 
 	
 	/** If students grade < 38, return grade. If student's grade 1-2 points below %5
 	 * increase grade to %5 */
-	public void gradingStudents(List<Integer> grades) {
+	public void gradingStudents(List <Integer> grades) {
+		
         List<Integer> l1 = new ArrayList<Integer>(); 
         int num = 0;
+        
         for(int i = 0; i < grades.size(); i++) {
             num = (int)grades.get(i);
+            
             if(num >= 38 && num%5 > 2) {
                 int diff = Math.abs((num%5)-5);
                 num += diff;

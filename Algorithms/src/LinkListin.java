@@ -61,14 +61,10 @@ public class LinkListin {
 			return;
 		}
 		
-		while(current.next != null) {
-			if(current.next.data == thisData) {
-				current.next = current.next.next;
-				return;
-			}
+		while(current.next.data != thisData) {
 			current = current.next;
 		}
-		
+		current.next = current.next.next;
 	}
 	
 	
