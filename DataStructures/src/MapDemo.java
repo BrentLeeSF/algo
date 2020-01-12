@@ -23,12 +23,30 @@ public class MapDemo {
 		
 		MapDemo mappin = new MapDemo();
 		String[] states = {"Alabama","Arkansas","Alaska","Arizona","Arkansas","Alabama","Arkansas","Alaska","California","Colorado","Connecticut","California","Delaware","Florida","Florida","Georgia"};
-
+		String[] letters = {"aa","bb","aa","cc","dd","cc","aa","bb","dd","dd","aa"};
 		HashMap<String, Integer> hashin = new HashMap<>();
-		mappin.hashMapDemo(hashin, states);
+		mappin.stateHashMapDemo(hashin, states);
+		HashMap<String, Integer> hashin2 = new HashMap<>();
+		mappin.letterHashMapDemo(hashin2, letters);
 	}
 	
-	public void hashMapDemo(HashMap<String, Integer> map, String[] arr) {
+	
+	public void letterHashMapDemo(HashMap<String, Integer> map, String[] arr) {
+		for(int i = 0; i < arr.length; i++) {
+			if(!map.containsKey(arr[i])) {
+				map.put(arr[i],1);
+			} else {
+				map.put(arr[i], map.get(arr[i])+1);
+			}
+		}
+		for(String letter : map.keySet()) {
+			System.out.print(letter+" = "+map.get(letter)+", ");
+		}
+		System.out.println();
+	}
+	
+	
+	public void stateHashMapDemo(HashMap<String, Integer> map, String[] arr) {
 		
 		int letterIndex = 0;
 		String thisState = "";
@@ -52,7 +70,7 @@ public class MapDemo {
 		for(String state : map.keySet()) {
 			System.out.print(state+" "+map.get(state)+", ");
 		}
-		
+		System.out.println();
 	}
 
 }
