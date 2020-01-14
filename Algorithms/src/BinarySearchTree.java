@@ -88,8 +88,7 @@ public class BinarySearchTree {
     }*/
 	public BSTNode insert(int num, BSTNode curr) {
 		if(curr == null) {
-			BSTNode thisNode = new BSTNode(num);
-			return thisNode;
+			return new BSTNode(num);
 		}
 		if(num <= curr.data) {
 			curr.left = insert(num, curr.left);
@@ -147,9 +146,11 @@ public class BinarySearchTree {
 			return curr;
 		}
 		if(curr.data > num) {
-			return curr = findNode(curr.left, num);
+			curr = findNode(curr.left, num);
+			return curr;
 		}
-		return curr = findNode(curr.right, num);
+		curr = findNode(curr.right, num);
+		return curr;
 	}
 
 
@@ -172,6 +173,7 @@ public class BinarySearchTree {
 		if(thisRoot.left == null) {
 			return thisRoot.data;
 		}
+		// return thisRoot.data = smallestNode(thisRoot.left);
 		return smallestNode(thisRoot.left);
 	}
 	
@@ -185,7 +187,7 @@ public class BinarySearchTree {
             data1 = temp;
         }
         while(root.data < data1 || root.data > data2) {
-            if (root.data < data1) { 
+            if (root.data < data1) {
                 root = root.right; 
             } else if (root.data > data2) { 
                 root = root.left; 
@@ -248,9 +250,11 @@ public class BinarySearchTree {
 	 * However, this is hackerrank... hence we just print the nodes on the 
 	 * edge of the "christmas tree cone" 
 	 * https://www.hackerrank.com/challenges/tree-top-view/forum */
-	void top_view(BSTNode root){
+	void top_view(BSTNode root) {
+		
 		BSTNode curr = root;
 	    Stack<BSTNode> stack = new Stack<BSTNode>();
+	    
 	    while(curr != null) {
 	        stack.push(curr);
 	        curr = curr.left;
