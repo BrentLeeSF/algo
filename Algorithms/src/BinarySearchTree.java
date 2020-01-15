@@ -48,7 +48,7 @@ public class BinarySearchTree {
 		System.out.println();
 
 		BSTNode foundNode = bst.findNode(thisRoot, 5);
-		System.out.println("\nFound node = "+foundNode.data);
+		System.out.println("Found node = "+foundNode.data);
 
 		System.out.println("\nHeight = "+bst.height(thisRoot));
 
@@ -65,27 +65,34 @@ public class BinarySearchTree {
 
 		System.out.println("Count Nodes = "+bst.countNodes(newestRoot));
 		
+		System.out.println("Is this a Binary Search Tree? = "+bst.balance(newestRoot));
 		
+		System.out.println("\nTop View");
+		bst.top_view(newestRoot);
 		/** Serialize and Deserialize Tree
 		 * https://www.programcreek.com/2014/05/leetcode-serialize-and-deserialize-binary-tree-java/
 		 */
 	}
+	
+	
+	/** Check if BST */
+	boolean checkBST(BSTNode root) {
+        return checkBst(root, Integer.MIN_VALUE, Integer.MAX_VALUE);
+    }
 
-	/*public BSTNode insert(BSTNode root, int data) {
-        if(root == null) {
-            return new BSTNode(data);
-        } else {
-            BSTNode cur;
-            if(data <= root.data) {
-                cur = insert(root.left, data);
-                root.left = cur;
-            } else {
-                cur = insert(root.right, data);
-                root.right = cur;
-            }
-            return root;
-        }
-    }*/
+	/** Check if BST */
+    boolean checkBst(BSTNode root, int min, int max) {
+    	
+    	if(root == null) return true;
+
+    	return
+    		min < root.data &&
+    		root.data < max &&
+    		checkBst(root.left, min, root.data) &&
+    		checkBst(root.right, root.data, max);
+    }
+
+
 	public BSTNode insert(int num, BSTNode curr) {
 		if(curr == null) {
 			return new BSTNode(num);
@@ -146,11 +153,11 @@ public class BinarySearchTree {
 			return curr;
 		}
 		if(curr.data > num) {
-			curr = findNode(curr.left, num);
-			return curr;
+			return findNode(curr.left, num);
+			//return curr;
 		}
-		curr = findNode(curr.right, num);
-		return curr;
+		return findNode(curr.right, num);
+		//return curr;
 	}
 
 
@@ -164,7 +171,7 @@ public class BinarySearchTree {
 	public boolean balance(BSTNode thisRoot) {
 		int left = height(thisRoot.left);
 		int right = height(thisRoot.right);
-		System.out.println("Left = "+left+", right = "+right);
+		System.out.println("Left height = "+left+", right height = "+right);
 		return height(thisRoot.left) == height(thisRoot.right);
 	}
 
@@ -176,6 +183,7 @@ public class BinarySearchTree {
 		// return thisRoot.data = smallestNode(thisRoot.left);
 		return smallestNode(thisRoot.left);
 	}
+	
 	
 	public BSTNode LowestCommonAncestor(BSTNode root, int data1, int data2) {
 		if(root == null) { 
@@ -244,19 +252,23 @@ public class BinarySearchTree {
 	}
 	
 	
-	/** The proper solution should be to do BFS and keep a count of the 
-	 * displacement from the root node and avoid printing subsequent 
-	 * nodes with same displacement. 
-	 * However, this is hackerrank... hence we just print the nodes on the 
-	 * edge of the "christmas tree cone" 
+	/** Print top view of tree
+	 * 1
+	 *   2
+	 * 3   5
+	 *  4    6
+	 *  
+	 * Top view =  1->2->5->6
+	 * 
 	 * https://www.hackerrank.com/challenges/tree-top-view/forum */
-	void top_view(BSTNode root) {
+	public void top_view(BSTNode root) {
 		
 		BSTNode curr = root;
 	    Stack<BSTNode> stack = new Stack<BSTNode>();
 	    
 	    while(curr != null) {
 	        stack.push(curr);
+	        System.out.print(curr.data + " ");
 	        curr = curr.left;
 	    }
 	    

@@ -33,6 +33,11 @@ public class StringArray {
 	int[] primes = {2,4,7,6,9,11,12,15,16,17,18,19,21,22,23};
 	
 	int[] combinationArray = {1,2,3,4,5};
+	
+	String longestSub1 = "hithereyoungfella";
+	String longestSub2 = "abcdereyoabdytw";
+	String longestCommonSub1 = "abcdefghi";
+	String longestCommonSub2 = "aaabccccddddeeeei";
 
 	public static void main(String[] args) {
 		
@@ -101,7 +106,60 @@ public class StringArray {
         }
         
         System.out.println("4^3 = "+strArr.power(4,3));
-        	
+        
+        System.out.println("Longest SubString of "+strArr.longestSub1+" and "+strArr.longestSub2+" is "+strArr.longestSubString(strArr.longestSub1,strArr.longestSub2));
+        
+        System.out.println("Longest common sub array of "+strArr.longestCommonSub1+" and "+strArr.longestCommonSub2+" is "+strArr.longestCommonSub(strArr.longestCommonSub1, strArr.longestCommonSub2));
+	}
+	
+	
+	/** Longest common substring */
+	public String longestCommonSub(String arr1, String arr2) {
+		
+		int j = 0;
+		StringBuilder str = new StringBuilder();
+		System.out.println(arr2);
+		
+		for(int i = 0; i < arr1.length(); i++) {
+			char a = arr1.charAt(i);
+			j = i;
+			while(j < arr2.length() && a != arr2.charAt(j)) {
+				j++;
+			}
+			if(j < arr2.length() && a == arr2.charAt(j)) {
+				str.append(arr2.charAt(j));
+			} else {
+				return str.toString();
+			}
+		}
+		return str.toString();
+	}
+	
+	
+	public int longestSubString(String sub1, String sub2) {
+		
+		int iCount = 0, totalCount = 0;
+		int countin = 0;
+		
+		for(int i = 0; i < sub1.length(); i++) {
+			
+			int jCount = 0;
+			iCount = i;
+			
+			while(jCount < sub1.length() && jCount < sub2.length() && iCount < sub1.length()) {
+				if(sub1.charAt(iCount) == sub2.charAt(jCount)) {
+					totalCount++;
+					iCount++;
+				}
+				jCount++;
+			}
+		
+			if(totalCount > countin) {
+				countin = totalCount;
+			}
+			totalCount = 0;
+		}
+		return countin;
 	}
 	
 	public int power(int b,int e) {

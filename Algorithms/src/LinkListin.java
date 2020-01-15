@@ -12,7 +12,7 @@ public class LinkListin {
 	public static void main(String[] args) {
 		
 		LinkListin ls = new LinkListin();
-		int[] arr = {9, 3,6,8,1,3,0,5,9};
+		int[] arr = {9,3,6,8,1,3,0,5,9};
 		for(int i = 0; i < arr.length; i++) {
 			ls.createList(arr[i]);
 		}
