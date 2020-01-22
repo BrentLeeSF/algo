@@ -12,6 +12,8 @@ import java.util.Vector;
  * remove() or remove(index)
  * listIterator() 
  * size() */
+
+
 public class ListDemo {
 	
 	
@@ -33,7 +35,13 @@ public class ListDemo {
 	public static void main(String[] args) {
 		
 		ListDemo lists = new ListDemo();
+		
+		
+		/** ArrayList */
 		lists.arrayListDemo(lists.arList, lists.states);
+		
+		
+		/** LinkedList */
 		lists.linkListDemo(lists.linkList, lists.states);
 		//lists.stackDemo(lists.stackList, lists.states);
 		
