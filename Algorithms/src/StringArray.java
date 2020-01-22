@@ -5,6 +5,7 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 
 class Roots {
@@ -27,7 +28,7 @@ public class StringArray {
 	String uniqueStringTest2 = "abcdefg123567";
 	
 	int[] sortThis = {3,4,61,6,8,9,2,55,7,0,93,34,5};
-	int[] lonelyIntArr = {1,2,3,4,3,2,1};
+	int[] lonelyIntArr = {1,2,3,4,3,2,1,-1,-2,-3,-4,-3,-2,-1};
 	
 	String compressString = "aaabbccddddeeefff";
 	String compressString2 = "abcdef";
@@ -42,6 +43,7 @@ public class StringArray {
 	String longestSub2 = "abcdereyoabdytw";
 	String longestCommonSub1 = "abcdefghi";
 	String longestCommonSub2 = "aaabccccddddeeeei";
+	
 
 	public static void main(String[] args) {
 		
@@ -94,9 +96,8 @@ public class StringArray {
         Roots roots = strArr.findRoots(2, 10, 8);
         System.out.println("Roots: " + roots.x1 + ", " + roots.x2);
         
-        /*int[] students = {4, 73, 67, 38, 33};
-        List list = Arrays.asList(students);
-        strArr.gradingStudents(list);*/
+        int[] students = {4, 73, 67, 38, 33};
+        strArr.gradingStudents(students);
         
         int mat[][] = { { 4, 0, 0, 0 }, 
                 { 0, 7, 0, 0 }, 
@@ -121,7 +122,7 @@ public class StringArray {
 	}
 	
 	
-	/** Print the character and its frequency in order of its occurrence */
+	/** Prints the character, its frequency in order, and word count */
 	static void printCharWithFreq(String str) {
 		
 		int characterCount = 0;
@@ -138,7 +139,7 @@ public class StringArray {
 			
 			/** If not space, */
 			if(str.charAt(i) != 32) {
-				freq[str.charAt(i) - 0]++;
+				freq[str.charAt(i)]++;
 				characterCount++;
 			}
 			if(str.charAt(i) == ' ' || str.charAt(i) == '\n' || str.charAt(i) == '\t') {
@@ -219,15 +220,17 @@ public class StringArray {
 		return countin;
 	}
 	
+	
 	public int power(int b,int e) {
 		if(e == 0) {
 			return 1;
 		} else {
 			return (b* power(b, e-1) ); 
 		} 
-	 }
+	}
 	
-	public boolean isDiagonalMatrix(int mat[][], int N) { 
+	
+	public boolean isDiagonalMatrix(int mat[][], int N) {
 
         for(int i = 0; i < N; i++) {
         	for(int j = 0; j < N; j++) {
@@ -241,13 +244,13 @@ public class StringArray {
 	
 	/** If students grade < 38, return grade. If student's grade 1-2 points below %5
 	 * increase grade to %5 */
-	public void gradingStudents(List <Integer> grades) {
+	public void gradingStudents(int[] grades) {
 		
         List<Integer> l1 = new ArrayList<Integer>(); 
         int num = 0;
         
-        for(int i = 0; i < grades.size(); i++) {
-            num = (int)grades.get(i);
+        for(int i = 0; i < grades.length; i++) {
+            num = grades[i];
             
             if(num >= 38 && num%5 > 2) {
                 int diff = Math.abs((num%5)-5);
@@ -296,9 +299,11 @@ public class StringArray {
             }
         }
         
+        
         int size = hashin.size();
         String[] newArray = new String[size];
-        Iterator it = hashin.entrySet().iterator();
+        
+        /*Iterator it = hashin.entrySet().iterator();
         int count = 0;
         
         while (it.hasNext()) {
@@ -307,7 +312,14 @@ public class StringArray {
             newArray[count] = word;
             count++;
             it.remove(); // avoids a ConcurrentModificationException
-        }
+        }*/
+        
+        Set<String> allKeys = hashin.keySet();
+		int i = 0;
+		for(String key: allKeys) {
+			newArray[i] = key;
+			i++;
+		}
         return newArray;
     }
 	
@@ -390,6 +402,7 @@ public class StringArray {
         }
     }
     
+    
     public void staircase(int n) {
     	
     	for(int i = 0; i < n; i++) {
@@ -408,6 +421,7 @@ public class StringArray {
     		System.out.println();
     	}
     }
+    
 	
 	/** Returns true if every character in string is unique */
 	public boolean uniqueString(String thisUnique) {
@@ -446,20 +460,29 @@ public class StringArray {
 	
 	
 	/** Return the non duplicate value in array */
-	public int lonelyInt(int[] arr) {
-		int[] newArr = new int[arr.length];
+	public String lonelyInt(int[] arr) {
+		
+		HashMap<Integer, Integer> mappin = new HashMap<Integer, Integer>();
 		int save = 0;
 
 		for(int i = 0; i < arr.length; i++) {
 			save = arr[i];
-			newArr[save]++;
-		}
-		for(int i = 0; i < newArr.length; i++) {
-			if(newArr[i] == 1) {
-				return i;
+			if(mappin.containsKey(save)) {
+				mappin.put(arr[i],-1);
+			} else {
+				mappin.put(arr[i],1);
 			}
 		}
-		return 0;
+		
+		StringBuilder str = new StringBuilder();
+		Set<Integer> allKeys = mappin.keySet();
+		
+		for(Integer key: allKeys) {
+			if(mappin.get(key) == 1) {
+				str.append(key+", ");
+			}
+		}
+		return str.toString();
 	}
 	
 	
