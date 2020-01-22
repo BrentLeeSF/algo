@@ -19,6 +19,10 @@ class Roots {
 
 public class StringArray {
 	
+	static final int SIZE = 128;
+	static final int OUT = 0; 
+	static final int IN = 1; 
+	
 	String uniqueStringTest = "afg456362989";
 	String uniqueStringTest2 = "abcdefg123567";
 	
@@ -110,6 +114,59 @@ public class StringArray {
         System.out.println("Longest SubString of "+strArr.longestSub1+" and "+strArr.longestSub2+" is "+strArr.longestSubString(strArr.longestSub1,strArr.longestSub2));
         
         System.out.println("Longest common sub array of "+strArr.longestCommonSub1+" and "+strArr.longestCommonSub2+" is "+strArr.longestCommonSub(strArr.longestCommonSub1, strArr.longestCommonSub2));
+        
+        String stringCharAndWordCount = "Abracadabra       Alakazam!!  i  ";
+        System.out.println("\nIn Order Character and Word Count of: "+stringCharAndWordCount);
+		printCharWithFreq(stringCharAndWordCount);
+	}
+	
+	
+	/** Print the character and its frequency in order of its occurrence */
+	static void printCharWithFreq(String str) {
+		
+		int characterCount = 0;
+		int state = OUT; 
+		int wordCount = 0;
+		int n = str.length();
+
+		/** 'freq[]' implemented as hash table */
+		int[] freq = new int[SIZE]; 
+
+		
+		/** accumulate freqeuncy of each character in 'str' */
+		for (int i = 0; i < n; i++) {
+			
+			/** If not space, */
+			if(str.charAt(i) != 32) {
+				freq[str.charAt(i) - 0]++;
+				characterCount++;
+			}
+			if(str.charAt(i) == ' ' || str.charAt(i) == '\n' || str.charAt(i) == '\t') {
+				state = OUT;
+				
+			} else if(state == OUT) {
+				state = IN; 
+				++wordCount; 
+			}
+		}
+
+		
+		/** traverse 'str' from left to right */
+		for (int i = 0; i < n; i++) {
+			
+			//System.out.println("- "+freq[str.charAt(i) - 0]);
+			/** if frequency of character str.charAt(i) is not equal to 0 */
+			if(freq[str.charAt(i) - 0] != 0) {
+
+				/** print the character along with its frequency */
+				System.out.print(str.charAt(i)+"="); 
+				System.out.print(freq[str.charAt(i)] + ", ");
+
+				/** update frequency of str.charAt(i) to 0 so the same character is not printed again */
+				freq[str.charAt(i)] = 0;
+			} 
+		}
+		System.out.println("\nCharacter Count = "+characterCount+", Word Count = "+wordCount+"\n\n");
 	}
 	
 	
