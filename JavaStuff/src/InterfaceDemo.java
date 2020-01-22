@@ -1,7 +1,3 @@
-// Java program to illustrate the 
-
-
-import java.io.*; 
 
 
 interface ShapeInterfaceDemo { 
@@ -37,9 +33,9 @@ class RectangleInterfaceDemo implements ShapeInterfaceDemo {
 class CircleInterfaceDemo implements ShapeInterfaceDemo { 
 	
 	double pi = 3.14; 
-	int radius; 
+	int radius;
 	
-	CircleInterfaceDemo(int radius) { 
+	CircleInterfaceDemo(int radius) {
 		this.radius = radius; 
 	}
 	

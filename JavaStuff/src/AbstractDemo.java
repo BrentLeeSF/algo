@@ -1,4 +1,3 @@
-import java.io.*; 
 
 
 abstract class Shape { 
@@ -9,16 +8,13 @@ abstract class Shape {
 		this.objectName = name; 
 	}
 	
-	
 	public void moveTo(int x, int y) { 
 		System.out.println(this.objectName + " " + "has been moved to"+ " x = " + x + " and y = " + y); 
 	} 
 	
-	
 	/** abstract methods which will be implemented by its subclass(es) */
 	abstract public double area(); 
 	abstract public void draw(); 
-	
 	
 } 
 
@@ -80,7 +76,7 @@ class AbstractDemo {
 		Shape rect = new Rectangle(2,3, "Rectangle"); 
 		System.out.println("Area of rectangle: " + rect.area()); 
 		rect.moveTo(1,2); 
-		
+		rect.draw();
 		
 		System.out.println(" "); 
 		
@@ -88,6 +84,6 @@ class AbstractDemo {
 		Shape circle = new Circle(2, "Cicle"); 
 		System.out.println("Area of circle: " + circle.area()); 
 		circle.moveTo(2,4); 
-	
+		rect.draw();
 	} 
 } 
