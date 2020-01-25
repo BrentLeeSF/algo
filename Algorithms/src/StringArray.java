@@ -130,9 +130,9 @@ public class StringArray {
 		int[] arrPermute = { 1, 2, 3, 4 };
 		List<List<Integer>> permuteArrayList = new ArrayList<List<Integer>>();
 		permuteArrayList = strArr.permute(arrPermute);
-		for (List<Integer> innerList : permuteArrayList) {
-			for (Integer number : innerList) {
-				System.out.print(number + ", ");
+		for (int i = 0; i < permuteArrayList.size(); i++) {
+			for (int j = 0; j < permuteArrayList.get(i).size(); j++) {
+				System.out.print(permuteArrayList.get(i).get(j) + " ");
 			}
 			System.out.println();
 		}
@@ -140,9 +140,9 @@ public class StringArray {
 		System.out.println("\nCombinations 2");
 		ArrayList<ArrayList<Integer>> permuteArrayList2 = new ArrayList<ArrayList<Integer>>();
 		permuteArrayList2 = strArr.permute2(arrPermute);
-		for (List<Integer> innerList : permuteArrayList2) {
-			for (Integer number : innerList) {
-				System.out.print(number + ", ");
+		for (int i = 0; i < permuteArrayList2.size(); i++) {
+			for (int j = 0; j < permuteArrayList2.get(i).size(); j++) {
+				System.out.print(permuteArrayList2.get(i).get(j) + " ");
 			}
 			System.out.println();
 		}
