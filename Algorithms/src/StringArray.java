@@ -128,7 +128,7 @@ public class StringArray {
 
 		System.out.println("\nCombinations");
 		int[] arrPermute = { 1, 2, 3, 4 };
-		ArrayList<ArrayList<Integer>> permuteArrayList = new ArrayList<ArrayList<Integer>>();
+		List<List<Integer>> permuteArrayList = new ArrayList<List<Integer>>();
 		permuteArrayList = strArr.permute(arrPermute);
 		for (List<Integer> innerList : permuteArrayList) {
 			for (Integer number : innerList) {
@@ -136,7 +136,18 @@ public class StringArray {
 			}
 			System.out.println();
 		}
+
+		System.out.println("\nCombinations 2");
+		ArrayList<ArrayList<Integer>> permuteArrayList2 = new ArrayList<ArrayList<Integer>>();
+		permuteArrayList2 = strArr.permute2(arrPermute);
+		for (List<Integer> innerList : permuteArrayList2) {
+			for (Integer number : innerList) {
+				System.out.print(number + ", ");
+			}
+			System.out.println();
+		}
 	}
+	
 
 	/** Prints the character, its frequency in order, and word count */
 	static void printCharWithFreq(String str) {
@@ -187,7 +198,9 @@ public class StringArray {
 		System.out.println("\nCharacter Count = " + characterCount + ", Word Count = " + wordCount + "\n\n");
 	}
 
-	public ArrayList<ArrayList<Integer>> permute(int[] num) {
+	
+	/** Prints Combinations */
+	public ArrayList<ArrayList<Integer>> permute2(int[] num) {
 		ArrayList<ArrayList<Integer>> result = new ArrayList<ArrayList<Integer>>();
 
 		/** start from an empty list */
@@ -220,6 +233,39 @@ public class StringArray {
 		return result;
 	}
 
+	
+	/** Combinations */
+	public List<List<Integer>> permute(int[] nums) {
+
+		List<List<Integer>> totalList = new ArrayList<List<Integer>>();
+
+		if (nums.length == 0) {
+			return totalList;
+		}
+		List<Integer> newList = new ArrayList<Integer>();
+		newList.add(nums[0]);
+		totalList.add(newList);
+
+		for (int i = 1; i < nums.length; ++i) {
+
+			List<List<Integer>> new_ans = new ArrayList<List<Integer>>();
+
+			for (int j = 0; j <= i; ++j) {
+
+				for (List<Integer> l : totalList) {
+
+					List<Integer> new_l = new ArrayList<Integer>(l);
+
+					new_l.add(j, nums[i]);
+					new_ans.add(new_l);
+				}
+			}
+			totalList = new_ans;
+		}
+		return totalList;
+	}
+	
+
 	/** Longest common substring */
 	public String longestCommonSub(String arr1, String arr2) {
 
@@ -244,6 +290,8 @@ public class StringArray {
 		return str.toString();
 	}
 
+	
+	/** Returns length of longest sub string */
 	public int longestSubString(String sub1, String sub2) {
 
 		int iCount = 0, totalCount = 0;
@@ -270,6 +318,8 @@ public class StringArray {
 		return countin;
 	}
 
+	
+	/** Power recursion */
 	public int power(int b, int e) {
 		if (e == 0) {
 			return 1;
@@ -278,6 +328,8 @@ public class StringArray {
 		}
 	}
 
+	
+	/** Returns true if is a diagonal matrix */
 	public boolean isDiagonalMatrix(int mat[][], int N) {
 
 		for (int i = 0; i < N; i++) {
@@ -290,6 +342,7 @@ public class StringArray {
 		return true;
 	}
 
+	
 	/**
 	 * If students grade < 38, return grade. If student's grade 1-2 points below %5
 	 * increase grade to %5
@@ -316,6 +369,7 @@ public class StringArray {
 		System.out.println();
 	}
 
+	
 	public Roots findRoots(double a, double b, double c) {
 		double r1 = (-b + Math.sqrt(b * b - 4 * a * c)) / (2 * a);
 		double r2 = (-b - Math.sqrt(b * b - 4 * a * c)) / (2 * a);
@@ -324,6 +378,7 @@ public class StringArray {
 		Roots roo = new Roots(r1, r2);
 		return roo;
 	}
+	
 
 	/**
 	 * 1. Merge NamesARRAYS Implement the uniqueNames method. When passed two arrays
@@ -360,6 +415,8 @@ public class StringArray {
 		return newArray;
 	}
 
+	
+	
 	public void combinationSum2(int[] candidates, int target) {
 
 		List<List<Integer>> totalResult = new ArrayList<List<Integer>>();
