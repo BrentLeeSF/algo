@@ -119,6 +119,11 @@ public class StringArray {
         String stringCharAndWordCount = "Abracadabra       Alakazam!!  i  ";
         System.out.println("\nIn Order Character and Word Count of: "+stringCharAndWordCount);
 		printCharWithFreq(stringCharAndWordCount);
+		
+		int[] combinationSum = {10,1,2,7,6,1,5};
+		int combinationSumTarget = 8;
+		System.out.println("Combination of "+Arrays.toString(combinationSum)+" with sum of "+combinationSumTarget+" is ");
+		strArr.combinationSum2(combinationSum, combinationSumTarget);
 	}
 	
 	
@@ -303,17 +308,6 @@ public class StringArray {
         int size = hashin.size();
         String[] newArray = new String[size];
         
-        /*Iterator it = hashin.entrySet().iterator();
-        int count = 0;
-        
-        while (it.hasNext()) {
-            Map.Entry pair = (Map.Entry)it.next();
-			String word = (String) pair.getKey();
-            newArray[count] = word;
-            count++;
-            it.remove(); // avoids a ConcurrentModificationException
-        }*/
-        
         Set<String> allKeys = hashin.keySet();
 		int i = 0;
 		for(String key: allKeys) {
@@ -322,6 +316,55 @@ public class StringArray {
 		}
         return newArray;
     }
+	
+	
+	public void combinationSum2(int[] candidates, int target) {
+		
+	    List<List<Integer>> totalResult = new ArrayList<List<Integer>>();
+	    List<Integer> currentList = new ArrayList<Integer>();
+	    
+	    Arrays.sort(candidates);
+	    combinationSumHelper(candidates, 0, target, currentList, totalResult);
+	    
+	    for(int i = 0; i < totalResult.size(); i++) {
+	    	for(int j = 0; j < totalResult.get(i).size(); j++) {
+	    		System.out.print(totalResult.get(i).get(j) + " ");
+	    	}
+	    	System.out.println(); 
+	    }
+	}
+	 
+	
+	public void combinationSumHelper(int[] candidates, int index, int target, List<Integer> currentList, List<List<Integer>> totalResult) {
+		
+		/** If found combinations we want, create a new ArrayList and add to totalResult */
+	    if(target == 0) {
+	    	totalResult.add(new ArrayList<Integer>(currentList));
+	        return;
+	    }
+	    
+	    /** If taken in too many numbers, more than target, return */
+	    if(target < 0) {
+	        return;
+	    }
+	   
+	    /** DFS */
+	    for(int i = index; i < candidates.length; i++) {
+	    	
+	    	/** check for duplicates
+	    	 * if at first or  if current and previous are not same */
+	    	if(i == index || candidates[i] != candidates[i-1]) {
+	    		
+	    		currentList.add(candidates[i]);
+	    		
+	    		/** return next index and new target of target - candidate we just added */
+	    		combinationSumHelper(candidates, i + 1, target - candidates[i], currentList, totalResult);
+	    		
+	    		/** When recursive call returns we want to remove the number we just added */
+	    		currentList.remove(currentList.size()-1);
+	    	}
+	    }
+	}
 	
 	
 	/** The main function that prints all combinations of size r 
@@ -379,11 +422,11 @@ public class StringArray {
 	]*/
 	public List<String> generateParenthesis(int n) {
         List<String> res = new ArrayList<>();
-        helper(0, 0, new StringBuilder(), n, res);
+        parenthesisHelper(0, 0, new StringBuilder(), n, res);
         return res;
     }
     
-    private void helper(int left, int right, StringBuilder sb, int n, List<String> res) {
+    private void parenthesisHelper(int left, int right, StringBuilder sb, int n, List<String> res) {
         if(left == n && right == n) {
             res.add(new String(sb.toString()));
             return;
@@ -391,13 +434,13 @@ public class StringArray {
         
         if(left < n) {
             sb.append("(");
-            helper(left + 1, right, sb, n, res);
+            parenthesisHelper(left + 1, right, sb, n, res);
             sb.setLength(sb.length() - 1);
         }
         
         if(right < left) {
             sb.append(")");
-            helper(left, right + 1, sb, n, res);
+            parenthesisHelper(left, right + 1, sb, n, res);
             sb.setLength(sb.length() - 1);
         }
     }
