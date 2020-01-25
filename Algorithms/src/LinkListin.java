@@ -30,27 +30,35 @@ public class LinkListin {
 		ls.print("Reverse Linked List");
 		ls.reverse();
 		ls.print("Reverse Linked List");
-		
+		System.out.println("Print Next Greatest Value in Linked List. If Value is Greatest Value, Print 0");
 		ls.nextLargerNodes();
 		
 	}
 	
+	
+	/** LeetCode 1019. Next Greater Node In Linked List*/
 	public void nextLargerNodes() {
 		
-        LinkedList<Integer> arr = new LinkedList<Integer>();
-        LinkNode current = list.head;
+		LinkNode firstCurrent = list.head;
+		int index = 0;
+        while(firstCurrent != null) {
+        	firstCurrent = firstCurrent.next;
+            index++;
+        }
+        int[] arr = new int[index];
         
         int currentVal = 0, biggestVal = 0;
-        
+        int newIndex = 0;
+        LinkNode current = list.head;
         while(current != null) {
             currentVal = current.data;
             biggestVal = currentVal;
             LinkNode nextCurrent = current.next;
-            
             while(nextCurrent != null) {
             	
                 if(nextCurrent.data > biggestVal) {
                     biggestVal = nextCurrent.data;
+                    break;
                 }
                 nextCurrent = nextCurrent.next;
             }
@@ -59,11 +67,12 @@ public class LinkListin {
                 biggestVal = 0;
                 current.data = 0;
             }
-            arr.add(biggestVal);
+            arr[newIndex] = biggestVal;
+            newIndex++;
             current = current.next;
         }
-        for(int i = 0; i < arr.size(); i++) {
-        	System.out.print(arr.get(i)+", ");
+        for(int i = 0; i < arr.length; i++) {
+        	System.out.print(arr[i]+", ");
         }
         System.out.println();
     }
