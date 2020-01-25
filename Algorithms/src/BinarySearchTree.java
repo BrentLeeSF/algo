@@ -13,12 +13,14 @@ import java.util.Stack;
 */
 
 public class BinarySearchTree {
+	
 
 	BSTNode root;
 
 	public BinarySearchTree() {
 		this.root = null;
 	}
+	
 
 	public static void main(String[] args) {
 
@@ -29,8 +31,8 @@ public class BinarySearchTree {
 
 		for(int i = 0; i < arr.length; i++) {
 			thisRoot = bst.insert(arr[i], thisRoot);
-			//thisRoot = bst.insert(thisRoot, arr[i]);
 		}
+		
 		System.out.println("In Order");
 		bst.printInOrder(thisRoot);
 		System.out.println();
