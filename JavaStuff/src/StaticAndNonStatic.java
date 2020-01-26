@@ -1,74 +1,76 @@
 
-/** Java program to demonstrate how to implement static and non-static 
-classes in a java program. */
+/**
+ * Java program to demonstrate how to implement static and non-static classes in
+ * a java program.
+ */
 
 class OuterClass {
-	
-	
-	private static String msg = "GeeksForGeeks"; 
-	
-	
+
+	private static String msg = "GeeksForGeeks";
+
 	/** Static nested class */
 	public static class NestedStaticClass {
-	
-		/** Only static members of Outer class is directly accessible in nested static class */
-		public void printMessage() { 
-	
+
+		/**
+		 * Only static members of Outer class is directly accessible in nested static
+		 * class
+		 */
+		public void printMessage() {
+
 			/** Try making 'message' a non-static variable, there will be compiler error */
-			System.out.println("Message from nested static class: " + msg); 
-		} 
+			System.out.println("Message from nested static class: " + msg);
+		}
 	}
-	
-	
+
 	/** non-static nested class - also called Inner class */
 	public class InnerClass {
-		
-		/** Both static and non-static members of Outer class are accessible in this Inner class */
+
+		/**
+		 * Both static and non-static members of Outer class are accessible in this
+		 * Inner class
+		 */
 		public void display() {
-			System.out.println("Message from non-static nested class: "+ msg); 
+			System.out.println("Message from non-static nested class: " + msg);
 		}
-	} 
+	}
 }
 
-
 class StaticAndNonStatic {
-	
-	
+
 	/** How to create instance of static and non static nested class? */
 	public static void main(String args[]) {
-		
-		
-		OuterClass.NestedStaticClass printer = new OuterClass.NestedStaticClass(); 
-			
+
+		OuterClass.NestedStaticClass printer = new OuterClass.NestedStaticClass();
+
 		/** call non static method of nested static class */
-		printer.printMessage(); 
-	
-		/** In order to create instance of Inner class we need an Outer class instance. 
-		 * Let us create Outer class instance for creating non-static nested class */
-		OuterClass outer = new OuterClass();		 
-		OuterClass.InnerClass inner = outer.new InnerClass(); 
-			
+		printer.printMessage();
+
+		/**
+		 * In order to create instance of Inner class we need an Outer class instance.
+		 * Let us create Outer class instance for creating non-static nested class
+		 */
+		OuterClass outer = new OuterClass();
+		OuterClass.InnerClass inner = outer.new InnerClass();
+
 		/** calling non-static method of Inner class */
-		inner.display(); 
-		
+		inner.display();
+
 		/** Combine above steps in one step to create instance of Inner class */
-		OuterClass.InnerClass innerObject = new OuterClass().new InnerClass(); 
-			
+		OuterClass.InnerClass innerObject = new OuterClass().new InnerClass();
+
 		/** similarly we can now call Inner class method */
 		innerObject.display();
-		
-		
-		int a = 5, b = 0; 
-		  
-	    /** Attempting to divide by zero */
-	    try {
-	        int c = a / b; 
-	        System.out.println("C = "+c);
-	    } 
-	    catch (ArithmeticException e) {
-	        e.printStackTrace(); 
-	    }
-	    System.out.println("Tacos -- ");
 
-	} 
-} 
+		int a = 5, b = 0;
+
+		/** Attempting to divide by zero */
+		try {
+			int c = a / b;
+			System.out.println("C = " + c);
+		} catch (ArithmeticException e) {
+			e.printStackTrace();
+		}
+		System.out.println("Tacos -- ");
+
+	}
+}

@@ -329,12 +329,9 @@ public class Combinations {
 		}
 	}
 
-	/**
-	 * PERMUTATION
-	 * 
+	/** PERMUTATION
 	 * Creates an ArrayList of ints and adds each int to the ArrayList and returns
-	 * it
-	 */
+	 * it */
 	public ArrayList<Integer> permuteConvertArrayToList(int[] arr) {
 		ArrayList<Integer> item = new ArrayList<Integer>();
 		for (int h = 0; h < arr.length; h++) {
@@ -343,11 +340,7 @@ public class Combinations {
 		return item;
 	}
 
-	/**
-	 * PERMUTATION
-	 * 
-	 * Swaps the integers in the array
-	 */
+	/** PERMUTATION - Swaps the integers in the array */
 	public void permuteSwap(int[] arr, int start, int j) {
 		int temp = arr[start];
 		arr[start] = arr[j];
