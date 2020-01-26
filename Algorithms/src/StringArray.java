@@ -114,7 +114,44 @@ public class StringArray {
 		String stringCharAndWordCount = "Abracadabra       Alakazam!!  i  ";
 		System.out.println("\nIn Order Character and Word Count of: " + stringCharAndWordCount);
 		printCharWithFreq(stringCharAndWordCount);
-
+		
+		int[][] hourGlassArray = {
+				{1, 1, 1, 0, 0, 0},
+				{0, 1, 0, 0, 0, 0},
+				{1, 1, 1, 0, 0, 0},
+				{0, 0, 2, 4, 4, 0},
+				{0, 0, 0, 2, 0, 0},
+				{0, 0, 1, 2, 4, 0} };
+		int[][] hourGlassArray2 = {
+				{-9, -9, -9,  1, 1, 1},
+				 {0, -9,  0,  4, 3, 2},
+				{-9, -9, -9,  1, 2, 3},
+				 {0,  0,  8,  6, 6, 0},
+				 {0,  0,  0, -2, 0, 0},
+				 {0,  0,  1,  2, 4, 0}};
+		System.out.println("Largest sum of Hour glass = "+strArr.hourGlass(hourGlassArray2));
+	}
+	
+	
+	public int hourGlass(int[][] hourGlass) {
+		
+		int currentSum = 0, highestSum = 0;
+		for(int i = 0; i < hourGlass.length-2; i++) {
+			for(int j = 0; j < hourGlass.length-2; j++) {
+				currentSum += hourGlass[i][j];
+				currentSum += hourGlass[i][j+1];
+				currentSum += hourGlass[i][j+2];
+				currentSum += hourGlass[i+1][j+1];
+				currentSum += hourGlass[i+2][j];
+				currentSum += hourGlass[i+2][j+1];
+				currentSum += hourGlass[i+2][j+2];
+				if(currentSum > highestSum) {
+					highestSum = currentSum;
+				}
+				currentSum = 0;
+			}
+		}
+		return highestSum;
 	}
 	
 

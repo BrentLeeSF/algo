@@ -69,6 +69,9 @@ public class BinarySearchTree {
 
 		System.out.println("\nTop View");
 		bst.top_view(newestRoot);
+
+		BSTNode curr = bst.LowestCommonAncestor(newestRoot, 9, 4);
+		System.out.println("\n\nLowest Common Ancestor of 0 & 2 is " + curr.data);
 		/**
 		 * Serialize and Deserialize Tree
 		 * https://www.programcreek.com/2014/05/leetcode-serialize-and-deserialize-binary-tree-java/
@@ -264,6 +267,26 @@ public class BinarySearchTree {
 			System.out.print(curr.data + " ");
 			curr = curr.right;
 		}
+	}
+
+	/** http://stackoverflow.com/questions/31409989/what-is-the-best-approach-binary-search-tree-lowest-common-ancestor-using-onl */
+	static BSTNode lowestCommonAncestor(BSTNode root, int v1, int v2) {
+		if (root == null) {
+			return null;
+		}
+		if (v1 > v2) {
+			int temp = v2;
+			v2 = v1;
+			v1 = temp;
+		}
+		while (root.data < v1 || root.data > v2) {
+			if (root.data < v1) {
+				root = root.right;
+			} else if (root.data > v2) {
+				root = root.left;
+			}
+		}
+		return root;
 	}
 
 }

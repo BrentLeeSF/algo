@@ -2,9 +2,12 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+
 public class Combinations {
+	
 
 	public static void main(String[] args) {
+		
 
 		Combinations combo = new Combinations();
 
@@ -80,16 +83,16 @@ public class Combinations {
 	
 
 	/** Combinations of letters, Helper */
-	public void letterCombinationsRecursive(List<String> result, String digits, String current, int index,
-			String[] mapping) {
+	public void letterCombinationsRecursive(List<String> result, String digits, String currentString, int index, String[] mapping) {
 		if (index == digits.length()) {
-			result.add(current);
+			result.add(currentString);
 			return;
 		}
 
 		String letters = mapping[digits.charAt(index) - '0'];
+		System.out.println("Letters = "+letters);
 		for (int i = 0; i < letters.length(); i++) {
-			letterCombinationsRecursive(result, digits, current + letters.charAt(i), index + 1, mapping);
+			letterCombinationsRecursive(result, digits, currentString + letters.charAt(i), index + 1, mapping);
 		}
 	}
 
@@ -156,10 +159,8 @@ public class Combinations {
 					innerList.remove(j);
 				}
 			}
-
 			result = new ArrayList<ArrayList<Integer>>(current);
 		}
-
 		return result;
 	}
 	
@@ -224,10 +225,8 @@ public class Combinations {
 	 * This function mainly uses combinationUtil()
 	 */
 	public void printCombination(int arr[], int n, int maxCombo) {
-
 		int data[] = new int[maxCombo];
 		combinationUtil(arr, n, maxCombo, 0, data, 0);
-
 	}
 	
 
@@ -261,7 +260,6 @@ public class Combinations {
 		 * index is not changed)
 		 */
 		combinationUtil(arr, n, maxCombo, index, data, i + 1);
-
 	}
 
 	
@@ -328,6 +326,7 @@ public class Combinations {
 			permuteSwap(arr, start, j);
 		}
 	}
+	
 
 	/** PERMUTATION
 	 * Creates an ArrayList of ints and adds each int to the ArrayList and returns
@@ -346,5 +345,4 @@ public class Combinations {
 		arr[start] = arr[j];
 		arr[j] = temp;
 	}
-
 }
