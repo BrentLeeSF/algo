@@ -70,8 +70,10 @@ public class BinarySearchTree {
 		System.out.println("\nTop View");
 		bst.top_view(newestRoot);
 
-		BSTNode curr = bst.LowestCommonAncestor(newestRoot, 9, 4);
-		System.out.println("\n\nLowest Common Ancestor of 0 & 2 is " + curr.data);
+		BSTNode curr = bst.LowestCommonAncestor(newestRoot, 0, 2);
+		System.out.println("\n\nLowest Common Ancestor is " + curr.data);
+		
+		
 		/**
 		 * Serialize and Deserialize Tree
 		 * https://www.programcreek.com/2014/05/leetcode-serialize-and-deserialize-binary-tree-java/
@@ -80,17 +82,19 @@ public class BinarySearchTree {
 
 	/** Check if BST */
 	boolean checkBST(BSTNode root) {
-		return checkBst(root, Integer.MIN_VALUE, Integer.MAX_VALUE);
+		return check(root, Integer.MIN_VALUE, Integer.MAX_VALUE);
 	}
 
-	/** Check if BST */
-	boolean checkBst(BSTNode root, int min, int max) {
-
-		if (root == null)
+	boolean check(BSTNode node, int min, int max) {
+		if (node == null) {
 			return true;
+		}
 
-		return min < root.data && root.data < max && checkBst(root.left, min, root.data)
-				&& checkBst(root.right, root.data, max);
+		if (node.data < min || node.data > max) {
+			return false;
+		}
+
+		return check(node.left, min, node.data - 1) && check(node.right, node.data + 1, max);
 	}
 
 	public BSTNode insert(int num, BSTNode curr) {
@@ -269,26 +273,24 @@ public class BinarySearchTree {
 		}
 	}
 
-	/** http://stackoverflow.com/questions/31409989/what-is-the-best-approach-binary-search-tree-lowest-common-ancestor-using-onl */
-	static BSTNode lowestCommonAncestor(BSTNode root, int v1, int v2) {
+	/**
+	 * http://stackoverflow.com/questions/31409989/what-is-the-best-approach-binary-search-tree-lowest-common-ancestor-using-onl
+	 */
+	public BSTNode lowestCommonAncestor(BSTNode root, int v1, int v2) {
 		if (root == null) {
 			return null;
 		}
-		if (v1 > v2) {
-			int temp = v2;
-			v2 = v1;
-			v1 = temp;
+		/** If both v1 and v2 are smaller than root, then LCA lies in left */
+		if (root.data > v1 && root.data > v2) {
+			return lowestCommonAncestor(root.left, v1, v2);
 		}
-		while (root.data < v1 || root.data > v2) {
-			if (root.data < v1) {
-				root = root.right;
-			} else if (root.data > v2) {
-				root = root.left;
-			}
+		/** If both v1 and v2 are greater than root, then LCA lies in right */
+		if (root.data < v1 && root.data < v2) {
+			return lowestCommonAncestor(root.right, v1, v2);
 		}
 		return root;
 	}
-
+	
 }
 
 class BSTNode {
