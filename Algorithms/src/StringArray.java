@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+
 class Roots {
 	public final double x1, x2;
 
@@ -16,7 +17,9 @@ class Roots {
 	}
 }
 
+
 public class StringArray {
+	
 
 	static final int SIZE = 128;
 	static final int OUT = 0;
@@ -41,8 +44,10 @@ public class StringArray {
 	String longestSub2 = "abcdereyoabdytw";
 	String longestCommonSub1 = "abcdefghi";
 	String longestCommonSub2 = "aaabccccddddeeeei";
+	
 
 	public static void main(String[] args) {
+		
 
 		StringArray strArr = new StringArray();
 
@@ -70,16 +75,6 @@ public class StringArray {
 		ArrayList<Integer> primeNums = strArr.countPrimeNumbers(strArr.primes);
 		for (int i = 0; i < primeNums.size(); i++) {
 			System.out.print(primeNums.get(i) + ", ");
-		}
-		System.out.println();
-
-		int arr[] = { 1, 2, 3, 4, 5 };
-		int maxCombo = 3, arrLength = arr.length;
-		strArr.printCombination(arr, arrLength, maxCombo);
-
-		List<String> uh = strArr.generateParenthesis(3);
-		for (int i = 0; i < uh.size(); i++) {
-			System.out.print(uh.get(i) + ", ");
 		}
 		System.out.println();
 
@@ -120,32 +115,6 @@ public class StringArray {
 		System.out.println("\nIn Order Character and Word Count of: " + stringCharAndWordCount);
 		printCharWithFreq(stringCharAndWordCount);
 
-		int[] combinationSum = { 10, 1, 2, 7, 6, 1, 5 };
-		int combinationSumTarget = 8;
-		System.out.println(
-				"Combination of " + Arrays.toString(combinationSum) + " with sum of " + combinationSumTarget + " is ");
-		strArr.combinationSum2(combinationSum, combinationSumTarget);
-
-		System.out.println("\nCombinations");
-		int[] arrPermute = { 1, 2, 3, 4 };
-		List<List<Integer>> permuteArrayList = new ArrayList<List<Integer>>();
-		permuteArrayList = strArr.permute(arrPermute);
-		for (int i = 0; i < permuteArrayList.size(); i++) {
-			for (int j = 0; j < permuteArrayList.get(i).size(); j++) {
-				System.out.print(permuteArrayList.get(i).get(j) + " ");
-			}
-			System.out.println();
-		}
-
-		System.out.println("\nCombinations 2");
-		ArrayList<ArrayList<Integer>> permuteArrayList2 = new ArrayList<ArrayList<Integer>>();
-		permuteArrayList2 = strArr.permute2(arrPermute);
-		for (int i = 0; i < permuteArrayList2.size(); i++) {
-			for (int j = 0; j < permuteArrayList2.get(i).size(); j++) {
-				System.out.print(permuteArrayList2.get(i).get(j) + " ");
-			}
-			System.out.println();
-		}
 	}
 	
 
@@ -199,73 +168,6 @@ public class StringArray {
 	}
 
 	
-	/** Prints Combinations */
-	public ArrayList<ArrayList<Integer>> permute2(int[] num) {
-		ArrayList<ArrayList<Integer>> result = new ArrayList<ArrayList<Integer>>();
-
-		/** start from an empty list */
-		result.add(new ArrayList<Integer>());
-
-		for (int i = 0; i < num.length; i++) {
-
-			/** list of list in current iteration of the array num */
-			ArrayList<ArrayList<Integer>> current = new ArrayList<ArrayList<Integer>>();
-
-			for (ArrayList<Integer> l : result) {
-
-				/** # of locations to insert is largest index + 1 */
-				for (int j = 0; j < l.size() + 1; j++) {
-
-					/** + add num[i] to different locations */
-					l.add(j, num[i]);
-
-					ArrayList<Integer> temp = new ArrayList<Integer>(l);
-					current.add(temp);
-
-					/** - remove num[i] add to not add again */
-					l.remove(j);
-				}
-			}
-
-			result = new ArrayList<ArrayList<Integer>>(current);
-		}
-
-		return result;
-	}
-
-	
-	/** Combinations */
-	public List<List<Integer>> permute(int[] nums) {
-
-		List<List<Integer>> totalList = new ArrayList<List<Integer>>();
-
-		if (nums.length == 0) {
-			return totalList;
-		}
-		List<Integer> newList = new ArrayList<Integer>();
-		newList.add(nums[0]);
-		totalList.add(newList);
-
-		for (int i = 1; i < nums.length; ++i) {
-
-			List<List<Integer>> new_ans = new ArrayList<List<Integer>>();
-
-			for (int j = 0; j <= i; ++j) {
-
-				for (List<Integer> l : totalList) {
-
-					List<Integer> new_l = new ArrayList<Integer>(l);
-
-					new_l.add(j, nums[i]);
-					new_ans.add(new_l);
-				}
-			}
-			totalList = new_ans;
-		}
-		return totalList;
-	}
-	
-
 	/** Longest common substring */
 	public String longestCommonSub(String arr1, String arr2) {
 
@@ -289,8 +191,8 @@ public class StringArray {
 		}
 		return str.toString();
 	}
-
 	
+
 	/** Returns length of longest sub string */
 	public int longestSubString(String sub1, String sub2) {
 
@@ -368,8 +270,8 @@ public class StringArray {
 		}
 		System.out.println();
 	}
-
 	
+
 	public Roots findRoots(double a, double b, double c) {
 		double r1 = (-b + Math.sqrt(b * b - 4 * a * c)) / (2 * a);
 		double r2 = (-b - Math.sqrt(b * b - 4 * a * c)) / (2 * a);
@@ -378,8 +280,8 @@ public class StringArray {
 		Roots roo = new Roots(r1, r2);
 		return roo;
 	}
-	
 
+	
 	/**
 	 * 1. Merge NamesARRAYS Implement the uniqueNames method. When passed two arrays
 	 * of names, it will return an array containing the names that appear in either
@@ -416,132 +318,7 @@ public class StringArray {
 	}
 
 	
-	
-	public void combinationSum2(int[] candidates, int target) {
-
-		List<List<Integer>> totalResult = new ArrayList<List<Integer>>();
-		List<Integer> currentList = new ArrayList<Integer>();
-
-		Arrays.sort(candidates);
-		combinationSumHelper(candidates, 0, target, currentList, totalResult);
-
-		for (int i = 0; i < totalResult.size(); i++) {
-			for (int j = 0; j < totalResult.get(i).size(); j++) {
-				System.out.print(totalResult.get(i).get(j) + " ");
-			}
-			System.out.println();
-		}
-	}
-
-	public void combinationSumHelper(int[] candidates, int index, int target, List<Integer> currentList,
-			List<List<Integer>> totalResult) {
-
-		/**
-		 * If found combinations we want, create a new ArrayList and add to totalResult
-		 */
-		if (target == 0) {
-			totalResult.add(new ArrayList<Integer>(currentList));
-			return;
-		}
-
-		/** If taken in too many numbers, more than target, return */
-		if (target < 0) {
-			return;
-		}
-
-		/** DFS */
-		for (int i = index; i < candidates.length; i++) {
-
-			/**
-			 * check for duplicates if at first or if current and previous are not same
-			 */
-			if (i == index || candidates[i] != candidates[i - 1]) {
-
-				currentList.add(candidates[i]);
-
-				/** return next index and new target of target - candidate we just added */
-				combinationSumHelper(candidates, i + 1, target - candidates[i], currentList, totalResult);
-
-				/** When recursive call returns we want to remove the number we just added */
-				currentList.remove(currentList.size() - 1);
-			}
-		}
-	}
-
-	/**
-	 * The main function that prints all combinations of size r in arr[] of size n.
-	 * This function mainly uses combinationUtil()
-	 */
-	public void printCombination(int arr[], int n, int maxCombo) {
-
-		int data[] = new int[maxCombo];
-		combinationUtil(arr, n, maxCombo, 0, data, 0);
-
-	}
-
-	/**
-	 * arr[] ---> Input Array data[] ---> Temporary array to store current
-	 * combination start & end ---> Staring and Ending indexes in arr[] index --->
-	 * Current index in data[] maxCombo ---> Size of a combination to be printed
-	 */
-	public void combinationUtil(int arr[], int n, int maxCombo, int index, int[] data, int i) {
-
-		/** Current index combination is ready to be printed */
-		if (index == maxCombo) {
-			for (int j = 0; j < maxCombo; j++) {
-				System.out.print(data[j] + " ");
-			}
-			System.out.println();
-			return;
-		}
-
-		/** When no more elements can be put in data[] */
-		if (i >= n) {
-			return;
-		}
-
-		/** current index is included, put next location */
-		data[index] = arr[i];
-		combinationUtil(arr, n, maxCombo, index + 1, data, i + 1);
-
-		/**
-		 * current index is excluded, replace it with next (Note that i+1 is passed, but
-		 * index is not changed)
-		 */
-		combinationUtil(arr, n, maxCombo, index, data, i + 1);
-
-	}
-
-	/**
-	 * Given n pairs of parentheses, write a function to generate all combinations
-	 * of well-formed parentheses. For example, given n = 3, a solution set is: [
-	 * "((()))", "(()())", "(())()", "()(())", "()()()" ]
-	 */
-	public List<String> generateParenthesis(int n) {
-		List<String> res = new ArrayList<>();
-		parenthesisHelper(0, 0, new StringBuilder(), n, res);
-		return res;
-	}
-
-	private void parenthesisHelper(int left, int right, StringBuilder sb, int n, List<String> res) {
-		if (left == n && right == n) {
-			res.add(new String(sb.toString()));
-			return;
-		}
-
-		if (left < n) {
-			sb.append("(");
-			parenthesisHelper(left + 1, right, sb, n, res);
-			sb.setLength(sb.length() - 1);
-		}
-
-		if (right < left) {
-			sb.append(")");
-			parenthesisHelper(left, right + 1, sb, n, res);
-			sb.setLength(sb.length() - 1);
-		}
-	}
-
+	/** Print staircase, given staircase size */
 	public void staircase(int n) {
 
 		for (int i = 0; i < n; i++) {
@@ -560,6 +337,7 @@ public class StringArray {
 			System.out.println();
 		}
 	}
+	
 
 	/** Returns true if every character in string is unique */
 	public boolean uniqueString(String thisUnique) {
@@ -576,6 +354,7 @@ public class StringArray {
 		}
 		return true;
 	}
+	
 
 	/** Sorts array with selection sort */
 	public int[] selectionSort(int[] arr) {
@@ -594,6 +373,7 @@ public class StringArray {
 		System.out.println();
 		return arr;
 	}
+	
 
 	/** Return the non duplicate value in array */
 	public String lonelyInt(int[] arr) {
@@ -620,6 +400,7 @@ public class StringArray {
 		}
 		return str.toString();
 	}
+	
 
 	/** Compresses string ex. aaabbcccc -> a3b2c4 */
 	public String stringCompression(String compressThis) {
@@ -640,6 +421,7 @@ public class StringArray {
 		}
 		return str.length() < compressThis.length() ? str.toString() : compressThis;
 	}
+	
 
 	/**
 	 * Reveres compressed string to regular string ex. a3b2c4 -> aaabbcccc
@@ -668,6 +450,7 @@ public class StringArray {
 		}
 		return str.toString();
 	}
+	
 
 	/**
 	 * check if both a1 and b2 are not empty loop through a1, get first a1 index and
@@ -696,6 +479,7 @@ public class StringArray {
 		}
 		return countB - 1 == b2.length();
 	}
+	
 
 	/** Returns an ArrayList of all prime numbers */
 	public ArrayList<Integer> countPrimeNumbers(int[] arr) {
