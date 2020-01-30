@@ -7,7 +7,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
-
 class Roots {
 	public final double x1, x2;
 
@@ -17,9 +16,12 @@ class Roots {
 	}
 }
 
+// Solution structure
+class Interval {
+	int buy, sell;
+}
 
 public class StringArray {
-	
 
 	static final int SIZE = 128;
 	static final int OUT = 0;
@@ -44,10 +46,8 @@ public class StringArray {
 	String longestSub2 = "abcdereyoabdytw";
 	String longestCommonSub1 = "abcdefghi";
 	String longestCommonSub2 = "aaabccccddddeeeei";
-	
 
 	public static void main(String[] args) {
-		
 
 		StringArray strArr = new StringArray();
 
@@ -114,38 +114,53 @@ public class StringArray {
 		String stringCharAndWordCount = "Abracadabra       Alakazam!!  i  ";
 		System.out.println("\nIn Order Character and Word Count of: " + stringCharAndWordCount);
 		printCharWithFreq(stringCharAndWordCount);
-		
-		int[][] hourGlassArray = {
-				{1, 1, 1, 0, 0, 0},
-				{0, 1, 0, 0, 0, 0},
-				{1, 1, 1, 0, 0, 0},
-				{0, 0, 2, 4, 4, 0},
-				{0, 0, 0, 2, 0, 0},
-				{0, 0, 1, 2, 4, 0} };
-		int[][] hourGlassArray2 = {
-				{-9, -9, -9,  1, 1, 1},
-				 {0, -9,  0,  4, 3, 2},
-				{-9, -9, -9,  1, 2, 3},
-				 {0,  0,  8,  6, 6, 0},
-				 {0,  0,  0, -2, 0, 0},
-				 {0,  0,  1,  2, 4, 0}};
-		System.out.println("Largest sum of Hour glass = "+strArr.hourGlass(hourGlassArray2));
+
+		int[][] hourGlassArray = { { 1, 1, 1, 0, 0, 0 }, { 0, 1, 0, 0, 0, 0 }, { 1, 1, 1, 0, 0, 0 },
+				{ 0, 0, 2, 4, 4, 0 }, { 0, 0, 0, 2, 0, 0 }, { 0, 0, 1, 2, 4, 0 } };
+		int[][] hourGlassArray2 = { { -9, -9, -9, 1, 1, 1 }, { 0, -9, 0, 4, 3, 2 }, { -9, -9, -9, 1, 2, 3 },
+				{ 0, 0, 8, 6, 6, 0 }, { 0, 0, 0, -2, 0, 0 }, { 0, 0, 1, 2, 4, 0 } };
+		System.out.println("Largest sum of Hour glass = " + strArr.hourGlass(hourGlassArray2));
+
+		System.out.println("\n");
+		// stock prices on consecutive days
+		int stockPrices[] = { 695, 100, 180, 260, 40, 310, 535 };
+		System.out.println(Arrays.toString(stockPrices));
+		strArr.stockBuySell(stockPrices);
 	}
-	
-	
-	public int hourGlass(int[][] hourGlass) {
+
+	public void stockBuySell(int[] prices) {
 		
+		int maxprofit = 0;
+		
+		for (int i = 0; i < prices.length - 1; i++) {
+			
+			for (int j = i + 1; j < prices.length; j++) {
+				
+				int profit = prices[j] - prices[i];
+				
+				if (profit > maxprofit) {
+					maxprofit = profit;
+					System.out.println("Max Profit " + maxprofit);
+					maxprofit = 0;
+					i = j + 1;
+				}
+			}
+		}
+	}
+
+	public int hourGlass(int[][] hourGlass) {
+
 		int currentSum = 0, highestSum = 0;
-		for(int i = 0; i < hourGlass.length-2; i++) {
-			for(int j = 0; j < hourGlass.length-2; j++) {
+		for (int i = 0; i < hourGlass.length - 2; i++) {
+			for (int j = 0; j < hourGlass.length - 2; j++) {
 				currentSum += hourGlass[i][j];
-				currentSum += hourGlass[i][j+1];
-				currentSum += hourGlass[i][j+2];
-				currentSum += hourGlass[i+1][j+1];
-				currentSum += hourGlass[i+2][j];
-				currentSum += hourGlass[i+2][j+1];
-				currentSum += hourGlass[i+2][j+2];
-				if(currentSum > highestSum) {
+				currentSum += hourGlass[i][j + 1];
+				currentSum += hourGlass[i][j + 2];
+				currentSum += hourGlass[i + 1][j + 1];
+				currentSum += hourGlass[i + 2][j];
+				currentSum += hourGlass[i + 2][j + 1];
+				currentSum += hourGlass[i + 2][j + 2];
+				if (currentSum > highestSum) {
 					highestSum = currentSum;
 				}
 				currentSum = 0;
@@ -153,7 +168,6 @@ public class StringArray {
 		}
 		return highestSum;
 	}
-	
 
 	/** Prints the character, its frequency in order, and word count */
 	static void printCharWithFreq(String str) {
@@ -204,7 +218,6 @@ public class StringArray {
 		System.out.println("\nCharacter Count = " + characterCount + ", Word Count = " + wordCount + "\n\n");
 	}
 
-	
 	/** Longest common substring */
 	public String longestCommonSub(String arr1, String arr2) {
 
@@ -228,7 +241,6 @@ public class StringArray {
 		}
 		return str.toString();
 	}
-	
 
 	/** Returns length of longest sub string */
 	public int longestSubString(String sub1, String sub2) {
@@ -257,7 +269,6 @@ public class StringArray {
 		return countin;
 	}
 
-	
 	/** Power recursion */
 	public int power(int b, int e) {
 		if (e == 0) {
@@ -267,7 +278,6 @@ public class StringArray {
 		}
 	}
 
-	
 	/** Returns true if is a diagonal matrix */
 	public boolean isDiagonalMatrix(int mat[][], int N) {
 
@@ -281,7 +291,6 @@ public class StringArray {
 		return true;
 	}
 
-	
 	/**
 	 * If students grade < 38, return grade. If student's grade 1-2 points below %5
 	 * increase grade to %5
@@ -307,7 +316,6 @@ public class StringArray {
 		}
 		System.out.println();
 	}
-	
 
 	public Roots findRoots(double a, double b, double c) {
 		double r1 = (-b + Math.sqrt(b * b - 4 * a * c)) / (2 * a);
@@ -318,7 +326,6 @@ public class StringArray {
 		return roo;
 	}
 
-	
 	/**
 	 * 1. Merge NamesARRAYS Implement the uniqueNames method. When passed two arrays
 	 * of names, it will return an array containing the names that appear in either
@@ -354,7 +361,6 @@ public class StringArray {
 		return newArray;
 	}
 
-	
 	/** Print staircase, given staircase size */
 	public void staircase(int n) {
 
@@ -374,7 +380,6 @@ public class StringArray {
 			System.out.println();
 		}
 	}
-	
 
 	/** Returns true if every character in string is unique */
 	public boolean uniqueString(String thisUnique) {
@@ -391,7 +396,6 @@ public class StringArray {
 		}
 		return true;
 	}
-	
 
 	/** Sorts array with selection sort */
 	public int[] selectionSort(int[] arr) {
@@ -410,7 +414,6 @@ public class StringArray {
 		System.out.println();
 		return arr;
 	}
-	
 
 	/** Return the non duplicate value in array */
 	public String lonelyInt(int[] arr) {
@@ -437,7 +440,6 @@ public class StringArray {
 		}
 		return str.toString();
 	}
-	
 
 	/** Compresses string ex. aaabbcccc -> a3b2c4 */
 	public String stringCompression(String compressThis) {
@@ -458,7 +460,6 @@ public class StringArray {
 		}
 		return str.length() < compressThis.length() ? str.toString() : compressThis;
 	}
-	
 
 	/**
 	 * Reveres compressed string to regular string ex. a3b2c4 -> aaabbcccc
@@ -487,7 +488,6 @@ public class StringArray {
 		}
 		return str.toString();
 	}
-	
 
 	/**
 	 * check if both a1 and b2 are not empty loop through a1, get first a1 index and
@@ -516,7 +516,6 @@ public class StringArray {
 		}
 		return countB - 1 == b2.length();
 	}
-	
 
 	/** Returns an ArrayList of all prime numbers */
 	public ArrayList<Integer> countPrimeNumbers(int[] arr) {
