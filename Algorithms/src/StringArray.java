@@ -8,6 +8,7 @@ import java.util.Map;
 import java.util.Set;
 
 class Roots {
+	
 	public final double x1, x2;
 
 	public Roots(double x1, double x2) {
@@ -16,10 +17,6 @@ class Roots {
 	}
 }
 
-// Solution structure
-class Interval {
-	int buy, sell;
-}
 
 public class StringArray {
 
@@ -123,29 +120,30 @@ public class StringArray {
 
 		System.out.println("\n");
 		// stock prices on consecutive days
-		int stockPrices[] = { 695, 100, 180, 260, 40, 310, 535 };
+		int stockPrices[] = { 695, 100, 180, 260,  310, 535, 40 };
 		System.out.println(Arrays.toString(stockPrices));
 		strArr.stockBuySell(stockPrices);
 	}
 
+	
 	public void stockBuySell(int[] prices) {
 		
-		int maxprofit = 0;
+		int maxprofit = 0, buy = 0, sell = 0;
 		
-		for (int i = 0; i < prices.length - 1; i++) {
-			
-			for (int j = i + 1; j < prices.length; j++) {
-				
-				int profit = prices[j] - prices[i];
-				
-				if (profit > maxprofit) {
-					maxprofit = profit;
-					System.out.println("Max Profit " + maxprofit);
-					maxprofit = 0;
-					i = j + 1;
-				}
-			}
-		}
+        for (int i = 0; i < prices.length - 1; i++) {
+        	
+            for (int j = i + 1; j < prices.length; j++) {
+            	
+                int profit = prices[j] - prices[i];
+                
+                if (profit > maxprofit) {
+                    maxprofit = profit;
+                    buy = i;
+                    sell = j;
+                }
+            }
+        }
+		System.out.println("Buy on "+buy+", sell on "+sell+" for profit of "+maxprofit);
 	}
 
 	public int hourGlass(int[][] hourGlass) {
