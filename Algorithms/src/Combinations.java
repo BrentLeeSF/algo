@@ -41,11 +41,16 @@ public class Combinations {
 		}
 		System.out.println();
 
-		int[] combinationSum = { 10, 1, 2, 7, 6, 1, 5 };
+		int[] combinationSumArray = { 10, 1, 2, 7, 6, 1, 5 };
 		int combinationSumTarget = 8;
-		System.out.println("\nCombination of " + Arrays.toString(combinationSum) + " with sum of "
+		int[] secondArray = {2,5,3,6,4};
+		int secondTarget = 10;
+		System.out.println("\nCombination of " + Arrays.toString(combinationSumArray) + " with sum of "
 				+ combinationSumTarget + " is ");
-		combo.combinationSum2(combinationSum, combinationSumTarget);
+		combo.combinationSum(combinationSumArray, combinationSumTarget);
+		System.out.println("\nCombination of " + Arrays.toString(secondArray) + " with sum of "
+				+ secondTarget + " is ");
+		combo.combinationSum(secondArray, secondTarget);
 
 		int printComboArr[] = { 1, 2, 3, 4, 5 };
 		int maxCombo = 3, arrLength = printComboArr.length;
@@ -166,7 +171,7 @@ public class Combinations {
 	
 
 	/** Combination Sum of Numbers Given Target */
-	public void combinationSum2(int[] candidates, int target) {
+	public void combinationSum(int[] candidates, int target) {
 
 		List<List<Integer>> totalResult = new ArrayList<List<Integer>>();
 		List<Integer> currentList = new ArrayList<Integer>();
