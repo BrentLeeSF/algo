@@ -22,8 +22,7 @@ public class Dynamic {
 		uh.add(3L);
 		uh.add(6L);
 		uh.add(4L);
-		 System.out.println("Combinations of 10 with list 1,5,3,6 = " +
-		 dym.max(secondArray, 10));
+		System.out.println("Combinations of 10 with list 1,5,3,6 = " + dym.max(secondArray, 10));
 	}
 
 	/**

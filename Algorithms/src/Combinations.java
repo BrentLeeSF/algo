@@ -2,12 +2,9 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-
 public class Combinations {
-	
 
 	public static void main(String[] args) {
-		
 
 		Combinations combo = new Combinations();
 
@@ -43,13 +40,13 @@ public class Combinations {
 
 		int[] combinationSumArray = { 10, 1, 2, 7, 6, 1, 5 };
 		int combinationSumTarget = 8;
-		int[] secondArray = {2,5,3,6,4};
+		int[] secondArray = { 2, 5, 3, 6, 4 };
 		int secondTarget = 10;
 		System.out.println("\nCombination of " + Arrays.toString(combinationSumArray) + " with sum of "
 				+ combinationSumTarget + " is ");
 		combo.combinationSum(combinationSumArray, combinationSumTarget);
-		System.out.println("\nCombination of " + Arrays.toString(secondArray) + " with sum of "
-				+ secondTarget + " is ");
+		System.out
+				.println("\nCombination of " + Arrays.toString(secondArray) + " with sum of " + secondTarget + " is ");
 		combo.combinationSum(secondArray, secondTarget);
 
 		int printComboArr[] = { 1, 2, 3, 4, 5 };
@@ -74,7 +71,6 @@ public class Combinations {
 
 	}
 
-	
 	/** Combinations of letters, like on a phone */
 	public List<String> letterCombinations(String digits) {
 		List<String> result = new ArrayList<String>();
@@ -85,23 +81,22 @@ public class Combinations {
 		letterCombinationsRecursive(result, digits, "", 0, mapping);
 		return result;
 	}
-	
 
 	/** Combinations of letters, Helper */
-	public void letterCombinationsRecursive(List<String> result, String digits, String currentString, int index, String[] mapping) {
+	public void letterCombinationsRecursive(List<String> result, String digits, String currentString, int index,
+			String[] mapping) {
 		if (index == digits.length()) {
 			result.add(currentString);
 			return;
 		}
 
 		String letters = mapping[digits.charAt(index) - '0'];
-		System.out.println("Letters = "+letters);
+		System.out.println("Letters = " + letters);
 		for (int i = 0; i < letters.length(); i++) {
 			letterCombinationsRecursive(result, digits, currentString + letters.charAt(i), index + 1, mapping);
 		}
 	}
 
-	
 	/** Combinations of numbers */
 	public List<List<Integer>> permute(int[] nums) {
 
@@ -135,7 +130,6 @@ public class Combinations {
 		return totalList;
 	}
 
-	
 	/** Combinations of numbers */
 	public ArrayList<ArrayList<Integer>> permute2(int[] num) {
 
@@ -168,7 +162,6 @@ public class Combinations {
 		}
 		return result;
 	}
-	
 
 	/** Combination Sum of Numbers Given Target */
 	public void combinationSum(int[] candidates, int target) {
@@ -186,7 +179,6 @@ public class Combinations {
 			System.out.println();
 		}
 	}
-	
 
 	/** Combination Sum of Numbers Given Target - HELPER */
 	public void combinationSumHelper(int[] candidates, int index, int target, List<Integer> currentList,
@@ -223,7 +215,6 @@ public class Combinations {
 			}
 		}
 	}
-	
 
 	/**
 	 * The main function that prints all combinations of size r in arr[] of size n.
@@ -233,7 +224,6 @@ public class Combinations {
 		int data[] = new int[maxCombo];
 		combinationUtil(arr, n, maxCombo, 0, data, 0);
 	}
-	
 
 	/**
 	 * arr[] ---> Input Array data[] ---> Temporary array to store current
@@ -267,7 +257,6 @@ public class Combinations {
 		combinationUtil(arr, n, maxCombo, index, data, i + 1);
 	}
 
-	
 	/**
 	 * Given n pairs of parentheses, write a function to generate all combinations
 	 * of well-formed parentheses. For example, given n = 3, a solution set is: [
@@ -298,7 +287,6 @@ public class Combinations {
 		}
 	}
 
-	
 	/**
 	 * PERMUTATION
 	 * 
@@ -331,11 +319,11 @@ public class Combinations {
 			permuteSwap(arr, start, j);
 		}
 	}
-	
 
-	/** PERMUTATION
-	 * Creates an ArrayList of ints and adds each int to the ArrayList and returns
-	 * it */
+	/**
+	 * PERMUTATION Creates an ArrayList of ints and adds each int to the ArrayList
+	 * and returns it
+	 */
 	public ArrayList<Integer> permuteConvertArrayToList(int[] arr) {
 		ArrayList<Integer> item = new ArrayList<Integer>();
 		for (int h = 0; h < arr.length; h++) {
