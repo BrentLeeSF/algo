@@ -19,10 +19,6 @@ class Roots {
 
 public class StringArray {
 
-	static final int SIZE = 128;
-	static final int OUT = 0;
-	static final int IN = 1;
-
 	String uniqueStringTest = "afg456362989";
 	String uniqueStringTest2 = "abcdefg123567";
 
@@ -55,10 +51,11 @@ public class StringArray {
 		System.out.println("Sort " + Arrays.toString(strArr.sortThis) + " is: "
 				+ Arrays.toString(strArr.selectionSort(strArr.sortThis)));
 
-		System.out.println("lonely int = " + strArr.lonelyInt(strArr.lonelyIntArr));
+		System.out.println("\nlonely int of " + Arrays.toString(strArr.lonelyIntArr) + " = "
+				+ strArr.lonelyInt(strArr.lonelyIntArr));
 
-		System.out
-				.println("Compress " + strArr.compressString + " = " + strArr.stringCompression(strArr.compressString));
+		System.out.println(
+				"\nCompress " + strArr.compressString + " = " + strArr.stringCompression(strArr.compressString));
 		System.out.println(
 				"Compress " + strArr.compressString2 + " = " + strArr.stringCompression(strArr.compressString2));
 		System.out.println("Reverse Compress " + strArr.reverseCompress + " = "
@@ -67,7 +64,7 @@ public class StringArray {
 		System.out.println("Is " + strArr.compressString2 + " a substring of " + strArr.compressString + " "
 				+ strArr.isSubString(strArr.compressString, strArr.compressString2));
 
-		System.out.print("Prime numbers: ");
+		System.out.print("\nPrime numbers of " + Arrays.toString(strArr.primes) + " is\n");
 		ArrayList<Integer> primeNums = strArr.countPrimeNumbers(strArr.primes);
 		for (int i = 0; i < primeNums.size(); i++) {
 			System.out.print(primeNums.get(i) + ", ");
@@ -79,26 +76,37 @@ public class StringArray {
 		String[] names1 = new String[] { "Ava", "Emma", "Olivia" };
 		String[] names2 = new String[] { "Olivia", "Sophia", "Emma" };
 		String[] huh = strArr.uniqueNames(names1, names2); // should print Ava, Emma, Olivia, Sophia
+		System.out.println();
 		for (int k = 0; k < huh.length; k++) {
 			System.out.print(huh[k] + ", ");
 		}
-		System.out.println();
+		System.out.println("\n");
 
-		Roots roots = strArr.findRoots(2, 10, 8);
-		System.out.println("Roots: " + roots.x1 + ", " + roots.x2);
+		Roots roots = strArr.findQuadraticRoots(2, 10, 8);
+		System.out.println("\nRoots: " + roots.x1 + ", " + roots.x2);
+
+		int squareRootNum = 17;
+		System.out.println("\nFind Square roots of " + squareRootNum + " = " + strArr.findSquareRoot(squareRootNum));
 
 		int[] students = { 4, 73, 67, 38, 33 };
+		System.out.println("\nStudents problem");
 		strArr.gradingStudents(students);
 
 		int mat[][] = { { 4, 0, 0, 0 }, { 0, 7, 0, 0 }, { 0, 0, 5, 0 }, { 0, 0, 1, 1 } };
-
+		System.out.println("\nis this a diaganol matrix? ");
+		for (int i = 0; i < mat.length; i++) {
+			for (int j = 0; j < mat.length; j++) {
+				System.out.print(mat[i][j] + ", ");
+			}
+			System.out.println();
+		}
 		if (strArr.isDiagonalMatrix(mat, 4)) {
-			System.out.println("Yes");
+			System.out.println("Yes\n");
 		} else {
-			System.out.println("No");
+			System.out.println("No\n");
 		}
 
-		System.out.println("4^3 = " + strArr.power(4, 3));
+		System.out.println("4^3 = " + strArr.power(4, 3) + "\n");
 
 		System.out.println("Longest SubString of " + strArr.longestSub1 + " and " + strArr.longestSub2 + " is "
 				+ strArr.longestSubString(strArr.longestSub1, strArr.longestSub2));
@@ -123,7 +131,9 @@ public class StringArray {
 		System.out.println(Arrays.toString(stockPrices));
 		strArr.stockBuySell(stockPrices);
 	}
+	
 
+	/** Buy stock at lowest and sell at highest */
 	public void stockBuySell(int[] prices) {
 
 		int maxprofit = 0, buy = 0, sell = 0;
@@ -143,7 +153,9 @@ public class StringArray {
 		}
 		System.out.println("Buy on " + buy + ", sell on " + sell + " for profit of " + maxprofit);
 	}
+	
 
+	/** Return highest sum with an hour glass shape */
 	public int hourGlass(int[][] hourGlass) {
 
 		int currentSum = 0, highestSum = 0;
@@ -165,18 +177,20 @@ public class StringArray {
 		return highestSum;
 	}
 
-	/** Prints the character, its frequency in order, and word count */
+	
+	/**
+	 * Prints the character excluding spaces, character frequency, in order, and
+	 * word count
+	 */
 	static void printCharWithFreq(String str) {
 
-		int characterCount = 0;
-		int state = OUT;
-		int wordCount = 0;
-		int n = str.length();
+		int OUT = 0, IN = 1, state = OUT;
+		int size = 128, characterCount = 0, wordCount = 0, n = str.length();
 
 		/** 'freq[]' implemented as hash table */
-		int[] freq = new int[SIZE];
+		int[] freq = new int[size];
 
-		/** accumulate freqeuncy of each character in 'str' */
+		/** accumulate freqeuncy of each nonspace character in 'str' */
 		for (int i = 0; i < n; i++) {
 
 			/** If not space, */
@@ -192,13 +206,16 @@ public class StringArray {
 				++wordCount;
 			}
 		}
+		
 
-		/** traverse 'str' from left to right */
+		/**
+		 * traverse 'str' if freqArr has value in order print char and value, then set
+		 * to 0 so same char will not be printed again
+		 */
 		for (int i = 0; i < n; i++) {
 
-			// System.out.println("- "+freq[str.charAt(i) - 0]);
 			/** if frequency of character str.charAt(i) is not equal to 0 */
-			if (freq[str.charAt(i) - 0] != 0) {
+			if (freq[str.charAt(i)] != 0) {
 
 				/** print the character along with its frequency */
 				System.out.print(str.charAt(i) + "=");
@@ -213,6 +230,7 @@ public class StringArray {
 		}
 		System.out.println("\nCharacter Count = " + characterCount + ", Word Count = " + wordCount + "\n\n");
 	}
+	
 
 	/** Longest common substring */
 	public String longestCommonSub(String arr1, String arr2) {
@@ -237,6 +255,7 @@ public class StringArray {
 		}
 		return str.toString();
 	}
+	
 
 	/** Returns length of longest sub string */
 	public int longestSubString(String sub1, String sub2) {
@@ -264,6 +283,7 @@ public class StringArray {
 		}
 		return countin;
 	}
+	
 
 	/** Power recursion */
 	public int power(int b, int e) {
@@ -273,6 +293,7 @@ public class StringArray {
 			return (b * power(b, e - 1));
 		}
 	}
+	
 
 	/** Returns true if is a diagonal matrix */
 	public boolean isDiagonalMatrix(int mat[][], int N) {
@@ -286,6 +307,7 @@ public class StringArray {
 		}
 		return true;
 	}
+	
 
 	/**
 	 * If students grade < 38, return grade. If student's grade 1-2 points below %5
@@ -312,8 +334,10 @@ public class StringArray {
 		}
 		System.out.println();
 	}
+	
 
-	public Roots findRoots(double a, double b, double c) {
+	/** Find quadratic roots of given numbers */
+	public Roots findQuadraticRoots(double a, double b, double c) {
 		double r1 = (-b + Math.sqrt(b * b - 4 * a * c)) / (2 * a);
 		double r2 = (-b - Math.sqrt(b * b - 4 * a * c)) / (2 * a);
 		System.out.println("First root = " + r1);
@@ -321,6 +345,22 @@ public class StringArray {
 		Roots roo = new Roots(r1, r2);
 		return roo;
 	}
+	
+
+	/** Return square root of given number */
+	public double findSquareRoot(int number) {
+
+		double temp;
+		double squareRoot = number / 2;
+
+		do {
+			temp = squareRoot;
+			squareRoot = (temp + (number / temp)) / 2;
+		} while ((temp - squareRoot) != 0);
+
+		return squareRoot;
+	}
+	
 
 	/**
 	 * 1. Merge NamesARRAYS Implement the uniqueNames method. When passed two arrays
@@ -356,10 +396,12 @@ public class StringArray {
 		}
 		return newArray;
 	}
+	
 
 	/** Print staircase, given staircase size */
 	public void staircase(int n) {
 
+		System.out.println("\nPrinting staircase of size " + n);
 		for (int i = 0; i < n; i++) {
 
 			int spaces = n - 1 - i;
@@ -376,6 +418,7 @@ public class StringArray {
 			System.out.println();
 		}
 	}
+	
 
 	/** Returns true if every character in string is unique */
 	public boolean uniqueString(String thisUnique) {
@@ -392,6 +435,7 @@ public class StringArray {
 		}
 		return true;
 	}
+	
 
 	/** Sorts array with selection sort */
 	public int[] selectionSort(int[] arr) {
@@ -410,6 +454,7 @@ public class StringArray {
 		System.out.println();
 		return arr;
 	}
+	
 
 	/** Return the non duplicate value in array */
 	public String lonelyInt(int[] arr) {
@@ -436,6 +481,7 @@ public class StringArray {
 		}
 		return str.toString();
 	}
+	
 
 	/** Compresses string ex. aaabbcccc -> a3b2c4 */
 	public String stringCompression(String compressThis) {
@@ -457,6 +503,7 @@ public class StringArray {
 		return str.length() < compressThis.length() ? str.toString() : compressThis;
 	}
 
+	
 	/**
 	 * Reveres compressed string to regular string ex. a3b2c4 -> aaabbcccc
 	 */
@@ -485,6 +532,7 @@ public class StringArray {
 		return str.toString();
 	}
 
+	
 	/**
 	 * check if both a1 and b2 are not empty loop through a1, get first a1 index and
 	 * while a1 index and b2 index are same, loop through both
@@ -512,6 +560,7 @@ public class StringArray {
 		}
 		return countB - 1 == b2.length();
 	}
+	
 
 	/** Returns an ArrayList of all prime numbers */
 	public ArrayList<Integer> countPrimeNumbers(int[] arr) {

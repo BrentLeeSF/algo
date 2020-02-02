@@ -60,6 +60,7 @@ public class MapDemo {
 		}
 		System.out.println();
 	}
+	
 
 	public void stateHashMapDemo(HashMap<String, Integer> map, String[] arr) {
 

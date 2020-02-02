@@ -8,21 +8,27 @@ public class Dynamic {
 
 		Dynamic dym = new Dynamic();
 
-		int[] firstArray = { 1, 2, 3 };
-		int[] thisArray = { 2, 5, 3, 6 };
+		int[] firstArray = { 2, 5, 3, 6 };
 		// 22222, 2233, 226, 235, 55
 		int[] secondArray = { 2, 5, 3, 6, 4 };
 		// 22222, 2224, 2233, 226, 235, 244, 334, 55, 64,
-		// System.out.println("Combinations of 4 with list 1,2,3 = " +
-		// dym.max(firstArray, 4));
-		System.out.println("Combinations of 10 with list 1,5,3,6 = " + dym.max(secondArray, 10));
-		List<Long> uh = new ArrayList<>();
-		uh.add(2L);
-		uh.add(5L);
-		uh.add(3L);
-		uh.add(6L);
-		uh.add(4L);
-		System.out.println("Combinations of 10 with list 1,5,3,6 = " + dym.max(secondArray, 10));
+		System.out.println("Combinations of 10 with list 1,5,3,6 = " +dym.max(firstArray, 10));
+		System.out.println("Combinations of 10 with list 1,5,3,6 = " +dym.max(secondArray, 10));
+		int[] absMin = { 1, -3, 71, 68, 17 };
+		System.out.println("Absoulte Min = " + minimumAbsoluteDifference(absMin));
+	}
+
+	static int minimumAbsoluteDifference(int[] arr) {
+		int min = 1000, diff = 0;
+		for (int i = 0; i < arr.length; i++) {
+			for (int j = i + 1; j < arr.length; j++) {
+				diff = Math.abs(arr[i] - arr[j]);
+				if (diff < min) {
+					min = diff;
+				}
+			}
+		}
+		return min;
 	}
 
 	/**
@@ -45,16 +51,22 @@ public class Dynamic {
 			/** Make a comparison to each index value of ways with the coin value. */
 			for (int j = 0; j < numCoins.length; j++) {
 
+				System.out.println("Coin i = " + coins[i] + ", j = " + j);
 				if (coins[i] <= j) {
 					/** Update the ways array */
+					System.out.println(" *** Coin i = " + coins[i] + ", NumCoins[j] = " + numCoins[j]
+							+ ", numCoins[j - coins[i]] = " + numCoins[j - coins[i]]);
 					numCoins[j] += numCoins[j - coins[i]];
+
 				}
 			}
+			System.out.println();
 		}
 
 		/** return the value at the Nth position of the ways array. */
 		return numCoins[target];
 	}
+	
 
 	public static long numWays(int n, int[] coins) {
 		if (n < 0) {
