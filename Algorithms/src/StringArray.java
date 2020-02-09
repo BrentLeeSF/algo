@@ -130,8 +130,29 @@ public class StringArray {
 		int stockPrices[] = { 695, 100, 180, 260, 310, 535, 40 };
 		System.out.println(Arrays.toString(stockPrices));
 		strArr.stockBuySell(stockPrices);
+
+		int[] largestSum = { -3, 6, -1, -2, -3, 5, 1, -5, 8, -1 };
+		System.out.println(
+				"The largest sum of " + Arrays.toString(largestSum) + ", is " + strArr.returnLargestSum(largestSum));
+
 	}
-	
+
+	/** return largest sum of array */
+	public int returnLargestSum(int[] arr) {
+
+		int currentTotal = 0, finalTotal = 0;
+
+		for (int i = 0; i < arr.length; i++) {
+			currentTotal += arr[i];
+			if (currentTotal < 0) {
+				currentTotal = 0;
+			}
+			if (currentTotal > finalTotal) {
+				finalTotal = currentTotal;
+			}
+		}
+		return finalTotal;
+	}
 
 	/** Buy stock at lowest and sell at highest */
 	public void stockBuySell(int[] prices) {
@@ -153,7 +174,6 @@ public class StringArray {
 		}
 		System.out.println("Buy on " + buy + ", sell on " + sell + " for profit of " + maxprofit);
 	}
-	
 
 	/** Return highest sum with an hour glass shape */
 	public int hourGlass(int[][] hourGlass) {
@@ -177,7 +197,6 @@ public class StringArray {
 		return highestSum;
 	}
 
-	
 	/**
 	 * Prints the character excluding spaces, character frequency, in order, and
 	 * word count
@@ -206,7 +225,6 @@ public class StringArray {
 				++wordCount;
 			}
 		}
-		
 
 		/**
 		 * traverse 'str' if freqArr has value in order print char and value, then set
@@ -230,7 +248,6 @@ public class StringArray {
 		}
 		System.out.println("\nCharacter Count = " + characterCount + ", Word Count = " + wordCount + "\n\n");
 	}
-	
 
 	/** Longest common substring */
 	public String longestCommonSub(String arr1, String arr2) {
@@ -255,7 +272,6 @@ public class StringArray {
 		}
 		return str.toString();
 	}
-	
 
 	/** Returns length of longest sub string */
 	public int longestSubString(String sub1, String sub2) {
@@ -283,7 +299,6 @@ public class StringArray {
 		}
 		return countin;
 	}
-	
 
 	/** Power recursion */
 	public int power(int b, int e) {
@@ -293,7 +308,6 @@ public class StringArray {
 			return (b * power(b, e - 1));
 		}
 	}
-	
 
 	/** Returns true if is a diagonal matrix */
 	public boolean isDiagonalMatrix(int mat[][], int N) {
@@ -307,7 +321,6 @@ public class StringArray {
 		}
 		return true;
 	}
-	
 
 	/**
 	 * If students grade < 38, return grade. If student's grade 1-2 points below %5
@@ -334,7 +347,6 @@ public class StringArray {
 		}
 		System.out.println();
 	}
-	
 
 	/** Find quadratic roots of given numbers */
 	public Roots findQuadraticRoots(double a, double b, double c) {
@@ -345,7 +357,6 @@ public class StringArray {
 		Roots roo = new Roots(r1, r2);
 		return roo;
 	}
-	
 
 	/** Return square root of given number */
 	public double findSquareRoot(int number) {
@@ -360,7 +371,6 @@ public class StringArray {
 
 		return squareRoot;
 	}
-	
 
 	/**
 	 * 1. Merge NamesARRAYS Implement the uniqueNames method. When passed two arrays
@@ -396,7 +406,6 @@ public class StringArray {
 		}
 		return newArray;
 	}
-	
 
 	/** Print staircase, given staircase size */
 	public void staircase(int n) {
@@ -418,7 +427,6 @@ public class StringArray {
 			System.out.println();
 		}
 	}
-	
 
 	/** Returns true if every character in string is unique */
 	public boolean uniqueString(String thisUnique) {
@@ -435,7 +443,6 @@ public class StringArray {
 		}
 		return true;
 	}
-	
 
 	/** Sorts array with selection sort */
 	public int[] selectionSort(int[] arr) {
@@ -454,7 +461,6 @@ public class StringArray {
 		System.out.println();
 		return arr;
 	}
-	
 
 	/** Return the non duplicate value in array */
 	public String lonelyInt(int[] arr) {
@@ -481,7 +487,6 @@ public class StringArray {
 		}
 		return str.toString();
 	}
-	
 
 	/** Compresses string ex. aaabbcccc -> a3b2c4 */
 	public String stringCompression(String compressThis) {
@@ -503,7 +508,6 @@ public class StringArray {
 		return str.length() < compressThis.length() ? str.toString() : compressThis;
 	}
 
-	
 	/**
 	 * Reveres compressed string to regular string ex. a3b2c4 -> aaabbcccc
 	 */
@@ -532,7 +536,6 @@ public class StringArray {
 		return str.toString();
 	}
 
-	
 	/**
 	 * check if both a1 and b2 are not empty loop through a1, get first a1 index and
 	 * while a1 index and b2 index are same, loop through both
@@ -560,7 +563,6 @@ public class StringArray {
 		}
 		return countB - 1 == b2.length();
 	}
-	
 
 	/** Returns an ArrayList of all prime numbers */
 	public ArrayList<Integer> countPrimeNumbers(int[] arr) {
