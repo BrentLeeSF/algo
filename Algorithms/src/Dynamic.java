@@ -12,8 +12,9 @@ public class Dynamic {
 		// 22222, 2233, 226, 235, 55
 		int[] secondArray = { 2, 5, 3, 6, 4 };
 		// 22222, 2224, 2233, 226, 235, 244, 334, 55, 64,
-		System.out.println("Combinations of 10 with list 1,5,3,6 = " +dym.max(firstArray, 10));
-		System.out.println("Combinations of 10 with list 1,5,3,6 = " +dym.max(secondArray, 10));
+		System.out.println("Combinations of 10 with list 1,5,3,6 = " + dym.max(firstArray, 10));
+		System.out.println("Combinations of 10 with list 1,5,3,6 = " + dym.max(secondArray, 10));
+
 		int[] absMin = { 1, -3, 71, 68, 17 };
 		System.out.println("Absoulte Min = " + minimumAbsoluteDifference(absMin));
 	}
@@ -66,7 +67,6 @@ public class Dynamic {
 		/** return the value at the Nth position of the ways array. */
 		return numCoins[target];
 	}
-	
 
 	public static long numWays(int n, int[] coins) {
 		if (n < 0) {
@@ -76,28 +76,37 @@ public class Dynamic {
 	}
 
 	public static long numWays(int n, int[] coins, int coinNumber, HashMap<String, Long> cache) {
-		/* Check our cache */
+
+		/** Check our cache */
 		String key = n + "," + coinNumber;
+
 		if (cache.containsKey(key)) {
 			return cache.get(key);
 		}
-		/* Base case */
+
+		/** Base case */
 		if (coinNumber == coins.length - 1) {
+
 			if (n % coins[coinNumber] == 0) {
 				cache.put(key, 1L);
 				return 1;
+
 			} else {
 				cache.put(key, 0L);
 				return 0;
 			}
 		}
-		/* Recursive case */
+
+		/** Recursive case */
 		long ways = 0;
+
 		for (int i = 0; i <= n; i += coins[coinNumber]) {
 			ways += numWays(n - i, coins, coinNumber + 1, cache);
 		}
-		/* Cache and return solution */
+
+		/** Cache and return solution */
 		cache.put(key, ways);
+
 		return ways;
 	}
 
