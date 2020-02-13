@@ -7,11 +7,27 @@ public class Dynamic {
 		Dynamic dym = new Dynamic();
 
 		int[] absMin = { 1, -3, 71, 68, 17 };
-		System.out.println("\nAbsoulte Min = " + minimumAbsoluteDifference(absMin));
+		System.out.println("Absoulte Min = " + minimumAbsoluteDifference(absMin));
 
 		int[] largestSumNonAdjacent = { 5, 5, 10, -100, 10, 5 };
 		System.out.println("Given array: " + Arrays.toString(largestSumNonAdjacent)
 				+ ", the Larkest sum of non adjacent integers is  " + largestSumOfNonAdjacent(largestSumNonAdjacent));
+
+		System.out.println("Fibonacci modified of (i-1)^2 + i-2 = " + fibonacci(6));
+		// 0,1,1,2,5,27 (0, 1, 1+1^2=2, 1+2^2=5, 2+5^2=27, 5+27^2=734
+	}
+
+	/** fibonacci modified of (i-1)^2 + i-2 = */
+	public static int fibonacci(int num) {
+		
+		int[] fib = new int[num + 1];
+		fib[0] = 0;
+		fib[1] = 1;
+		
+		for (int i = 2; i <= num; i++) {
+			fib[i] = (fib[i - 1] * fib[i - 1]) + fib[i - 2];
+		}
+		return fib[num];
 	}
 
 	/** Return largest sum of non-adjacent numbers */

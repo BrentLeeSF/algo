@@ -5,7 +5,7 @@ public class Recursion {
 		Recursion rec = new Recursion();
 
 		/** Fibonnaci */
-		int fibNum = 7;
+		int fibNum = 9;
 		System.out.println("Fibbonacci of " + fibNum + ", is " + rec.fib(fibNum));
 
 		/** Step Count */

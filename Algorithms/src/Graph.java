@@ -157,13 +157,13 @@ public class Graph {
 		graph.addEdge(2, 3);
 		graph.addEdge(3, 3);
 
-		// 
-		//  -0----->1  
-		//  | ^	   ^
-		//  | |   /
-		//  | |  /
-		//  v | /     	
-		//S->2----->3<-> 
+		//
+		// -0----->1
+		// | ^ ^
+		// | | /
+		// | | /
+		// v | /
+		// S->2----->3<->
 
 		System.out.println("\nFollowing is Breadth First Traversal (BFS) " + "(starting from vertex 2)");
 		graph.BFS(2);
