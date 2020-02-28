@@ -84,37 +84,27 @@ class TheCallCenter {
 
 	public void dispatchCall(int index) {
 		if (respCounter < respondent.length) {
+			respondent[respCounter].getCall();
 			System.out.println("Respondent " + index);
 			respCounter++;
 		} else if (manCounter < manager.length) {
 			System.out.println("Manager " + index);
+			manager[manCounter].getCall();
+			System.out.println("Manager " + index);
 			manCounter++;
 		} else if (dirCounter < director.length) {
+			director[dirCounter].getCall();
 			System.out.println("Director " + index);
 			dirCounter++;
 		} else {
-			System.out.println("All calls are busy " + index);
+			System.out.println(allCallsAreBusy(index));
 		}
 	}
-
-}
-
-class MessageUtil {
-
-	private String message;
-
-	// Constructor
-	// @param message to be printed
-
-	public MessageUtil(String message) {
-		this.message = message;
+	
+	public String allCallsAreBusy(int index) {
+		return "All lines are busy "+index;
 	}
 
-	// prints the message
-	public String printMessage() {
-		System.out.println(message);
-		return message;
-	}
 }
 
 public class CallCenter {
