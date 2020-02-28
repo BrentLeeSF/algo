@@ -90,7 +90,6 @@ class TheCallCenter {
 		} else if (manCounter < manager.length) {
 			System.out.println("Manager " + index);
 			manager[manCounter].getCall();
-			System.out.println("Manager " + index);
 			manCounter++;
 		} else if (dirCounter < director.length) {
 			director[dirCounter].getCall();
@@ -104,13 +103,12 @@ class TheCallCenter {
 	public String allCallsAreBusy(int index) {
 		return "All lines are busy "+index;
 	}
-
 }
 
 public class CallCenter {
 
 	public static void main(String[] args) {
-
+		
 		TheCallCenter newCallCenter = new TheCallCenter();
 		newCallCenter.createCallCenter();
 
