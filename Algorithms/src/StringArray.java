@@ -154,7 +154,8 @@ public class StringArray {
 		return finalTotal;
 	}
 
-	/** Buy stock at lowest and sell at highest */
+	/** Buy stock at lowest and sell at highest 
+	 * https://www.geeksforgeeks.org/stock-buy-sell/ */
 	public void stockBuySell(int[] prices) {
 
 		int maxprofit = 0, buy = 0, sell = 0;
@@ -304,9 +305,8 @@ public class StringArray {
 	public int power(int b, int e) {
 		if (e == 0) {
 			return 1;
-		} else {
-			return (b * power(b, e - 1));
-		}
+		} 
+		return (b * power(b, e - 1));
 	}
 
 	/** Returns true if is a diagonal matrix */

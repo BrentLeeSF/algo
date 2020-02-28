@@ -7,7 +7,7 @@ class Cd {
 	int col;
 	int[] songs;
 	Cd[][] arr;
-
+	
 	public Cd(int size) {
 		arr = new Cd[size][size];
 	}
