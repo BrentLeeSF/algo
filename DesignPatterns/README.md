@@ -10,18 +10,21 @@
 and Structural patterns describe a more or less static structure, Behavioral patterns describe a process or a flow<br />
 <br />
 **BEHAVIORAL DESIGN PATTERNS**<br />
-**Chain of responsibility** - A way of passing a request between a chain of objects<br />
-**Command** - Encapsulate a command request as an object<br />
-**Interpreter** - A way to include language elements in a program<br />
+**Chain of responsibility** - A way of passing a request between a chain of objects to handle request<br />
+**Command** - Encapsulate a command request as an object and send to invoker.<br />
+Invoker object looks for the appropriate object which can handle this command and pass the command to the corresponding object<br />
+**Interpreter** - A way to evaluate language grammar or expression.<br /> 
+Involves implementing an expression interface which tells to interpret a particular context.<br />
+This pattern is used in SQL parsing, symbol processing engine etc.<br />
 **Iterator** - Sequentially access the elements of a collection<br />
-**Mediator** - Defines simplified communication between classes<br />
+**Mediator** - Define an object that encapsulates how a set of objects interact.<br />
 **Memento** - Capture and restore an object's internal state<br />
 **Null Object** - Designed to act as a default value of an object<br />
 **Observer** - A way of notifying change to a number of classes<br />
 **State** - Alter an object's behavior when its state changes<br />
 **Strategy** - Encapsulates an algorithm inside a class<br />
-**Template method** - Defer the exact steps of an algorithm to a subclass<br />
-**Visitor** - Defines a new operation to a class without change<br />
+**Template method** - Template Method lets subclasses redefine certain steps of an algorithm without changing the algorithm's structure.<br />
+**Visitor** - Define a new operation without changing the classes of the elements on which it operates.<br />
 <br /><br />
 **2. Creational patterns** are design patterns that deal with object creation mechanisms and<br />
 are used in situations when basic form of object creation could result in design problems or<br />
