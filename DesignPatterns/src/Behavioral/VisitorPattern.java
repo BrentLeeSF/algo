@@ -2,82 +2,80 @@ package Behavioral;
 
 /**
  * Visitor lets you define a new operation without changing the classes of the
- * elements on which it operates.
- * https://sourcemaking.com/design_patterns/visitor
+ * elements on which it operates. */
+/**
+ * Many distinct and unrelated operations need to be performed on node objects
+ * in a heterogeneous aggregate structure. You want to avoid "polluting" the
+ * node classes with these operations. And, you don't want to have to query the
+ * type of each node and cast the pointer to the correct type before performing
+ * the desired operation. https://sourcemaking.com/design_patterns/visitor
  */
-interface ElementDemo {
-	void accept(Visitor v);
+interface Base {
+
+	void execute(Base target);
+
+	void doJob(FOO target);
+
+	void doJob(BAR target);
+
+	void doJob(BAZ target);
+
 }
 
-class FOO implements ElementDemo {
+class FOO implements Base {
 
-	public void accept(Visitor v) {
-		v.visit(this);
+	public void execute(Base base) {
+		base.doJob(this);
 	}
 
-	public String getFOO() {
-		return "FOO";
-	}
-}
-
-class BAR implements ElementDemo {
-
-	public void accept(Visitor v) {
-		v.visit(this);
+	public void doJob(FOO foo) {
+		System.out.println("FOO object calls by yourself");
 	}
 
-	public String getBAR() {
-		return "BAR";
-	}
-}
-
-class BAZ implements ElementDemo {
-
-	public void accept(Visitor v) {
-		v.visit(this);
+	public void doJob(BAR bar) {
+		System.out.println("BAR object was called from FOO");
 	}
 
-	public String getBAZ() {
-		return "BAZ";
+	public void doJob(BAZ baz) {
+		System.out.println("BAZ object was called from FOO");
 	}
 }
 
-interface Visitor {
+class BAR implements Base {
 
-	void visit(FOO foo);
-
-	void visit(BAR bar);
-
-	void visit(BAZ baz);
-}
-
-class UpVisitor implements Visitor {
-
-	public void visit(FOO foo) {
-		System.out.println("do Up on " + foo.getFOO());
+	public void execute(Base base) {
+		base.doJob(this);
 	}
 
-	public void visit(BAR bar) {
-		System.out.println("do Up on " + bar.getBAR());
+	public void doJob(FOO foo) {
+		System.out.println("FOO object was called from BAR");
 	}
 
-	public void visit(BAZ baz) {
-		System.out.println("do Up on " + baz.getBAZ());
+	public void doJob(BAR bar) {
+		System.out.println("BAR object calls by yourself");
+	}
+
+	public void doJob(BAZ baz) {
+		System.out.println("BAZ object was called from BAR");
 	}
 }
 
-class DownVisitor implements Visitor {
+class BAZ implements Base {
 
-	public void visit(FOO foo) {
-		System.out.println("do Down on " + foo.getFOO());
+	public void execute(Base base) {
+		base.doJob(this);
 	}
 
-	public void visit(BAR bar) {
-		System.out.println("do Down on " + bar.getBAR());
+	public void doJob(FOO foo) {
+		System.out.println("FOO object was called from BAZ");
 	}
 
-	public void visit(BAZ baz) {
-		System.out.println("do Down on " + baz.getBAZ());
+	public void doJob(BAR bar) {
+		System.out.println("BAR object was called from BAZ");
+	}
+
+	public void doJob(BAZ baz) {
+		System.out.println("BAZ object calls by yourself");
 	}
 }
 
@@ -85,17 +83,16 @@ public class VisitorPattern {
 
 	public static void main(String[] args) {
 
-		ElementDemo[] list = { new FOO(), new BAR(), new BAZ() };
-		UpVisitor up = new UpVisitor();
-		DownVisitor down = new DownVisitor();
+		Base objectsArray[] = { new FOO(), new BAR(), new BAZ() };
 
-		for (ElementDemo element : list) {
-			element.accept(up);
+		for (Base eachObject : objectsArray) {
+
+			for (int j = 0; j < 3; j++) {
+
+				eachObject.execute(objectsArray[j]);
+			}
+
+			System.out.println();
 		}
-
-		for (ElementDemo element : list) {
-			element.accept(down);
-		}
-
 	}
 }

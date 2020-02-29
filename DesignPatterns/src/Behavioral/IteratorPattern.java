@@ -6,9 +6,11 @@ package Behavioral;
  * https://www.tutorialspoint.com/design_pattern/iterator_pattern.htm
  */
 interface IteratorDemo {
+
 	public boolean hasNext();
 
 	public Object next();
+
 }
 
 interface Container {
@@ -55,9 +57,8 @@ public class IteratorPattern {
 		NameRepository namesRepository = new NameRepository();
 
 		for (IteratorDemo iter = namesRepository.getIterator(); iter.hasNext();) {
-
-			String name = (String) iter.next();
-			System.out.println("Name : " + name);
+			
+			System.out.println("Name : " + (String) iter.next());
 		}
 	}
 

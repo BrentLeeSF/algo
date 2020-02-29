@@ -1,7 +1,10 @@
 package Behavioral;
 
+/** Template Method lets subclasses redefine certain steps of an algorithm without 
+ * changing the algorithm's structure.*/
+/** https://www.tutorialspoint.com/design_pattern/template_pattern.htm */
 abstract class TemplateGame {
-	
+
 	abstract void initialize();
 
 	abstract void startPlay();
@@ -56,14 +59,14 @@ class Football extends TemplateGame {
 }
 
 public class TemplatePattern {
-	
+
 	public static void main(String[] args) {
 
 		TemplateGame game = new Cricket();
 		game.play();
-		
+
 		System.out.println();
-		
+
 		game = new Football();
 		game.play();
 	}

@@ -1,9 +1,11 @@
 package Behavioral;
 
 /**
- * A way to evaluate language grammar or expression. Involves implementing an
- * expression interface which tells to interpret a particular context. This
- * pattern is used in SQL parsing, symbol processing engine etc.
+ * A way to evaluate language grammar or expression. */
+/**
+ * Involves implementing an expression interface which tells to interpret a
+ * particular context. This pattern is used in SQL parsing, symbol processing
+ * engine etc.
  * https://www.tutorialspoint.com/design_pattern/interpreter_pattern.htm
  */
 

@@ -3,8 +3,7 @@ package Behavioral;
 import java.util.ArrayList;
 
 /**
- * Without violating encapsulation, capture and externalize an object's internal
- * state so that the object can be returned to this state later.
+ * Memento pattern is used to restore state of an object to a previous state.
  * https://www.tutorialspoint.com/design_pattern/memento_pattern.htm
  */
 class MementoDemo {

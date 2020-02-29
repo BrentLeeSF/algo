@@ -6,8 +6,7 @@ import java.io.InputStreamReader;
 
 /**
  * defines a family of functionality, encapsulate each one, and make them
- * interchangeable
- * https://www.javatpoint.com/strategy-pattern
+ * interchangeable/very similar https://www.javatpoint.com/strategy-pattern
  */
 
 interface StrategyInterface {
@@ -42,11 +41,11 @@ class Multiplication implements StrategyInterface {
 	}
 }
 
-class ThisSucks {
+class ExecuteStrategy {
 
 	private StrategyInterface strategy;
 
-	public ThisSucks(StrategyInterface strategy) {
+	public ExecuteStrategy(StrategyInterface strategy) {
 		this.strategy = strategy;
 	}
 
@@ -68,13 +67,13 @@ public class Strategy {
 		System.out.print("Enter the second value: ");
 		float value2 = Float.parseFloat(br.readLine());
 
-		ThisSucks context = new ThisSucks(new Addition());
+		ExecuteStrategy context = new ExecuteStrategy(new Addition());
 		System.out.println("Addition = " + context.executeStrategy(value1, value2));
 
-		context = new ThisSucks(new Subtraction());
+		context = new ExecuteStrategy(new Subtraction());
 		System.out.println("Subtraction = " + context.executeStrategy(value1, value2));
 
-		context = new ThisSucks(new Multiplication());
+		context = new ExecuteStrategy(new Multiplication());
 		System.out.println("Multiplication = " + context.executeStrategy(value1, value2));
 	}
 
