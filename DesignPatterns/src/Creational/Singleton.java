@@ -6,8 +6,10 @@ package Creational;
  */
 class SingleObject {
 
-	/** A class of which only a single instance can exist
-	 * create an object of SingleObject */
+	/**
+	 * A class of which only a single instance can exist create an object of
+	 * SingleObject
+	 */
 	private static SingleObject instance = new SingleObject();
 
 	/** make constructor private so that this class cannot be instantiated */
