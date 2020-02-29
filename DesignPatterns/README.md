@@ -18,7 +18,7 @@ Involves implementing an expression interface which tells to interpret a particu
 This pattern is used in SQL parsing, symbol processing engine etc.<br />
 **Iterator** - Sequentially access the elements of a collection<br />
 **Mediator** - Define an object that encapsulates how a set of objects interact.<br />
-**Memento** - Capture and restore an object's internal state<br />
+**Memento** - Restore state of an object to a previous state.<br />
 **Null Object** - Designed to act as a default value of an object<br />
 **Observer** - A way of notifying change to a number of classes<br />
 **State** - Alter an object's behavior when its state changes<br />
