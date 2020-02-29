@@ -29,9 +29,12 @@ increase complexity of a code base.<br />
 <br />
 **CREATIONAL DESIGN PATTERNS**<br />
 **Abstract Factory** - Creates an instance of several families of classes<br />
-**Builder** - Separates object construction from its representation<br />
-**Factory Method** - Creates an instance of several derived classes<br />
-**Object Pool** - Avoid expensive acquisition and release of resources by recycling objects that are no longer in use<br />
+**Builder** - construct a complex object from simple objects using step-by-step approach<br />
+**Factory Method** - Define an interface for creating an object, but let subclasses decide which class to instantiate.<br />
+**Object Pool** - used to manage the object caching.<br />
+Basically, an Object pool is a container which contains a specified amount of objects.<br /> 
+When an object is taken from the pool, it is not available in the pool until it is put back.<br />
+Recycle objects that are no longer in use<br />
 **Prototype** - A fully initialized instance to be copied or cloned<br />
 **Singleton** - A class of which only a single instance can exist<br />
 <br />
