@@ -3,7 +3,10 @@ package Creational;
 import java.util.HashMap;
 import java.util.Map;
 
-/** https://sourcemaking.com/design_patterns/prototype/java/1 */
+/**
+ * A fully initialized instance to be copied or cloned
+ * https://sourcemaking.com/design_patterns/prototype/java/1
+ */
 interface ProtypePerson {
 
 	ProtypePerson clone();

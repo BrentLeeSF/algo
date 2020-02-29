@@ -1,17 +1,20 @@
 package Creational;
 
-/** https://www.tutorialspoint.com/design_pattern/singleton_pattern.htm */
+/**
+ * A class of which only a single instance can exist
+ * https://www.tutorialspoint.com/design_pattern/singleton_pattern.htm
+ */
 class SingleObject {
 
-	// create an object of SingleObject
+	/** A class of which only a single instance can exist
+	 * create an object of SingleObject */
 	private static SingleObject instance = new SingleObject();
 
-	// make the constructor private so that this class cannot be
-	// instantiated
+	/** make constructor private so that this class cannot be instantiated */
 	private SingleObject() {
 	}
 
-	// Get the only object available
+	/** Get the only object available */
 	public static SingleObject getInstance() {
 		return instance;
 	}
@@ -19,20 +22,20 @@ class SingleObject {
 	public void showMessage() {
 		System.out.println("Hello World!");
 	}
+
 }
 
 public class Singleton {
 
 	public static void main(String[] args) {
 
-		// illegal construct
-		// Compile Time Error: The constructor SingleObject() is not visible
-		// SingleObject object = new SingleObject();
+		/** Compile Time Error: The constructor SingleObject() is not visible */
+		// SingleObject newObject = new SingleObject();
 
-		// Get the only object available
+		/** Get the only object available */
 		SingleObject object = SingleObject.getInstance();
 
-		// show the message
+		/** show the message */
 		object.showMessage();
 	}
 }

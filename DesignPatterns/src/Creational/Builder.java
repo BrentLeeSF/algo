@@ -1,8 +1,9 @@
 package Creational;
 
-/** https://sourcemaking.com/design_patterns/builder/java/2 */
+/** construct a complex object from simple objects using step-by-step approach
+ *  https://sourcemaking.com/design_patterns/builder/java/2 */
 
-/* "Product" */
+/** "Product" */
 class Pizza {
 
 	private String dough = "";
@@ -22,7 +23,7 @@ class Pizza {
 	}
 }
 
-/* "Abstract Builder" */
+/** "Abstract Builder" */
 abstract class PizzaBuilder {
 
 	protected Pizza pizza;
@@ -42,7 +43,7 @@ abstract class PizzaBuilder {
 	public abstract void buildTopping();
 }
 
-/* "ConcreteBuilder" */
+/** "ConcreteBuilder" */
 class HawaiianPizzaBuilder extends PizzaBuilder {
 
 	public void buildDough() {
@@ -58,7 +59,7 @@ class HawaiianPizzaBuilder extends PizzaBuilder {
 	}
 }
 
-/* "ConcreteBuilder" */
+/** "ConcreteBuilder" */
 class SpicyPizzaBuilder extends PizzaBuilder {
 
 	public void buildDough() {
@@ -74,7 +75,7 @@ class SpicyPizzaBuilder extends PizzaBuilder {
 	}
 }
 
-/* "Director" */
+/** "Director" */
 class Waiter {
 
 	private PizzaBuilder pizzaBuilder;
@@ -95,7 +96,7 @@ class Waiter {
 	}
 }
 
-/* A customer ordering a pizza. */
+/** A customer ordering a pizza. */
 public class Builder {
 
 	public static void main(String[] args) {

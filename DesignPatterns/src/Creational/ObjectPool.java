@@ -6,9 +6,13 @@ import java.sql.SQLException;
 import java.util.Enumeration;
 import java.util.Hashtable;
 
-/** https://sourcemaking.com/design_patterns/object_pool/java */
+/**
+ * Used to manage the object caching. Basically, an Object pool is a container
+ * which contains a specified amount of objects. When an object is taken from
+ * the pool, it is not available in the pool until it is put back.
+ * https://sourcemaking.com/design_patterns/object_pool/java
+ */
 
-// Java program to illustrate Object Pool Design Pattern
 abstract class ObjectPoolPattern<T> {
 
 	long deadTime;
@@ -16,7 +20,7 @@ abstract class ObjectPoolPattern<T> {
 
 	ObjectPoolPattern() {
 
-		deadTime = 50000; // 50 seconds
+		deadTime = 50000;
 		lock = new Hashtable<T, Long>();
 		unlock = new Hashtable<T, Long>();
 	}
@@ -41,7 +45,8 @@ abstract class ObjectPoolPattern<T> {
 				t = e.nextElement();
 
 				if ((now - unlock.get(t)) > deadTime) {
-					// object has deadd
+
+					/** object has died */
 					unlock.remove(t);
 					dead(t);
 					t = null;
@@ -56,7 +61,7 @@ abstract class ObjectPoolPattern<T> {
 
 					} else {
 
-						// object failed validation
+						/** object failed validation */
 						unlock.remove(t);
 						dead(t);
 						t = null;
@@ -65,7 +70,7 @@ abstract class ObjectPoolPattern<T> {
 			}
 		}
 
-		// no objects available, create a new one
+		/** no objects available, create a new one */
 		t = create();
 		lock.put(t, now);
 		return (t);
@@ -77,27 +82,34 @@ abstract class ObjectPoolPattern<T> {
 	}
 }
 
-// Three methods are abstract
-// and therefore must be implemented by the subclass
-
+/** Three methods are abstract therefore must be implemented by the subclass */
 class JDBCConnectionPool extends ObjectPoolPattern<Connection> {
+
 	String dsn, usr, pwd;
 
 	JDBCConnectionPool(String driver, String dsn, String usr, String pwd) {
+
 		super();
+
 		try {
-			Class.forName(driver).newInstance();
+			/** New Instance */
+			Class.forName(driver);
+
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+
 		this.dsn = dsn;
 		this.usr = usr;
 		this.pwd = pwd;
+
 	}
 
 	Connection create() {
+
 		try {
 			return (DriverManager.getConnection(dsn, usr, pwd));
+
 		} catch (SQLException e) {
 			e.printStackTrace();
 			return (null);
@@ -105,16 +117,21 @@ class JDBCConnectionPool extends ObjectPoolPattern<Connection> {
 	}
 
 	void dead(Connection o) {
+
 		try {
 			((Connection) o).close();
+
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
+
 	}
 
 	boolean validate(Connection o) {
+
 		try {
 			return (!((Connection) o).isClosed());
+
 		} catch (SQLException e) {
 			e.printStackTrace();
 			return (false);
@@ -126,13 +143,13 @@ class ObjectPool {
 
 	public static void main(String args[]) {
 
-		// Create the ConnectionPool:
+		/** Create the ConnectionPool */
 		JDBCConnectionPool pool = new JDBCConnectionPool("org.hsqldb.jdbcDriver", "jdbc:hsqldb: //localhost/mydb", "sa",
 				"password");
 
-		// Get a connection:
+		/** Get a connection */
 		Connection con = pool.takeOut();
-		// Return the connection:
+		/** Return the connection: */
 		pool.takeIn(con);
 	}
 }
