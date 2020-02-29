@@ -8,7 +8,7 @@ import java.util.Hashtable;
 
 /** https://sourcemaking.com/design_patterns/object_pool/java */
 
-//Java program to illustrate Object Pool Design Pattern 
+// Java program to illustrate Object Pool Design Pattern
 abstract class ObjectPoolPattern<T> {
 
 	long deadTime;
@@ -28,34 +28,34 @@ abstract class ObjectPoolPattern<T> {
 	abstract void dead(T o);
 
 	synchronized T takeOut() {
-		
+
 		long now = System.currentTimeMillis();
 		T t;
-		
+
 		if (unlock.size() > 0) {
-			
+
 			Enumeration<T> e = unlock.keys();
-			
+
 			while (e.hasMoreElements()) {
-				
+
 				t = e.nextElement();
-				
+
 				if ((now - unlock.get(t)) > deadTime) {
 					// object has deadd
 					unlock.remove(t);
 					dead(t);
 					t = null;
-					
+
 				} else {
-					
+
 					if (validate(t)) {
-						
+
 						unlock.remove(t);
 						lock.put(t, now);
 						return (t);
-						
+
 					} else {
-						
+
 						// object failed validation
 						unlock.remove(t);
 						dead(t);
@@ -64,7 +64,7 @@ abstract class ObjectPoolPattern<T> {
 				}
 			}
 		}
-		
+
 		// no objects available, create a new one
 		t = create();
 		lock.put(t, now);
@@ -123,9 +123,9 @@ class JDBCConnectionPool extends ObjectPoolPattern<Connection> {
 }
 
 class ObjectPool {
-	
+
 	public static void main(String args[]) {
-		
+
 		// Create the ConnectionPool:
 		JDBCConnectionPool pool = new JDBCConnectionPool("org.hsqldb.jdbcDriver", "jdbc:hsqldb: //localhost/mydb", "sa",
 				"password");

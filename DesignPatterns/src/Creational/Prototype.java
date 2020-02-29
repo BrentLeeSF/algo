@@ -7,7 +7,7 @@ import java.util.Map;
 interface ProtypePerson {
 
 	ProtypePerson clone();
-	
+
 }
 
 class Tom implements ProtypePerson {
