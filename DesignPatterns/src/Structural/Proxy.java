@@ -39,14 +39,16 @@ class ProxyImage implements ProxyImageInterface {
 
 	@Override
 	public void display() {
-		
+
 		if (realImage == null) {
+			System.out.println("Inside -1");
 			realImage = new RealImage(fileName);
+			System.out.println("Inside -2");
 		}
-		
+
 		realImage.display();
 	}
-	
+
 }
 
 public class Proxy {
@@ -54,12 +56,13 @@ public class Proxy {
 	public static void main(String[] args) {
 
 		ProxyImageInterface image = new ProxyImage("test_10mb.jpg");
-
+		System.out.println("Starting");
 		/** image will be loaded from disk */
 		image.display();
-		System.out.println("");
+		System.out.println("Done first display");
 
 		/** image will not be loaded from disk */
 		image.display();
+		System.out.println("Done second display");
 	}
 }

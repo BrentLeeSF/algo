@@ -43,9 +43,6 @@ class FlyweightCircle implements FlyweightShape {
 
 class FlyweightShapeFactory {
 
-	// Uncomment the compiler directive line and
-	// javac *.java will compile properly.
-	// @SuppressWarnings("unchecked")
 	private static final HashMap circleMap = new HashMap();
 
 	public static FlyweightShape getCircle(String color) {

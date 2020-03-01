@@ -1,81 +1,100 @@
 package Structural;
 
-/** Adapter pattern works as a bridge between two incompatible interfaces 
- * https://sourcemaking.com/design_patterns/adapter/java/2 */
-/** The OLD */
-class SquarePeg {
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
 
-	private double width;
+/** Adapter - converts the interface of a class into another interface that a client wants 
+ * https://www.javatpoint.com/adapter-pattern */
+/** Target Interface */
+interface CreditCard {
 
-	public SquarePeg(double width) {
-		this.width = width;
+	public void giveBankDetails();
+
+	public String getCreditCard();
+
+}
+
+/** Adaptee class */
+class BankDetails {
+
+	private String bankName;
+	private String accHolderName;
+	private long accNumber;
+
+	public String getBankName() {
+		return bankName;
 	}
 
-	public double getWidth() {
-		return width;
+	public void setBankName(String bankName) {
+		this.bankName = bankName;
 	}
 
-	public void setWidth(double width) {
-		this.width = width;
+	public String getAccHolderName() {
+		return accHolderName;
+	}
+
+	public void setAccHolderName(String accHolderName) {
+		this.accHolderName = accHolderName;
+	}
+
+	public long getAccNumber() {
+		return accNumber;
+	}
+
+	public void setAccNumber(long accNumber) {
+		this.accNumber = accNumber;
 	}
 }
 
-/** The NEW */
-class RoundHole {
+/** Adapter Class - uses Target Interface and Adaptee Class */
+class BankCustomer extends BankDetails implements CreditCard {
 
-	private final int radius;
+	public void giveBankDetails() {
 
-	public RoundHole(int radius) {
-		this.radius = radius;
-		System.out.println("RoundHole: max SquarePeg is " + radius * Math.sqrt(2));
-	}
+		try {
 
-	public int getRadius() {
-		return radius;
-	}
-}
+			BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 
-/** Design a "wrapper" class that can "impedance match" the old to the new */
-class SquarePegAdapter {
+			System.out.print("Enter the account holder name :");
+			String customername = br.readLine();
+			System.out.print("\n");
 
-	/** The adapter/wrapper class "has a" instance of the legacy class */
-	private final SquarePeg squarePeg;
+			System.out.print("Enter the account number:");
+			long accno = Long.parseLong(br.readLine());
+			System.out.print("\n");
 
-	public SquarePegAdapter(double w) {
-		squarePeg = new SquarePeg(w);
-	}
+			System.out.print("Enter the bank name :");
+			String bankname = br.readLine();
 
-	/** Identify the desired interface */
-	public void makeFit(RoundHole roundHole) {
+			setAccHolderName(customername);
+			setAccNumber(accno);
+			setBankName(bankname);
 
-		/** The adapter/wrapper class delegates to the legacy object */
-		double amount = squarePeg.getWidth() - roundHole.getRadius() * Math.sqrt(2);
-
-		System.out.println(
-				"reducing SquarePeg " + squarePeg.getWidth() + " by " + ((amount < 0) ? 0 : amount) + " amount");
-
-		if (amount > 0) {
-
-			squarePeg.setWidth(squarePeg.getWidth() - amount);
-			System.out.println("   width is now " + squarePeg.getWidth());
+		} catch (Exception e) {
+			e.printStackTrace();
 		}
+	}
 
+	@Override
+	public String getCreditCard() {
+
+		long accno = getAccNumber();
+		String accholdername = getAccHolderName();
+		String bname = getBankName();
+
+		return ("The Account number " + accno + " of " + accholdername + " in " + bname
+				+ " bank is valid and authenticated for issuing the credit card. ");
 	}
 }
 
 public class Adapter {
 
-	public static void main(String[] args) {
+	public static void main(String args[]) {
 
-		RoundHole roundHole = new RoundHole(5);
-		SquarePegAdapter squarePegAdapter;
+		CreditCard targetInterface = new BankCustomer();
+		targetInterface.giveBankDetails();
 
-		for (int i = 6; i < 10; i++) {
-
-			squarePegAdapter = new SquarePegAdapter((double) i);
-
-			/** The client uses (is coupled to) the new interface */
-			squarePegAdapter.makeFit(roundHole);
-		}
+		System.out.print(targetInterface.getCreditCard());
 	}
+
 }
