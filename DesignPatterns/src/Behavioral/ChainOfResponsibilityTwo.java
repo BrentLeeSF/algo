@@ -1,5 +1,9 @@
 package Behavioral;
 
+/**
+ * A way of passing a request between a chain of objects to handle request
+ * https://www.geeksforgeeks.org/chain-responsibility-design-pattern/
+ */
 interface ChainOfResponsibilityTwoInterface {
 
 	public abstract void setNext(ChainOfResponsibilityTwoInterface nextInChain);
@@ -83,14 +87,14 @@ public class ChainOfResponsibilityTwo {
 
 	public static void main(String[] args) {
 
-		// configure Chain of Responsibility
+		/** configure Chain of Responsibility */
 		ChainOfResponsibilityTwoInterface c1 = new NegativeProcessor();
 		ChainOfResponsibilityTwoInterface c2 = new ZeroProcessor();
 		ChainOfResponsibilityTwoInterface c3 = new PositiveProcessor();
 		c1.setNext(c2);
 		c2.setNext(c3);
 
-		// calling chain of responsibility
+		/** calling chain of responsibility */
 		c1.process(new Number(90));
 		c1.process(new Number(-50));
 		c1.process(new Number(0));
