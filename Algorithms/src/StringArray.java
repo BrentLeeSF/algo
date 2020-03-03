@@ -135,6 +135,32 @@ public class StringArray {
 		System.out.println(
 				"The largest sum of " + Arrays.toString(largestSum) + ", is " + strArr.returnLargestSum(largestSum));
 
+		int[] binSearch = { 2, 3, 4, 10, 40 };
+		System.out.println("Binary Search for 10 = " + strArr.binarySearch(binSearch, 2));
+	}
+
+	/**
+	 * Binary Search - Search a sorted array by repeatedly dividing the search
+	 * interval in half
+	 */
+	public int binarySearch(int[] arr, int target) {
+
+		int n = arr.length - 1, lowIndex = 0;
+
+		while (lowIndex <= n) {
+
+			int index = lowIndex + (n - lowIndex) / 2;
+
+			if (arr[index] == target) {
+				return index;
+			}
+			if (arr[index] < target) {
+				lowIndex = index + 1;
+			} else {
+				n = index - 1;
+			}
+		}
+		return -1;
 	}
 
 	/** return largest sum of array */
@@ -154,8 +180,10 @@ public class StringArray {
 		return finalTotal;
 	}
 
-	/** Buy stock at lowest and sell at highest 
-	 * https://www.geeksforgeeks.org/stock-buy-sell/ */
+	/**
+	 * Buy stock at lowest and sell at highest
+	 * https://www.geeksforgeeks.org/stock-buy-sell/
+	 */
 	public void stockBuySell(int[] prices) {
 
 		int maxprofit = 0, buy = 0, sell = 0;
@@ -305,7 +333,7 @@ public class StringArray {
 	public int power(int b, int e) {
 		if (e == 0) {
 			return 1;
-		} 
+		}
 		return (b * power(b, e - 1));
 	}
 
