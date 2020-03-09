@@ -13,6 +13,7 @@ public class Combinations {
 		System.out.println("\nCombinations");
 		List<List<Integer>> permuteArrayList = new ArrayList<List<Integer>>();
 		permuteArrayList = combo.permute(arrPermute);
+
 		for (int i = 0; i < permuteArrayList.size(); i++) {
 			for (int j = 0; j < permuteArrayList.get(i).size(); j++) {
 				System.out.print(permuteArrayList.get(i).get(j) + " ");
@@ -23,6 +24,7 @@ public class Combinations {
 		System.out.println("\nCombinations 2");
 		ArrayList<ArrayList<Integer>> permuteArrayList2 = new ArrayList<ArrayList<Integer>>();
 		permuteArrayList2 = combo.permute2(arrPermute);
+
 		for (int i = 0; i < permuteArrayList2.size(); i++) {
 			for (int j = 0; j < permuteArrayList2.get(i).size(); j++) {
 				System.out.print(permuteArrayList2.get(i).get(j) + " ");
@@ -33,6 +35,7 @@ public class Combinations {
 		String letterCombo = "2345";
 		List<String> stringComboResult = combo.letterCombinations(letterCombo);
 		System.out.println();
+
 		for (int i = 0; i < stringComboResult.size(); i++) {
 			System.out.print(stringComboResult.get(i) + ", ");
 		}
@@ -42,6 +45,7 @@ public class Combinations {
 		int combinationSumTarget = 8;
 		int[] secondArray = { 2, 5, 3, 6, 4 };
 		int secondTarget = 10;
+
 		System.out.println("\nCombination of " + Arrays.toString(combinationSumArray) + " with sum of "
 				+ combinationSumTarget + " is ");
 		combo.combinationSum(combinationSumArray, combinationSumTarget);
@@ -73,10 +77,13 @@ public class Combinations {
 
 	/** Combinations of letters, like on a phone */
 	public List<String> letterCombinations(String digits) {
+
 		List<String> result = new ArrayList<String>();
+
 		if (digits == null || digits.length() == 0) {
 			return result;
 		}
+
 		String[] mapping = { "0", "1", "abc", "def", "ghi", "jkl", "mno", "pqrs", "tuv", "wxyz" };
 		letterCombinationsRecursive(result, digits, "", 0, mapping);
 		return result;

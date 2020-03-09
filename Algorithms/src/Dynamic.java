@@ -1,5 +1,13 @@
 import java.util.Arrays;
 
+/** Dynamic programming is mostly just a matter of taking a recursive algorithm 
+ * and finding the overlapping subproblems (that is, the repeated calls). 
+ * You then cache those results for future recursive calls. 
+ * Alternatively, you can study the pattern of the recursive calls and implement something iterative. 
+ * You still "cache" previous work.
+ * Drawing the recursive calls as a tree is a great way to figure out the runtime of a recursive algorithm.
+ * Memoization - by storing the results of expensive function calls and returning the cached result when the same inputs occur again. */
+
 public class Dynamic {
 
 	public static void main(String[] args) {
