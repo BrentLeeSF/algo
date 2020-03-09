@@ -41,9 +41,11 @@ public class Recursion {
 		/** Step Count */
 		int steps = 5;
 		System.out.println("Steps " + steps + ", Possible Steps " + rec.stepCount(steps));
+		System.out.println("Steps " + steps + ", Possible Steps " + rec.climbStairs(steps));
 
 		System.out.println("Greatest Common Divisor of 156 and 36 is " + rec.greatestCommonDivisor(156, 36));
-
+		int[] stockPrices = {7,1,5,3,6,4};
+		System.out.println("Buy and sell stock with highest value = "+rec.maxProfit(stockPrices));
 	}
 
 	/** Return Greatest Common Divisor */
@@ -95,6 +97,41 @@ public class Recursion {
 		} else {
 			return stepCount(steps - 1) + stepCount(steps - 2) + stepCount(steps - 3);
 		}
+	}
+
+	/** Climbing 3 stairs NON-recursion */
+	public int climbStairs(int n) {
+
+		int[] matrix = new int[n];
+
+		if (n < 3) {
+			return n;
+		}
+
+		matrix[0] = 1;
+		matrix[1] = 2;
+		matrix[2] = 4;
+
+		for (int i = 3; i < matrix.length; i++) {
+			matrix[i] = matrix[i - 1] + matrix[i - 2] + matrix[i - 3];
+		}
+		return matrix[n - 1];
+	}
+
+	/** Buy stock on cheapest day, sell at highest value */
+	public int maxProfit(int[] prices) {
+
+		int max = 0, min = Integer.MAX_VALUE;
+
+		for (int i = 0; i < prices.length; i++) {
+
+			if (prices[i] < min) {
+				min = prices[i];
+			} else {
+				max = Math.max(max, prices[i] - min);
+			}
+		}
+		return max;
 	}
 
 }

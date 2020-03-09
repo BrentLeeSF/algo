@@ -23,8 +23,11 @@ public class Dynamic {
 
 		System.out.println("Fibonacci modified of (i-1)^2 + i-2 = " + fibonacci(6));
 		// 0,1,1,2,5,27 (0, 1, 1+1^2=2, 1+2^2=5, 2+5^2=27, 5+27^2=734
+		
 	}
 
+	
+	
 	/** fibonacci modified of (i-1)^2 + i-2 = */
 	public static int fibonacci(int num) {
 
