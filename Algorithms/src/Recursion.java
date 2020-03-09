@@ -41,6 +41,14 @@ public class Recursion {
 		/** Step Count */
 		int steps = 5;
 		System.out.println("Steps " + steps + ", Possible Steps " + rec.stepCount(steps));
+
+		System.out.println("Greatest Common Divisor of 156 and 36 is " + rec.greatestCommonDivisor(156, 36));
+
+	}
+
+	/** Return Greatest Common Divisor */
+	public int greatestCommonDivisor(int x, int y) {
+		return y == 0 ? x : greatestCommonDivisor(y, x % y);
 	}
 
 	/** Fibinacci */
@@ -88,5 +96,5 @@ public class Recursion {
 			return stepCount(steps - 1) + stepCount(steps - 2) + stepCount(steps - 3);
 		}
 	}
-	
+
 }
