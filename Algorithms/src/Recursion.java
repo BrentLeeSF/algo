@@ -44,8 +44,8 @@ public class Recursion {
 		System.out.println("Steps " + steps + ", Possible Steps " + rec.climbStairs(steps));
 
 		System.out.println("Greatest Common Divisor of 156 and 36 is " + rec.greatestCommonDivisor(156, 36));
-		int[] stockPrices = {7,1,5,3,6,4};
-		System.out.println("Buy and sell stock with highest value = "+rec.maxProfit(stockPrices));
+		int[] stockPrices = { 7, 1, 5, 3, 6, 4 };
+		System.out.println("Buy and sell stock with highest value = " + rec.maxProfit(stockPrices));
 	}
 
 	/** Return Greatest Common Divisor */
