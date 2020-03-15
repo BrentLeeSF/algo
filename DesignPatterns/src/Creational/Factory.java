@@ -5,51 +5,51 @@ package Creational;
  * class to instantiate.
  * https://www.tutorialspoint.com/design_pattern/factory_pattern.htm
  */
-interface Shape {
+interface FactoryShape {
 	void draw();
 }
 
-class Rectangle implements Shape {
+class FactoryRectangle implements FactoryShape {
 
 	@Override
 	public void draw() {
-		System.out.println("Inside Rectangle::draw() method.");
+		System.out.println("Inside FactoryRectangle::draw() method.");
 	}
 }
 
-class Square implements Shape {
+class FactorySquare implements FactoryShape {
 
 	@Override
 	public void draw() {
-		System.out.println("Inside Square::draw() method.");
+		System.out.println("Inside FactorySquare::draw() method.");
 	}
 }
 
-class Circle implements Shape {
+class FactoryCircle implements FactoryShape {
 
 	@Override
 	public void draw() {
-		System.out.println("Inside Circle::draw() method.");
+		System.out.println("Inside FactoryCircle::draw() method.");
 	}
 }
 
-class ShapeFactory {
+class FactoryShapeFactory {
 
-	/** use getShape method to get object of type shape */
-	public Shape getShape(String shapeType) {
+	/** use getFactoryShape method to get object of type FactoryShape */
+	public FactoryShape getFactoryShape(String FactoryShapeType) {
 
-		if (shapeType == null) {
+		if (FactoryShapeType == null) {
 			return null;
 		}
 
-		if (shapeType.equalsIgnoreCase("CIRCLE")) {
-			return new Circle();
+		if (FactoryShapeType.equalsIgnoreCase("FactoryCircle")) {
+			return new FactoryCircle();
 
-		} else if (shapeType.equalsIgnoreCase("RECTANGLE")) {
-			return new Rectangle();
+		} else if (FactoryShapeType.equalsIgnoreCase("FactoryRectangle")) {
+			return new FactoryRectangle();
 
-		} else if (shapeType.equalsIgnoreCase("SQUARE")) {
-			return new Square();
+		} else if (FactoryShapeType.equalsIgnoreCase("FactorySquare")) {
+			return new FactorySquare();
 		}
 
 		return null;
@@ -60,24 +60,24 @@ public class Factory {
 
 	public static void main(String[] args) {
 
-		ShapeFactory shapeFactory = new ShapeFactory();
+		FactoryShapeFactory FactoryShapeFactory = new FactoryShapeFactory();
 
-		/** get an object of Circle and call its draw method. */
-		Shape shape1 = shapeFactory.getShape("CIRCLE");
+		/** get an object of FactoryCircle and call its draw method. */
+		FactoryShape FactoryShape1 = FactoryShapeFactory.getFactoryShape("FactoryCircle");
 
-		/** call draw method of Circle */
-		shape1.draw();
+		/** call draw method of FactoryCircle */
+		FactoryShape1.draw();
 
-		/** get an object of Rectangle and call its draw method. */
-		Shape shape2 = shapeFactory.getShape("RECTANGLE");
+		/** get an object of FactoryRectangle and call its draw method. */
+		FactoryShape FactoryShape2 = FactoryShapeFactory.getFactoryShape("FactoryRectangle");
 
-		/** call draw method of Rectangle */
-		shape2.draw();
+		/** call draw method of FactoryRectangle */
+		FactoryShape2.draw();
 
-		/** get an object of Square and call its draw method. */
-		Shape shape3 = shapeFactory.getShape("SQUARE");
+		/** get an object of FactorySquare and call its draw method. */
+		FactoryShape FactoryShape3 = FactoryShapeFactory.getFactoryShape("FactorySquare");
 
-		/** call draw method of square */
-		shape3.draw();
+		/** call draw method of FactorySquare */
+		FactoryShape3.draw();
 	}
 }

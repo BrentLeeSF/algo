@@ -4,10 +4,9 @@
 <br />
 **1. Behavioral Pattern** <br />
 -explains how objects interact.<br />
--It describes how different objects and classes send messages to each other to make things happen and<br />
+-identify common communication patterns among objects<br />
 -how the steps of a task are divided among different objects.<br />
--Where Creational patterns mostly describe a moment of time (the instant of creation),<br />
-and Structural patterns describe a more or less static structure, Behavioral patterns describe a process or a flow<br />
+-Behavioral patterns describe a process or a flow<br />
 <br />
 **BEHAVIORAL DESIGN PATTERNS**<br />
 **Chain of responsibility** - A way of passing a request between a chain of objects to handle request<br />
@@ -37,13 +36,13 @@ increase complexity of a code base.<br />
 **Object Pool** - used to manage the object caching.<br />
 Basically, an Object pool is a container which contains a specified amount of objects.<br /> 
 When an object is taken from the pool, it is not available in the pool until it is put back.<br />
-Recycle objects that are no longer in use<br />
+Recycle objects that are no longer in use<br />s
 **Prototype** - A fully initialized instance to be copied or cloned<br />
 **Singleton** - A class of which only a single instance can exist<br />
 <br />
 <br />
-**3.Structural design patterns** are design patterns that ease the design by<br />
--identifying a simple way to realise relationships between entities or defines a manner<br /> 
+**3.Structural design patterns** how classes and objects can be composed, to form larger structures.<br />
+-simplifies the structure by identifying the relationships.<br /> 
 -for creating relationships between objects.<br /><br />
 **STRUCTURAL DESIGN PATTERNS**<br />
 **Adapter** - Match interfaces of different classes<br />
