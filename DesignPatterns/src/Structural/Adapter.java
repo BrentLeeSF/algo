@@ -3,7 +3,7 @@ package Structural;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 
-/** Adapter - converts the interface of a class into another interface that a client wants 
+/** Adapter - Converts the interface of a class into another interface that a client wants 
  * https://www.javatpoint.com/adapter-pattern */
 /** Target Interface */
 interface CreditCard {

@@ -4,9 +4,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * A tree structure of simple and composite objects. Composite - Allows clients
- * to operate in generic manner on objects that may or may not represent a
- * hierarchy of objects https://www.geeksforgeeks.org/composite-design-pattern/
+ * Compose objects into tree structures and then work with these structures as
+ * if they were individual objects. A tree structure of simple and composite
+ * objects. Composite - Allows clients to operate in generic manner on objects
+ * that may or may not represent a hierarchy of objects
+ * https://www.geeksforgeeks.org/composite-design-pattern/
  */
 
 interface CompositeEmployee {

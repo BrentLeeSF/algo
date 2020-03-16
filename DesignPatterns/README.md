@@ -36,7 +36,7 @@ increase complexity of a code base.<br />
 **Object Pool** - used to manage the object caching.<br />
 Basically, an Object pool is a container which contains a specified amount of objects.<br /> 
 When an object is taken from the pool, it is not available in the pool until it is put back.<br />
-Recycle objects that are no longer in use<br />s
+Recycle objects that are no longer in use<br />
 **Prototype** - A fully initialized instance to be copied or cloned<br />
 **Singleton** - A class of which only a single instance can exist<br />
 <br />
@@ -45,10 +45,10 @@ Recycle objects that are no longer in use<br />s
 -simplifies the structure by identifying the relationships.<br /> 
 -for creating relationships between objects.<br /><br />
 **STRUCTURAL DESIGN PATTERNS**<br />
-**Adapter** - Match interfaces of different classes<br />
-**Bridge** - Separates an object’s interface from its implementation<br />
-**Composite** - A tree structure of simple and composite objects<br />
-**Decorator** - Add responsibilities to objects dynamically<br />
+**Adapter** - Converts the interface of a class into another interface that a client wants<br />
+**Bridge** - Separates an object’s interface from its implementation so the two can function independently<br />
+**Composite** - Compose objects into tree structures and then work with these structures as if they were individual objects<br />
+**Decorator** - Add responsibilities to objects dynamically, without altering structure<br />
 **Facade** - A single class that represents an entire subsystem<br />
 **Flyweight** - A fine-grained instance used for efficient sharing<br />
 **Private Class Data** - Restricts accessor/mutator access<br />
