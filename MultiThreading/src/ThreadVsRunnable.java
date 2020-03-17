@@ -20,8 +20,11 @@ class MultithreadingDemoThreadClass extends Thread {
 
 /** Main Class */
 class MultithreadThreadClass {
+	
 	public static void main(String[] args) {
+		
 		int n = 8; // Number of threads
+		
 		for (int i = 0; i < 8; i++) {
 			MultithreadingDemoThreadClass object = new MultithreadingDemoThreadClass();
 			object.start();
