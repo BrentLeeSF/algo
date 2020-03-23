@@ -1,12 +1,17 @@
+import java.util.Arrays;
 
 public class StringArrayEasy {
 
 	public static void main(String[] args) {
-		
+
 		StringArrayEasy strE = new StringArrayEasy();
-		
+
 		int reverseIntNum1 = -321;
 		System.out.println("Reverse " + reverseIntNum1 + " is " + strE.reverseInteger(reverseIntNum1));
+
+		int[] largestTriangle = { 3, 6, 2, 3 };
+		System.out.println("Largest Triangle of " + Arrays.toString(largestTriangle) + " is "
+				+ strE.largestPerimeterTriangle(largestTriangle));
 	}
 
 	public int reverseInteger(int x) {
@@ -39,5 +44,21 @@ public class StringArrayEasy {
 		 * 
 		 * return result;
 		 */
+	}
+
+	public int largestPerimeterTriangle(int[] A) {
+		if (A.length < 2) {
+			return -1;
+		}
+
+		Arrays.sort(A);
+		int length = A.length;
+
+		for (int i = length - 1; i > 1; i--) {
+			if (A[i] < A[i - 1] + A[i - 2]) {
+				return A[i] + A[i - 1] + A[i - 2];
+			}
+		}
+		return -1;
 	}
 }
