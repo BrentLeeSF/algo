@@ -1,5 +1,19 @@
 import java.util.LinkedList;
 
+class LinkNode {
+
+	LinkNode head, next;
+	int data;
+
+	public LinkNode() {
+		head = next = null;
+	}
+
+	public LinkNode(int data) {
+		this.data = data;
+	}
+}
+
 public class LinkListin {
 
 	LinkNode list = null;
@@ -139,7 +153,7 @@ public class LinkListin {
 		LinkNode newFront = new LinkNode(data);
 		newFront.next = list.head;
 		list.head = newFront;
-		/*
+		/**
 		 * LinkNode current = list.head; LinkNode newFront = new LinkNode(data);
 		 * LinkNode temp = current; list.head = newFront; list.head.next = temp;
 		 */
@@ -163,9 +177,11 @@ public class LinkListin {
 	}
 
 	public void reverse() {
+		
 		LinkNode current = list.head;
 		LinkNode next = null;
 		LinkNode prev = null;
+		
 		while (current != null) {
 			next = current.next;
 			current.next = prev;
@@ -186,18 +202,4 @@ public class LinkListin {
 		System.out.println();
 	}
 
-}
-
-class LinkNode {
-
-	LinkNode head, next;
-	int data;
-
-	public LinkNode() {
-		head = next = null;
-	}
-
-	public LinkNode(int data) {
-		this.data = data;
-	}
 }
