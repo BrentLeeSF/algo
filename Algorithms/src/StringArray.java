@@ -108,7 +108,7 @@ public class StringArray {
 
 		System.out.println("4^3 = " + strArr.power(4, 3) + "\n");
 
-		System.out.println("Longest SubString of " + strArr.longestSub1 + " and " + strArr.longestSub2 + " is "
+		System.out.println("Longest SubString LENGTH of " + strArr.longestSub1 + " and " + strArr.longestSub2 + " is "
 				+ strArr.longestSubString(strArr.longestSub1, strArr.longestSub2));
 
 		System.out
@@ -135,8 +135,9 @@ public class StringArray {
 		System.out.println(
 				"The largest sum of " + Arrays.toString(largestSum) + ", is " + strArr.returnLargestSum(largestSum));
 
-		int[] binSearch = { 2, 3, 4, 10, 40 };
-		System.out.println("Binary Search for 10 = " + strArr.binarySearch(binSearch, 2));
+		//int[] binSearch = { 2, 3, 4, 10, 40 };
+		int[] binSearch = {0,1,2,3,4,5,6,7,8,9,10};
+		System.out.println("Binary Search for 10 = " + strArr.binarySearch(binSearch, 9));
 	}
 
 	/**
@@ -148,8 +149,12 @@ public class StringArray {
 		int n = arr.length - 1, lowIndex = 0;
 
 		while (lowIndex <= n) {
-
+			// 0,1,2,3,4,5,6,7,8,9,10
+			//index=5, index+1=6, 6=lowIndex
+			//lowIndex=6, 10-6=4, 4/2=2, 2+6 = index=8
+			//lowIndex=9, 10-9=1, 1/2=0, index=9
 			int index = lowIndex + (n - lowIndex) / 2;
+			System.out.println("Index = "+index+", n = "+n+", lowIndex = "+lowIndex);
 
 			if (arr[index] == target) {
 				return index;
@@ -283,7 +288,7 @@ public class StringArray {
 
 		int j = 0;
 		StringBuilder str = new StringBuilder();
-		System.out.println(arr2);
+		//System.out.print(arr2);
 
 		for (int i = 0; i < arr1.length(); i++) {
 
@@ -313,7 +318,7 @@ public class StringArray {
 			int jCount = 0;
 			iCount = i;
 
-			while (jCount < sub1.length() && jCount < sub2.length() && iCount < sub1.length()) {
+			while (jCount < sub2.length() && iCount < sub1.length()) {
 				if (sub1.charAt(iCount) == sub2.charAt(jCount)) {
 					totalCount++;
 					iCount++;
@@ -439,15 +444,15 @@ public class StringArray {
 	public void staircase(int n) {
 
 		System.out.println("\nPrinting staircase of size " + n);
-		for (int i = 0; i < n; i++) {
+		for (int i = 1; i <= n; i++) {
 
-			int spaces = n - 1 - i;
+			int spaces = n - i + 1;
 			while (spaces > 0) {
 				System.out.print(" ");
 				spaces--;
 			}
 
-			int stairs = i;
+			int stairs = i-1;
 			while (stairs >= 0) {
 				System.out.print("#");
 				stairs--;
