@@ -10,7 +10,7 @@ public class Combinations {
 
 		int[] arrPermute = { 1, 2, 3, 4 };
 
-		System.out.println("\nCombinations");
+		System.out.println("\nCombinations of 1,2,3,4");
 		List<List<Integer>> permuteArrayList = new ArrayList<List<Integer>>();
 		permuteArrayList = combo.permute(arrPermute);
 
@@ -21,7 +21,7 @@ public class Combinations {
 			System.out.println();
 		}
 
-		System.out.println("\nCombinations 2");
+		System.out.println("\nCombinations 2 - of 1,2,3,4");
 		ArrayList<ArrayList<Integer>> permuteArrayList2 = new ArrayList<ArrayList<Integer>>();
 		permuteArrayList2 = combo.permute2(arrPermute);
 
@@ -55,10 +55,10 @@ public class Combinations {
 
 		int printComboArr[] = { 1, 2, 3, 4, 5 };
 		int maxCombo = 3, arrLength = printComboArr.length;
-		System.out.println();
+		System.out.println("\nCombinations of 1,2,3,4,5 with sets of 3");
 		combo.printCombination(printComboArr, arrLength, maxCombo);
-		System.out.println();
-
+		
+		System.out.println("\nParenthesis Combinations");
 		List<String> uh = combo.generateParenthesis(3);
 		for (int i = 0; i < uh.size(); i++) {
 			System.out.print(uh.get(i) + ", ");
@@ -67,7 +67,7 @@ public class Combinations {
 
 		/** PERMUTATION - FIND ALL COMBINATIONS OF GIVEN ARRAY */
 		int[] permutation1Arr = { 1, 2, 3, 4 };
-		System.out.println("\nMore Combinations");
+		System.out.println("\nMore Combinations of 1,2,3,4");
 		ArrayList<ArrayList<Integer>> huh = combo.permutation1(permutation1Arr);
 		for (int j = 0; j < huh.size(); j++) {
 			System.out.println(huh.get(j));
@@ -270,26 +270,27 @@ public class Combinations {
 	 * "((()))", "(()())", "(())()", "()(())", "()()()" ]
 	 */
 	public List<String> generateParenthesis(int n) {
-		List<String> res = new ArrayList<>();
-		parenthesisHelper(0, 0, new StringBuilder(), n, res);
-		return res;
+		List<String> finalList = new ArrayList<>();
+		/**/
+		parenthesisHelper(0, 0, new StringBuilder(), n, finalList);
+		return finalList;
 	}
 
-	private void parenthesisHelper(int left, int right, StringBuilder sb, int n, List<String> res) {
+	private void parenthesisHelper(int left, int right, StringBuilder sb, int n, List<String> finalList) {
 		if (left == n && right == n) {
-			res.add(new String(sb.toString()));
+			finalList.add(new String(sb.toString()));
 			return;
 		}
 
 		if (left < n) {
 			sb.append("(");
-			parenthesisHelper(left + 1, right, sb, n, res);
+			parenthesisHelper(left + 1, right, sb, n, finalList);
 			sb.setLength(sb.length() - 1);
 		}
 
 		if (right < left) {
 			sb.append(")");
-			parenthesisHelper(left, right + 1, sb, n, res);
+			parenthesisHelper(left, right + 1, sb, n, finalList);
 			sb.setLength(sb.length() - 1);
 		}
 	}
