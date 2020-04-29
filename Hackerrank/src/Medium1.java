@@ -20,7 +20,7 @@ public class Medium1 {
 	 * 
 	 * https://www.hackerrank.com/challenges/climbing-the-leaderboard/problem */
 	public static void printRankings(int[] scores, int[] alice) {
-       
+		
         for(int i = 0; i < alice.length; i++) {
             System.out.println(returnCount(scores, alice[i]));
         }   
