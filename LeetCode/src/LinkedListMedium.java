@@ -7,12 +7,11 @@ class LinkedListNode {
 
 public class LinkedListMedium {
 	
-	public static void main(String[] args) {
-		
-	}
+	public static void main(String[] args) { }
 	
 
 	public LinkedListNode addTwoNumbers(LinkedListNode l1, LinkedListNode l2) {
+		
 		LinkedListNode dummy = new LinkedListNode(-1);
 		LinkedListNode curr = dummy;
         int thisNum = 0;
