@@ -140,6 +140,12 @@ public class StringArray {
 		//int[] binSearch = { 2, 3, 4, 10, 40 };
 		int[] binSearch = {0,1,2,3,4,5,6,7,8,9,10};
 		System.out.println("Binary Search from 0-10 = " + strArr.binarySearch(binSearch, 3));
+		
+		String reverseThis = "Reverse This String";
+		System.out.println("reverse of: "+reverseThis+" = "+strArr.reverseString(reverseThis));
+		
+		String letterChange = "ExchangeZ Lettersz";
+		System.out.println("ExchangeZ lettersz: "+letterChange+" = "+strArr.letterExchange(letterChange));
 	}
 
 	/**
@@ -630,4 +636,53 @@ public class StringArray {
 		return allPrimes;
 	}
 
+	public String reverseString(String str) {
+		StringBuilder sb = new StringBuilder();
+		int length = str.length()-1;
+		char letter = 'a';
+		
+		for(int i = 0; i < str.length(); i++) {
+			letter = str.charAt(length-i);
+			sb.append(letter);
+		}
+	    return sb.toString();
+	}
+	
+	/** Replace every letter in the string with the letter following it in the alphabet 
+	 * (ie. c becomes d, z becomes a).
+	 * Then capitalize every vowel in this new string (a, e, i, o, u) and return this modified string.*/
+	public String letterExchange(String str) {
+
+		StringBuilder sb = new StringBuilder();
+		int ascii = 0;
+		char[] str2 = new char[str.length()];
+		
+		for(int i = 0; i < str.length(); i++) {
+			
+			ascii = str.charAt(i);
+			ascii = str2[i];
+			
+			if(ascii == 32) {
+				sb.append((char)ascii);
+			} else {
+				
+				if(ascii == 90 || ascii == 122) {
+					sb.append("A");
+				}
+				
+				else {
+					
+					ascii++;
+					if(ascii == 97 || ascii == 101 || ascii == 105 || ascii == 111 || ascii == 117) {
+						ascii-=32;
+					}
+					sb.append((char)ascii);
+				}
+			}
+			
+		}
+		return sb.toString();
+	}
+	
+	
 }
