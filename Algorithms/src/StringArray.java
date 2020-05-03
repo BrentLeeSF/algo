@@ -142,7 +142,7 @@ public class StringArray {
 		System.out.println("Binary Search from 0-10 = " + strArr.binarySearch(binSearch, 3));
 		
 		String reverseThis = "Reverse This String";
-		System.out.println("reverse of: "+reverseThis+" = "+strArr.reverseString(reverseThis));
+		System.out.println("\nreverse of: "+reverseThis+" = "+strArr.reverseString(reverseThis));
 		
 		String letterChange = "ExchangeZ Lettersz";
 		System.out.println("ExchangeZ lettersz: "+letterChange+" = "+strArr.letterExchange(letterChange));
@@ -659,7 +659,7 @@ public class StringArray {
 		
 		for(int i = 0; i < str.length(); i++) {
 			
-			ascii = str.charAt(i);
+			str2[i] = str.charAt(i);
 			ascii = str2[i];
 			
 			if(ascii == 32) {
@@ -667,10 +667,9 @@ public class StringArray {
 			} else {
 				
 				if(ascii == 90 || ascii == 122) {
-					sb.append("A");
-				}
-				
-				else {
+					sb.append('A');
+					
+				} else {
 					
 					ascii++;
 					if(ascii == 97 || ascii == 101 || ascii == 105 || ascii == 111 || ascii == 117) {
@@ -681,8 +680,6 @@ public class StringArray {
 			}
 			
 		}
-		return sb.toString();
+		return sb.toString();	
 	}
-	
-	
 }
