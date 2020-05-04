@@ -159,9 +159,9 @@ public class StringArray {
 		while (lowIndex <= n) {
 			
 			// 0,1,2,3,4,5,6,7,8,9,10
-			//index=5, index+1=6, 6=lowIndex
-			//lowIndex=6, 10-6=4, 4/2=2, 2+6 = index=8
-			//lowIndex=9, 10-9=1, 1/2=0, index=9
+			// index=5, index+1=6, 6=lowIndex
+			// lowIndex=6, 10-6=4, 4/2=2, 2+6 = index=8
+			// lowIndex=9, 10-9=1, 1/2=0, index=9
 			int index = lowIndex + (n - lowIndex) / 2;
 			
 			System.out.println("Index = "+index+", n = "+n+", lowIndex = "+lowIndex+", target = "+target+", divide = "+((n - lowIndex) / 2));
@@ -216,15 +216,17 @@ public class StringArray {
 				}
 			}
 		}
-		System.out.println("Buy on " + buy + ", sell on " + sell + " for profit of " + maxprofit);
+		System.out.println("Buy on " + buy + ", sell on " + sell + " for profit of " + maxprofit+"\n");
 	}
 
 	/** Return highest sum with an hour glass shape */
 	public int hourGlass(int[][] hourGlass) {
 
 		int currentSum = 0, highestSum = 0;
+		
 		for (int i = 0; i < hourGlass.length - 2; i++) {
 			for (int j = 0; j < hourGlass.length - 2; j++) {
+				
 				currentSum += hourGlass[i][j];
 				currentSum += hourGlass[i][j + 1];
 				currentSum += hourGlass[i][j + 2];
@@ -232,6 +234,7 @@ public class StringArray {
 				currentSum += hourGlass[i + 2][j];
 				currentSum += hourGlass[i + 2][j + 1];
 				currentSum += hourGlass[i + 2][j + 2];
+				
 				if (currentSum > highestSum) {
 					highestSum = currentSum;
 				}
@@ -253,7 +256,7 @@ public class StringArray {
 		/** 'freq[]' implemented as hash table */
 		int[] freq = new int[size];
 
-		/** accumulate freqeuncy of each nonspace character in 'str' */
+		/** accumulate frequency of each nonspace character in 'str' */
 		for (int i = 0; i < n; i++) {
 
 			/** If not space, */
@@ -299,7 +302,6 @@ public class StringArray {
 
 		int j = 0;
 		StringBuilder str = new StringBuilder();
-		//System.out.print(arr2);
 
 		for (int i = 0; i < arr1.length(); i++) {
 
@@ -673,7 +675,7 @@ public class StringArray {
 					
 					ascii++;
 					if(ascii == 97 || ascii == 101 || ascii == 105 || ascii == 111 || ascii == 117) {
-						ascii-=32;
+						ascii -= 32;
 					}
 					sb.append((char)ascii);
 				}
