@@ -13,14 +13,6 @@ class User {
 		allUsers++;
 	}
 	
-	public int getUserId() {
-		return this.userId;
-	}
-	
-	public List<Tweet> returnUserTweets() {
-		return this.listOfTweets;
-	}
-	
 	public void createTweet(User user, String tweet, int tweetId) {
 		Tweet newTweet = new Tweet(tweet, listOfTweets.size()+1);
 		listOfTweets.add(newTweet);
@@ -77,6 +69,15 @@ public class Twitter {
 		System.out.println("\nfourth list");
 		for(int i = 0; i < user1.listOfTweets.size(); i++) {
 			System.out.println(user1.listOfTweets.get(i).tweet+", tweet id = "+user1.listOfTweets.get(i).tweetId);
+		}
+		
+		User user2 = new User();
+		user2.createTweet(user2,"first user tweet", user2.listOfTweets.size());
+		user2.createTweet(user2, "second user tweet", user2.listOfTweets.size());
+		System.out.println("\nsecond user list");
+		
+		for(int i = 0; i < user2.listOfTweets.size(); i++) {
+			System.out.println(user2.listOfTweets.get(i).tweet+", tweet id = "+user2.listOfTweets.get(i).tweetId);
 		}
 	}
     
