@@ -14,7 +14,7 @@ class User {
 	}
 	
 	public void createTweet(User user, String tweet, int tweetId) {
-		Tweet newTweet = new Tweet(tweet, listOfTweets.size()+1);
+		Tweet newTweet = new Tweet(tweet, listOfTweets.size());
 		listOfTweets.add(newTweet);
 	}
 	
