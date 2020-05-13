@@ -30,11 +30,13 @@ public class ParkingLot {
 	}
 
 	public void createParkingLot() {
+		
 		for (int i = 0; i < parkingLotLevels; i++) {
 			for (int j = 0; j < spaceNumbers; j++) {
+				
 				parkingSpaces[i][j] = new ParkingSpace(0, 0, 0, false, i, j);
-				System.out.println("Parking Level " + parkingSpaces[i][j].parkingLevel + ", Space "
-						+ parkingSpaces[i][j].spaceNumber + ", Occupied = " + parkingSpaces[i][j].spaceOccupied);
+				// System.out.println("Parking Level " + parkingSpaces[i][j].parkingLevel + ", Space "
+					//	+ parkingSpaces[i][j].spaceNumber + ", Occupied = " + parkingSpaces[i][j].spaceOccupied);
 			}
 		}
 	}
@@ -52,10 +54,12 @@ public class ParkingLot {
 	}
 
 	public static void main(String[] args) {
+		
 		ParkingLot pl = new ParkingLot();
 		pl.createParkingLot();
 		pl.setParking(3, 84, 1235);
 		System.out.println("Total price for parking floor 3, space 84 is " + pl.payParking(3, 84, 1425) + " cents");
+		
 	}
 
 }
