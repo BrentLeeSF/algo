@@ -146,6 +146,23 @@ public class StringArray {
 		
 		String letterChange = "ExchangeZ Lettersz";
 		System.out.println("ExchangeZ lettersz: "+letterChange+" = "+strArr.letterExchange(letterChange));
+		
+		int power1 = 64;
+		int power2 = 63;
+		System.out.println("is "+power1+" a power of 2? = "+strArr.powerOfTwo(power2));
+	}
+	
+	public boolean powerOfTwo(int num) {
+		
+		int total = num;
+		
+		while(total > 1) {
+			total /= 2;
+			if(total == 2) {
+				return true;
+			}
+		}
+		return false;
 	}
 
 	/**
