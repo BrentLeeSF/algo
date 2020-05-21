@@ -42,8 +42,9 @@ public class StringArray {
 	public static void main(String[] args) {
 
 		StringArray strArr = new StringArray();
-		
-		System.out.println("5%1 = 0 - "+5%1+", 5%2 = 1 - "+5%2+", 5%3 = 2 - "+5%3+", 5%4 = 1 - "+5%4);
+
+		System.out.println(
+				"5%1 = 0 - " + 5 % 1 + ", 5%2 = 1 - " + 5 % 2 + ", 5%3 = 2 - " + 5 % 3 + ", 5%4 = 1 - " + 5 % 4);
 
 		System.out.println(
 				"Unique String of: " + strArr.uniqueStringTest + " is " + strArr.uniqueString(strArr.uniqueStringTest));
@@ -137,28 +138,74 @@ public class StringArray {
 		System.out.println(
 				"The largest sum of " + Arrays.toString(largestSum) + ", is " + strArr.returnLargestSum(largestSum));
 
-		//int[] binSearch = { 2, 3, 4, 10, 40 };
-		int[] binSearch = {0,1,2,3,4,5,6,7,8,9,10};
+		// int[] binSearch = { 2, 3, 4, 10, 40 };
+		int[] binSearch = { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
 		System.out.println("Binary Search from 0-10 = " + strArr.binarySearch(binSearch, 3));
-		
+
 		String reverseThis = "Reverse This String";
-		System.out.println("\nreverse of: "+reverseThis+" = "+strArr.reverseString(reverseThis));
-		
+		System.out.println("\nreverse of: " + reverseThis + " = " + strArr.reverseString(reverseThis));
+
 		String letterChange = "ExchangeZ Lettersz";
-		System.out.println("ExchangeZ lettersz: "+letterChange+" = "+strArr.letterExchange(letterChange));
-		
+		System.out.println("ExchangeZ lettersz: " + letterChange + " = " + strArr.letterExchange(letterChange));
+
 		int power1 = 64;
 		int power2 = 63;
-		System.out.println("is "+power1+" a power of 2? = "+strArr.powerOfTwo(power2));
+		System.out.println("is " + power1 + " a power of 2? = " + strArr.powerOfTwo(power2));
+
+		System.out.println(strArr.FirstReverse("INPUT HERE"));
+		System.out.println(strArr.FirstReverse("Input Here"));
+		System.out.println(strArr.LetterChanges("INPUT HERE"));
+		System.out.println(strArr.LetterChanges("input herez"));
 	}
-	
+
+	public String FirstReverse(String str) {
+
+		StringBuilder sb = new StringBuilder();
+		int length = str.length() - 1;
+		char letter = 'a';
+
+		for (int i = 0; i < str.length(); i++) {
+			letter = str.charAt(length - i);
+			if (letter == 'A') {
+				sb.append('Z');
+			} else {
+				sb.append(letter);
+			}
+
+		}
+		return sb.toString();
+	}
+
+	public String LetterChanges(String str) {
+
+		StringBuilder sb = new StringBuilder();
+		int ascii = 0;
+		char[] str2 = new char[str.length()];
+
+		for (int i = 0; i < str.length(); i++) {
+			str2[i] = str.charAt(i);
+			ascii = str2[i];
+			if (ascii == 32) {
+				sb.append((char) ascii);
+			} else {
+				ascii++;
+				if (ascii == 97 || ascii == 101 || ascii == 105 || ascii == 111 || ascii == 117) {
+					ascii -= 32;
+				}
+				sb.append((char) ascii);
+			}
+
+		}
+		return sb.toString();
+	}
+
 	public boolean powerOfTwo(int num) {
-		
+
 		int total = num;
-		
-		while(total > 1) {
+
+		while (total > 1) {
 			total /= 2;
-			if(total == 2) {
+			if (total == 2) {
 				return true;
 			}
 		}
@@ -174,14 +221,15 @@ public class StringArray {
 		int n = arr.length - 1, lowIndex = 0;
 
 		while (lowIndex <= n) {
-			
+
 			// 0,1,2,3,4,5,6,7,8,9,10
 			// index=5, index+1=6, 6=lowIndex
 			// lowIndex=6, 10-6=4, 4/2=2, 2+6 = index=8
 			// lowIndex=9, 10-9=1, 1/2=0, index=9
 			int index = lowIndex + (n - lowIndex) / 2;
-			
-			System.out.println("Index = "+index+", n = "+n+", lowIndex = "+lowIndex+", target = "+target+", divide = "+((n - lowIndex) / 2));
+
+			System.out.println("Index = " + index + ", n = " + n + ", lowIndex = " + lowIndex + ", target = " + target
+					+ ", divide = " + ((n - lowIndex) / 2));
 
 			if (arr[index] == target) {
 				return index;
@@ -233,17 +281,17 @@ public class StringArray {
 				}
 			}
 		}
-		System.out.println("Buy on " + buy + ", sell on " + sell + " for profit of " + maxprofit+"\n");
+		System.out.println("Buy on " + buy + ", sell on " + sell + " for profit of " + maxprofit + "\n");
 	}
 
 	/** Return highest sum with an hour glass shape */
 	public int hourGlass(int[][] hourGlass) {
 
 		int currentSum = 0, highestSum = 0;
-		
+
 		for (int i = 0; i < hourGlass.length - 2; i++) {
 			for (int j = 0; j < hourGlass.length - 2; j++) {
-				
+
 				currentSum += hourGlass[i][j];
 				currentSum += hourGlass[i][j + 1];
 				currentSum += hourGlass[i][j + 2];
@@ -251,7 +299,7 @@ public class StringArray {
 				currentSum += hourGlass[i + 2][j];
 				currentSum += hourGlass[i + 2][j + 1];
 				currentSum += hourGlass[i + 2][j + 2];
-				
+
 				if (currentSum > highestSum) {
 					highestSum = currentSum;
 				}
@@ -313,8 +361,10 @@ public class StringArray {
 		System.out.println("\nCharacter Count = " + characterCount + ", Word Count = " + wordCount + "\n\n");
 	}
 
-	/** Longest common substring. 
-	 * Ex: Longest common sub array of abcdefghi and aaabccccddddeeeei is abcde */
+	/**
+	 * Longest common substring. Ex: Longest common sub array of abcdefghi and
+	 * aaabccccddddeeeei is abcde
+	 */
 	public String longestCommonSub(String arr1, String arr2) {
 
 		int j = 0;
@@ -337,8 +387,10 @@ public class StringArray {
 		return str.toString();
 	}
 
-	/** Returns length of longest sub string.
-	 * Ex: Longest SubString LENGTH of hithereyoungfella and abcdereyoabdytw is 5 */
+	/**
+	 * Returns length of longest sub string. Ex: Longest SubString LENGTH of
+	 * hithereyoungfella and abcdereyoabdytw is 5
+	 */
 	public int longestSubString(String sub1, String sub2) {
 
 		int iCount = 0, totalCount = 0;
@@ -399,11 +451,11 @@ public class StringArray {
 			num = grades[i];
 
 			if (num >= 38 && num % 5 > 2) {
-				//System.out.println("num % 5 = "+num%5+", num = "+num);
+				// System.out.println("num % 5 = "+num%5+", num = "+num);
 				int diff = Math.abs((num % 5) - 5);
 				num += diff;
 				l1.add(num);
-			} else if(num > 37){
+			} else if (num > 37) {
 				l1.add(num);
 			}
 		}
@@ -603,8 +655,8 @@ public class StringArray {
 
 	/**
 	 * check if both a1 and b2 are not empty loop through a1, get first a1 index and
-	 * while a1 index and b2 index are same, loop through both. 
-	 * Ex: Is abcdef a substring of aaabbccddddeeefff
+	 * while a1 index and b2 index are same, loop through both. Ex: Is abcdef a
+	 * substring of aaabbccddddeeefff
 	 */
 	public boolean isSubString(String a1, String b2) {
 
@@ -657,48 +709,50 @@ public class StringArray {
 
 	public String reverseString(String str) {
 		StringBuilder sb = new StringBuilder();
-		int length = str.length()-1;
+		int length = str.length() - 1;
 		char letter = 'a';
-		
-		for(int i = 0; i < str.length(); i++) {
-			letter = str.charAt(length-i);
+
+		for (int i = 0; i < str.length(); i++) {
+			letter = str.charAt(length - i);
 			sb.append(letter);
 		}
-	    return sb.toString();
+		return sb.toString();
 	}
-	
-	/** Replace every letter in the string with the letter following it in the alphabet 
-	 * (ie. c becomes d, z becomes a).
-	 * Then capitalize every vowel in this new string (a, e, i, o, u) and return this modified string.*/
+
+	/**
+	 * Replace every letter in the string with the letter following it in the
+	 * alphabet (ie. c becomes d, z becomes a). Then capitalize every vowel in this
+	 * new string (a, e, i, o, u) and return this modified string.
+	 */
 	public String letterExchange(String str) {
 
 		StringBuilder sb = new StringBuilder();
 		int ascii = 0;
 		char[] str2 = new char[str.length()];
-		
-		for(int i = 0; i < str.length(); i++) {
-			
+
+		for (int i = 0; i < str.length(); i++) {
+
 			str2[i] = str.charAt(i);
 			ascii = str2[i];
-			
-			if(ascii == 32) {
-				sb.append((char)ascii);
+
+			if (ascii == 32) {
+				sb.append((char) ascii);
 			} else {
-				
-				if(ascii == 90 || ascii == 122) {
+
+				if (ascii == 90 || ascii == 122) {
 					sb.append('A');
-					
+
 				} else {
-					
+
 					ascii++;
-					if(ascii == 97 || ascii == 101 || ascii == 105 || ascii == 111 || ascii == 117) {
+					if (ascii == 97 || ascii == 101 || ascii == 105 || ascii == 111 || ascii == 117) {
 						ascii -= 32;
 					}
-					sb.append((char)ascii);
+					sb.append((char) ascii);
 				}
 			}
-			
+
 		}
-		return sb.toString();	
+		return sb.toString();
 	}
 }
