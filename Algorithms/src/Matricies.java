@@ -1,3 +1,4 @@
+import java.util.*;
 
 public class Matricies {
 
@@ -32,7 +33,25 @@ public class Matricies {
 		matricies.rotateImage();
 		
 		matricies.staircase(5);
-
+		
+		List<List<Integer>> diagonalDiff = new ArrayList();
+		diagonalDiff.add(new ArrayList<Integer>(Arrays.asList(11, 2, 4)));
+		diagonalDiff.add(new ArrayList<Integer>(Arrays.asList(4, 5, 6)));
+		diagonalDiff.add(new ArrayList<Integer>(Arrays.asList(10, 8, -12)));
+		System.out.println("\nDiff of Diagonal matrix");
+		matricies.printIntListMatricy(diagonalDiff);
+		System.out.println("Diff of Diagonal matrix Resule -> 11+5+-12=4 and 4+5+10=19 = " + matricies.diagonalDifference(diagonalDiff));
+		
+		matricies.setToZero();
+	}
+	
+	public void printIntListMatricy(List<List<Integer>> thisList) {
+		for(int i = 0; i < thisList.size(); i++) {
+			for(int j = 0; j < thisList.get(i).size(); j++) {
+				System.out.print(thisList.get(i).get(j) + " ");
+			}
+			System.out.println();
+		}
 	}
 
 	public void printIntMatricy(int[][] mat) {
@@ -201,4 +220,78 @@ public class Matricies {
 			System.out.println();
 		}
 	}
+	
+	/**
+	 * Return the difference between the difference of left to right diagonal and
+	 * right to left diagonal
+	 */
+	public int diagonalDifference(List<List<Integer>> arr) {
+
+		int leftToRight = 0, rightToLeft = 0;
+
+		for (int i = 0; i < arr.size(); i++) {
+			
+			for (int j = 0; j < arr.size(); j++) {
+				
+				if (i == j) {
+					leftToRight += arr.get(i).get(j);
+				}
+				
+				if (j + i == arr.size() - 1) {
+					rightToLeft += arr.get(i).get(j);
+				}
+			}
+		}
+		return Math.abs(leftToRight - rightToLeft);
+	}
+	
+	/** If an element in an MxN matrix is zero, set entire row and column
+	 * of that position to all zeros. */
+	public void setToZero() {
+		
+		int[][] uhh = {{2,2,3,4,5}, {4,5,6,7,8}, {2,0,3,5,6}, {3,4,5,4,3}, {2,3,7,0,9}};
+		boolean[] col = new boolean[uhh.length];
+		boolean[] row = new boolean[uhh.length];
+		
+		System.out.println("\nSet To Zero ORIGINAL!");
+		
+		for(int m = 0; m < uhh.length; m++) {
+			
+			for(int n = 0; n < uhh.length; n++) {
+				if(uhh[m][n] == 0) {
+					row[m] = true;
+					col[n] = true;
+				}
+				System.out.print(uhh[m][n]+ " ");
+			}
+			System.out.println();
+		}
+
+		System.out.println("Set To Zero RESULT!");
+		int a, b = 0;
+		
+		for(a = 0; a < uhh.length; a++) {
+			
+			if(row[a]) {
+				for(b = 0; b < uhh.length; b++) {
+					uhh[a][b] = 0;
+					System.out.print(uhh[a][b]+" ");
+				}
+			}
+			else {
+				for(int c = 0; c < uhh.length; c++) {
+					if(col[c]) {
+						uhh[a][c] = 0;
+						System.out.print(uhh[a][c]+ " ");
+					}
+					else {
+						System.out.print(uhh[a][c]+ " ");
+					}
+				}
+			}
+			System.out.println();
+		}
+		System.out.println();
+	}
+	
 }
