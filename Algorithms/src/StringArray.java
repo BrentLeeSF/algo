@@ -5,6 +5,7 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+import java.util.Scanner;
 import java.util.Set;
 
 class Roots {
@@ -74,8 +75,6 @@ public class StringArray {
 		}
 		System.out.println();
 
-		strArr.staircase(5);
-
 		String[] names1 = new String[] { "Ava", "Emma", "Olivia" };
 		String[] names2 = new String[] { "Olivia", "Sophia", "Emma" };
 		String[] huh = strArr.uniqueNames(names1, names2); // should print Ava, Emma, Olivia, Sophia
@@ -95,20 +94,6 @@ public class StringArray {
 		System.out.println("\nStudents problem");
 		strArr.gradingStudents(students);
 
-		int mat[][] = { { 4, 0, 0, 0 }, { 0, 7, 0, 0 }, { 0, 0, 5, 0 }, { 0, 0, 1, 1 } };
-		System.out.println("\nis this a diaganol matrix? ");
-		for (int i = 0; i < mat.length; i++) {
-			for (int j = 0; j < mat.length; j++) {
-				System.out.print(mat[i][j] + ", ");
-			}
-			System.out.println();
-		}
-		if (strArr.isDiagonalMatrix(mat, 4)) {
-			System.out.println("Yes\n");
-		} else {
-			System.out.println("No\n");
-		}
-
 		System.out.println("4^3 = " + strArr.power(4, 3) + "\n");
 
 		System.out.println("Longest SubString LENGTH of " + strArr.longestSub1 + " and " + strArr.longestSub2 + " is "
@@ -122,13 +107,6 @@ public class StringArray {
 		System.out.println("\nIn Order Character and Word Count of: " + stringCharAndWordCount);
 		printCharWithFreq(stringCharAndWordCount);
 
-		int[][] hourGlassArray = { { 1, 1, 1, 0, 0, 0 }, { 0, 1, 0, 0, 0, 0 }, { 1, 1, 1, 0, 0, 0 },
-				{ 0, 0, 2, 4, 4, 0 }, { 0, 0, 0, 2, 0, 0 }, { 0, 0, 1, 2, 4, 0 } };
-		int[][] hourGlassArray2 = { { -9, -9, -9, 1, 1, 1 }, { 0, -9, 0, 4, 3, 2 }, { -9, -9, -9, 1, 2, 3 },
-				{ 0, 0, 8, 6, 6, 0 }, { 0, 0, 0, -2, 0, 0 }, { 0, 0, 1, 2, 4, 0 } };
-		System.out.println("Largest sum of Hour glass = " + strArr.hourGlass(hourGlassArray2));
-
-		System.out.println("\n");
 		// stock prices on consecutive days
 		int stockPrices[] = { 695, 100, 180, 260, 310, 535, 40 };
 		System.out.println(Arrays.toString(stockPrices));
@@ -156,6 +134,7 @@ public class StringArray {
 		System.out.println(strArr.FirstReverse("Input Here"));
 		System.out.println(strArr.LetterChanges("INPUT HERE"));
 		System.out.println(strArr.LetterChanges("input herez"));
+
 	}
 
 	public String FirstReverse(String str) {
@@ -284,31 +263,6 @@ public class StringArray {
 		System.out.println("Buy on " + buy + ", sell on " + sell + " for profit of " + maxprofit + "\n");
 	}
 
-	/** Return highest sum with an hour glass shape */
-	public int hourGlass(int[][] hourGlass) {
-
-		int currentSum = 0, highestSum = 0;
-
-		for (int i = 0; i < hourGlass.length - 2; i++) {
-			for (int j = 0; j < hourGlass.length - 2; j++) {
-
-				currentSum += hourGlass[i][j];
-				currentSum += hourGlass[i][j + 1];
-				currentSum += hourGlass[i][j + 2];
-				currentSum += hourGlass[i + 1][j + 1];
-				currentSum += hourGlass[i + 2][j];
-				currentSum += hourGlass[i + 2][j + 1];
-				currentSum += hourGlass[i + 2][j + 2];
-
-				if (currentSum > highestSum) {
-					highestSum = currentSum;
-				}
-				currentSum = 0;
-			}
-		}
-		return highestSum;
-	}
-
 	/**
 	 * Prints the character excluding spaces, character frequency, in order, and
 	 * word count
@@ -358,7 +312,7 @@ public class StringArray {
 				freq[str.charAt(i)] = 0;
 			}
 		}
-		System.out.println("\nCharacter Count = " + characterCount + ", Word Count = " + wordCount + "\n\n");
+		System.out.println("\nCharacter Count = " + characterCount + ", Word Count = " + wordCount);
 	}
 
 	/**
@@ -423,19 +377,6 @@ public class StringArray {
 			return 1;
 		}
 		return (b * power(b, e - 1));
-	}
-
-	/** Returns true if is a diagonal matrix */
-	public boolean isDiagonalMatrix(int mat[][], int N) {
-
-		for (int i = 0; i < N; i++) {
-			for (int j = 0; j < N; j++) {
-				if ((i != j) && (mat[i][j] != 0)) {
-					return false;
-				}
-			}
-		}
-		return true;
 	}
 
 	/**
@@ -522,27 +463,6 @@ public class StringArray {
 			i++;
 		}
 		return newArray;
-	}
-
-	/** Print staircase, given staircase size */
-	public void staircase(int n) {
-
-		System.out.println("\nPrinting staircase of size " + n);
-		for (int i = 0; i < n; i++) {
-
-			int spaces = n - i;
-			while (spaces > 0) {
-				System.out.print(" ");
-				spaces--;
-			}
-
-			int stairs = i;
-			while (stairs >= 0) {
-				System.out.print("#");
-				stairs--;
-			}
-			System.out.println();
-		}
 	}
 
 	/** Returns true if every character in string is unique */
@@ -665,9 +585,10 @@ public class StringArray {
 		}
 
 		int countB = 0;
-		char b = 'b';
+		char a = 'a', b = 'b';
+
 		for (int i = 0; i < a1.length(); i++) {
-			char a = a1.charAt(i);
+			a = a1.charAt(i);
 			if (countB < b2.length()) {
 				b = b2.charAt(countB);
 			}
@@ -728,12 +649,10 @@ public class StringArray {
 
 		StringBuilder sb = new StringBuilder();
 		int ascii = 0;
-		char[] str2 = new char[str.length()];
 
 		for (int i = 0; i < str.length(); i++) {
 
-			str2[i] = str.charAt(i);
-			ascii = str2[i];
+			ascii = (int) str.charAt(i);
 
 			if (ascii == 32) {
 				sb.append((char) ascii);
@@ -755,4 +674,5 @@ public class StringArray {
 		}
 		return sb.toString();
 	}
+
 }
