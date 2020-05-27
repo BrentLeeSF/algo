@@ -26,6 +26,7 @@ abstract class Employee {
 }
 
 class Respondent extends Employee {
+	
 	public Respondent(int employeeLevelID, int employeeID, boolean takingCall) {
 		super(employeeLevelID, employeeID, takingCall);
 	}
@@ -36,6 +37,7 @@ class Respondent extends Employee {
 }
 
 class Manager extends Employee {
+	
 	public Manager(int employeeLevelID, int employeeID, boolean takingCall) {
 		super(employeeLevelID, employeeID, takingCall);
 	}
@@ -46,6 +48,7 @@ class Manager extends Employee {
 }
 
 class Director extends Employee {
+	
 	public Director(int employeeLevelID, int employeeID, boolean takingCall) {
 		super(employeeLevelID, employeeID, takingCall);
 	}
@@ -65,36 +68,44 @@ class TheCallCenter {
 	int dirCounter = 0;
 
 	public TheCallCenter() {
+		
 		respondent = new Respondent[10];
 		manager = new Manager[5];
 		director = new Director[3];
 	}
 
 	public void createCallCenter() {
+		
 		for (int i = 0; i < 10; i++) {
 			respondent[i] = new Respondent(1, i, true);
 		}
+		
 		for (int i = 0; i < 5; i++) {
 			manager[i] = new Manager(2, i, true);
 		}
+		
 		for (int i = 0; i < 3; i++) {
 			director[i] = new Director(3, i, true);
 		}
 	}
 
 	public void dispatchCall(int index) {
+		
 		if (respCounter < respondent.length) {
 			respondent[respCounter].getCall();
 			System.out.println("Respondent " + index);
 			respCounter++;
+			
 		} else if (manCounter < manager.length) {
 			System.out.println("Manager " + index);
 			manager[manCounter].getCall();
 			manCounter++;
+			
 		} else if (dirCounter < director.length) {
 			director[dirCounter].getCall();
 			System.out.println("Director " + index);
 			dirCounter++;
+			
 		} else {
 			System.out.println(allCallsAreBusy(index));
 		}
