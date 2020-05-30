@@ -135,6 +135,38 @@ public class StringArray {
 		System.out.println(strArr.LetterChanges("INPUT HERE"));
 		System.out.println(strArr.LetterChanges("input herez"));
 
+		int[] nums1 = { 1, 2, 3, 0, 0, 0 };
+		int[] nums2 = { 2, 5, 6 };
+		strArr.mergeThese(nums1, nums2);
+	}
+
+	public void mergeThese(int[] nums1, int[] nums2) {
+		ArrayList<Integer> list = new ArrayList<Integer>();
+		int thisLength = nums1.length + nums2.length;
+		int num1Count = 0, num2Count = 0;
+		int num1Current = 0, num2Current = 0;
+		System.out.println("Length = " + thisLength);
+		for (int i = 0; i < 12; i++) {
+
+			if (num1Count <= nums1.length) {
+				num1Current = nums1[num1Count];
+			}
+			if (num2Count <= nums2.length) {
+				num2Current = nums2[num2Count];
+			}
+			if (num1Current <= num2Current && num1Current != 0) {
+				list.add(num1Current);
+				num1Count++;
+			} 
+			if (num2Current <= num1Current && num2Current != 0) {
+				list.add(num2Current);
+				num2Count++;
+			}
+		}
+		for(int j = 0; j < list.size(); j++) {
+			System.out.println(list.get(j));
+		}
+
 	}
 
 	public String FirstReverse(String str) {
@@ -321,24 +353,28 @@ public class StringArray {
 	 */
 	public String longestCommonSub(String arr1, String arr2) {
 
+		StringBuilder sb = new StringBuilder();
+		char a = 'a', b = 'b';
 		int j = 0;
-		StringBuilder str = new StringBuilder();
 
 		for (int i = 0; i < arr1.length(); i++) {
 
-			char a = arr1.charAt(i);
-			j = i;
+			a = arr1.charAt(i);
+			b = arr2.charAt(j);
 
-			while (j < arr2.length() && a != arr2.charAt(j)) {
-				j++;
+			if (a != b) {
+				return sb.toString();
 			}
-			if (j < arr2.length() && a == arr2.charAt(j)) {
-				str.append(arr2.charAt(j));
-			} else {
-				return str.toString();
+
+			if (a == b) {
+				sb.append(b);
+				j++;
+				while (a == arr2.charAt(j) && j < arr2.length()) {
+					j++;
+				}
 			}
 		}
-		return str.toString();
+		return sb.toString();
 	}
 
 	/**
