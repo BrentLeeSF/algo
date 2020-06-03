@@ -18,6 +18,19 @@ class Roots {
 	}
 }
 
+class ReturnSum {
+	
+	int index;
+	int totalSum;
+	ArrayList<Integer> list;
+	
+	public ReturnSum(int index, int totalSum, ArrayList<Integer> list) {
+		this.index = index;
+		this.totalSum = totalSum;
+		this.list = list;
+	}
+}
+
 public class StringArray {
 
 	String uniqueStringTest = "afg456362989";
@@ -138,14 +151,75 @@ public class StringArray {
 		int[] nums1 = { 1, 2, 3, 0, 0, 0 };
 		int[] nums2 = { 2, 5, 6 };
 		strArr.mergeThese(nums1, nums2);
+		
+		int arr[] = { 1, 2, 3, 1, 3, 2, 5, 0, 1, 2 };
+		int num = 15;
+		
+		ReturnSum finalTest = strArr.returnLargestSum(arr, num, new ArrayList<Integer>());
+		
+		if(finalTest != null) {
+			System.out.println("Returned index = "+finalTest.index+", Total sum = "+finalTest.totalSum+" list size = "+finalTest.list.size());
+			for(int i = 0; i < finalTest.list.size(); i++) {
+				System.out.print(finalTest.list.get(i)+", ");
+			}
+			
+		} else {
+			System.out.println("Please enter a valid array and/or number to search from the array");
+		}
+	}
+	
+	public ReturnSum returnLargestSum(int[] arr, int num, ArrayList<Integer> finalList) {
+
+		int currentSum = 0, largestSum = 0, index = 0;
+		int currentIndex = 0, currentIndexCount = 0;
+		
+		if(arr.length < num) {
+			return null;
+		}
+		
+		for(int i = 0; i < arr.length-num; i++) {
+			currentSum = 0;
+			currentIndex = i;
+			currentIndexCount = 0;
+			
+			while(currentIndexCount < num) {
+				currentSum += arr[currentIndex];
+				currentIndexCount++;
+				currentIndex++;
+			}
+			if(currentSum > largestSum) {
+				
+				largestSum = currentSum;
+				index = i;
+				currentSum = 0;
+				currentIndex = i;
+				currentIndexCount = 0;
+				
+				while(currentIndexCount < num) {
+					currentSum += arr[currentIndex];
+					if(finalList.size() < num) {
+						finalList.add(arr[currentIndex]);
+					} else {
+						finalList.set(currentIndexCount, arr[currentIndex]);
+					}
+					currentIndexCount++;
+					currentIndex++;
+				}
+			}
+		}
+		return new ReturnSum(index, largestSum, finalList);
 	}
 
 	public void mergeThese(int[] nums1, int[] nums2) {
+		
 		ArrayList<Integer> list = new ArrayList<Integer>();
+		
 		int thisLength = nums1.length + nums2.length;
 		int num1Count = 0, num2Count = 0;
 		int num1Current = 0, num2Current = 0;
+		
 		System.out.println("Length = " + thisLength);
+		
 		for (int i = 0; i < 12; i++) {
 
 			if (num1Count <= nums1.length) {
