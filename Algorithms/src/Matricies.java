@@ -8,7 +8,7 @@ public class Matricies {
 
 		int mat[][] = { { 4, 0, 0, 0 }, { 0, 7, 0, 0 }, { 0, 0, 5, 0 }, { 0, 0, 1, 1 } };
 		System.out.println("\nis this a diaganol matrix? ");
-		matricies.printIntMatricy(mat);
+		matricies.printIntArrayMatricy(mat);
 
 		if (matricies.isDiagonalMatrix(mat, 4)) {
 			System.out.println("Yes\n");
@@ -27,34 +27,37 @@ public class Matricies {
 		int matty[][] = { { 1, 2, 3, 4 }, { 5, 6, 7, 8 }, { 9, 10, 11, 12 }, { 13, 14, 15, 16 } };
 		int N = 4;
 
-		matricies.printIntMatricy(matty);
+		matricies.printIntArrayMatricy(matty);
 		matricies.rotateMatrix(N, matty);
 
 		matricies.rotateImage();
-		
+
 		matricies.staircase(5);
-		
+
 		List<List<Integer>> diagonalDiff = new ArrayList();
 		diagonalDiff.add(new ArrayList<Integer>(Arrays.asList(11, 2, 4)));
 		diagonalDiff.add(new ArrayList<Integer>(Arrays.asList(4, 5, 6)));
 		diagonalDiff.add(new ArrayList<Integer>(Arrays.asList(10, 8, -12)));
 		System.out.println("\nDiff of Diagonal matrix");
 		matricies.printIntListMatricy(diagonalDiff);
-		System.out.println("Diff of Diagonal matrix Resule -> 11+5+-12=4 and 4+5+10=19 = " + matricies.diagonalDifference(diagonalDiff));
-		
+		System.out.println("Diff of Diagonal matrix Resule -> 11+5+-12=4 and 4+5+10=19 = "
+				+ matricies.diagonalDifference(diagonalDiff));
+
 		matricies.setToZero();
+
+		matricies.rotateClockwise(matty);
 	}
-	
+
 	public void printIntListMatricy(List<List<Integer>> thisList) {
-		for(int i = 0; i < thisList.size(); i++) {
-			for(int j = 0; j < thisList.get(i).size(); j++) {
+		for (int i = 0; i < thisList.size(); i++) {
+			for (int j = 0; j < thisList.get(i).size(); j++) {
 				System.out.print(thisList.get(i).get(j) + " ");
 			}
 			System.out.println();
 		}
 	}
 
-	public void printIntMatricy(int[][] mat) {
+	public void printIntArrayMatricy(int[][] mat) {
 		for (int i = 0; i < mat.length; i++) {
 			for (int j = 0; j < mat.length; j++) {
 				System.out.print(mat[i][j] + ", ");
@@ -128,10 +131,62 @@ public class Matricies {
 				mat[N - 1 - y][x] = temp;
 			}
 		}
-		
-		System.out.println("Rotate matrix Result");
-		printIntMatricy(mat);
 
+		System.out.println("Rotate matrix Result");
+		printIntArrayMatricy(mat);
+
+	}
+
+	public void rotateClockwise(int[][] matrix) {
+		int n = matrix.length;
+		int temp = 0;
+		System.out.println("New rotate");
+		for (int i = 0; i < n; i++) {
+			for (int j = 0; j < n; j++) {
+				System.out.print(matrix[i][j] + ", ");
+			}
+			System.out.println();
+		}
+		System.out.println();
+		for (int i = 0; i < n/2; ++i) {
+			for (int j = i; j < n-1-i; ++j) {
+				int tmp = matrix[i][j];
+				matrix[i][j] = matrix[n-1-j][i];
+				matrix[n-1-j][i] = matrix[n-1-i][n-1-j];
+				matrix[n-1-i][n-1-j] = matrix[j][n-1-i];
+				matrix[j][n-1-i] = tmp;
+			}
+		}
+
+		for (int i = 0; i < n; i++) {
+			for (int j = 0; j < n; j++) {
+				System.out.print(matrix[i][j] + ", ");
+			}
+			System.out.println();
+		}
+		
+		/** https://www.youtube.com/watch?v=SA867FvqHrM */
+		for (int i = 0; i < n; i++) {
+			for (int j = i; j < n; j++) {
+				temp = matrix[i][j];
+				matrix[i][j] = matrix[j][i];
+				matrix[j][i] = temp;
+			}
+		}
+		for (int i = 0; i < n; i++) {
+			for (int j = 0; j < n/2; j++) {
+				temp = matrix[i][j];
+				matrix[i][j] = matrix[i][n - 1 - j];
+				matrix[i][n - 1 - j] = temp;
+			}
+		}
+		System.out.println();
+		for (int i = 0; i < n; i++) {
+			for (int j = 0; j < n; j++) {
+				System.out.print(matrix[i][j] + ", ");
+			}
+			System.out.println();
+		}
 	}
 
 	/**
@@ -199,7 +254,7 @@ public class Matricies {
 			System.out.println();
 		}
 	}
-	
+
 	/** Print staircase, given staircase size */
 	public void staircase(int n) {
 
@@ -220,7 +275,7 @@ public class Matricies {
 			System.out.println();
 		}
 	}
-	
+
 	/**
 	 * Return the difference between the difference of left to right diagonal and
 	 * right to left diagonal
@@ -230,13 +285,13 @@ public class Matricies {
 		int leftToRight = 0, rightToLeft = 0;
 
 		for (int i = 0; i < arr.size(); i++) {
-			
+
 			for (int j = 0; j < arr.size(); j++) {
-				
+
 				if (i == j) {
 					leftToRight += arr.get(i).get(j);
 				}
-				
+
 				if (j + i == arr.size() - 1) {
 					rightToLeft += arr.get(i).get(j);
 				}
@@ -244,48 +299,48 @@ public class Matricies {
 		}
 		return Math.abs(leftToRight - rightToLeft);
 	}
-	
-	/** If an element in an MxN matrix is zero, set entire row and column
-	 * of that position to all zeros. */
+
+	/**
+	 * If an element in an MxN matrix is zero, set entire row and column of that
+	 * position to all zeros.
+	 */
 	public void setToZero() {
-		
-		int[][] uhh = {{2,2,3,4,5}, {4,5,6,7,8}, {2,0,3,5,6}, {3,4,5,4,3}, {2,3,7,0,9}};
+
+		int[][] uhh = { { 2, 2, 3, 4, 5 }, { 4, 5, 6, 7, 8 }, { 2, 0, 3, 5, 6 }, { 3, 4, 5, 4, 3 }, { 2, 3, 7, 0, 9 } };
 		boolean[] col = new boolean[uhh.length];
 		boolean[] row = new boolean[uhh.length];
-		
-		System.out.println("\nSet To Zero ORIGINAL!");
-		
-		for(int m = 0; m < uhh.length; m++) {
-			
-			for(int n = 0; n < uhh.length; n++) {
-				if(uhh[m][n] == 0) {
+
+		System.out.println("\nOriginal - If Number is Zero, Set All in Column And Row to Zero!");
+
+		for (int m = 0; m < uhh.length; m++) {
+
+			for (int n = 0; n < uhh.length; n++) {
+				if (uhh[m][n] == 0) {
 					row[m] = true;
 					col[n] = true;
 				}
-				System.out.print(uhh[m][n]+ " ");
+				System.out.print(uhh[m][n] + " ");
 			}
 			System.out.println();
 		}
 
-		System.out.println("Set To Zero RESULT!");
+		System.out.println("Result - If Number is Zero, Set All in Column And Row to Zero!");
 		int a, b = 0;
-		
-		for(a = 0; a < uhh.length; a++) {
-			
-			if(row[a]) {
-				for(b = 0; b < uhh.length; b++) {
+
+		for (a = 0; a < uhh.length; a++) {
+
+			if (row[a]) {
+				for (b = 0; b < uhh.length; b++) {
 					uhh[a][b] = 0;
-					System.out.print(uhh[a][b]+" ");
+					System.out.print(uhh[a][b] + " ");
 				}
-			}
-			else {
-				for(int c = 0; c < uhh.length; c++) {
-					if(col[c]) {
+			} else {
+				for (int c = 0; c < uhh.length; c++) {
+					if (col[c]) {
 						uhh[a][c] = 0;
-						System.out.print(uhh[a][c]+ " ");
-					}
-					else {
-						System.out.print(uhh[a][c]+ " ");
+						System.out.print(uhh[a][c] + " ");
+					} else {
+						System.out.print(uhh[a][c] + " ");
 					}
 				}
 			}
@@ -293,5 +348,5 @@ public class Matricies {
 		}
 		System.out.println();
 	}
-	
+
 }
