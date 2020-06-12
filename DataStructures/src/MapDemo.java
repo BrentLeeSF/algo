@@ -38,8 +38,8 @@ public class MapDemo {
 		/** HASHTABLE */
 		Hashtable<String, Integer> hashTable = new Hashtable<String, Integer>();
 
-		TreeMap<String, Integer> treemap = new TreeMap<String, Integer>();
-		LinkedHashMap<String, Integer> linkhashmap = new LinkedHashMap<String, Integer>();
+		TreeMap<String, Integer> treeMap = new TreeMap<String, Integer>();
+		LinkedHashMap<String, Integer> linkHashMap = new LinkedHashMap<String, Integer>();
 
 	}
 
