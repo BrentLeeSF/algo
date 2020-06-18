@@ -1,13 +1,25 @@
 import java.io.File;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 
-class ReturnAllParents {
+
+class Yo {
+	class Recursion {
+		class Src {
+			
+		}
+	}
+}
+
+public class ReturnAllParents {
 
 	static File file;
 	static StringBuilder result;
 
 	public ReturnAllParents() {
-		this.file = new File(
-				"/Users/brentleytrucker/Desktop/misc/Portfolio/InterviewPreparation/InterviewPreparation/Recursion/src/Recursion.java");
+		this.file = new File("/Yo/Recursion/Src");
+		// this.file = new File(
+		// "/Users/brentleytrucker/Desktop/misc/Portfolio/InterviewPreparation/InterviewPreparation/Recursion/src/Recursion.java");
 		this.result = new StringBuilder();
 	}
 
