@@ -1,12 +1,5 @@
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Map;
-import java.util.Scanner;
-import java.util.Set;
+import java.util.*;
 
 class Roots {
 
@@ -152,13 +145,13 @@ public class StringArray {
 		int[] nums2 = { 2, 5, 6 };
 		strArr.mergeThese(nums1, nums2);
 		
-		int arr[] = { 1, 2, 3, 1, 3, 2, 5, 0, 1, 2 };
-		int num = 15;
+		int largestSumArr[] = {1,2,3,1,3,2,5,0,1,2};
+		int arraySize = 8;
 		
-		ReturnSum finalTest = strArr.returnLargestSum(arr, num, new ArrayList<Integer>());
+		ReturnSum finalTest = strArr.returnLargestSumFromArray(largestSumArr, arraySize, new ArrayList<Integer>());
 		
 		if(finalTest != null) {
-			System.out.println("Returned index = "+finalTest.index+", Total sum = "+finalTest.totalSum+" list size = "+finalTest.list.size());
+			System.out.println("Largest sum starting from index = "+finalTest.index+", Total sum = "+finalTest.totalSum+" list size = "+finalTest.list.size());
 			for(int i = 0; i < finalTest.list.size(); i++) {
 				System.out.print(finalTest.list.get(i)+", ");
 			}
@@ -168,16 +161,16 @@ public class StringArray {
 		}
 	}
 	
-	public ReturnSum returnLargestSum(int[] arr, int num, ArrayList<Integer> finalList) {
+	public ReturnSum returnLargestSumFromArray(int[] arr, int num, ArrayList<Integer> finalList) {
 
 		int currentSum = 0, largestSum = 0, index = 0;
 		int currentIndex = 0, currentIndexCount = 0;
 		
-		if(arr.length < num) {
+		if(arr.length+1 < num) {
 			return null;
 		}
 		
-		for(int i = 0; i < arr.length-num; i++) {
+		for(int i = 0; i < arr.length+1-num; i++) {
 			currentSum = 0;
 			currentIndex = i;
 			currentIndexCount = 0;
@@ -220,7 +213,7 @@ public class StringArray {
 		
 		System.out.println("Length = " + thisLength);
 		
-		for (int i = 0; i < 12; i++) {
+		for (int i = 0; i < thisLength; i++) {
 
 			if (num1Count <= nums1.length) {
 				num1Current = nums1[num1Count];
@@ -231,16 +224,15 @@ public class StringArray {
 			if (num1Current <= num2Current && num1Current != 0) {
 				list.add(num1Current);
 				num1Count++;
-			} 
+			}
 			if (num2Current <= num1Current && num2Current != 0) {
 				list.add(num2Current);
 				num2Count++;
 			}
 		}
 		for(int j = 0; j < list.size(); j++) {
-			System.out.println(list.get(j));
+			System.out.println("Hey = "+list.get(j));
 		}
-
 	}
 
 	public String FirstReverse(String str) {
@@ -250,13 +242,14 @@ public class StringArray {
 		char letter = 'a';
 
 		for (int i = 0; i < str.length(); i++) {
+			
 			letter = str.charAt(length - i);
+			
 			if (letter == 'A') {
 				sb.append('Z');
 			} else {
 				sb.append(letter);
 			}
-
 		}
 		return sb.toString();
 	}
@@ -268,10 +261,13 @@ public class StringArray {
 		char[] str2 = new char[str.length()];
 
 		for (int i = 0; i < str.length(); i++) {
+			
 			str2[i] = str.charAt(i);
 			ascii = str2[i];
+			
 			if (ascii == 32) {
 				sb.append((char) ascii);
+				
 			} else {
 				ascii++;
 				if (ascii == 97 || ascii == 101 || ascii == 105 || ascii == 111 || ascii == 117) {
@@ -295,6 +291,41 @@ public class StringArray {
 			}
 		}
 		return false;
+	}
+	
+	public int lengthOfLongestSubstring(String s) {
+		if(s.length() == 0) return 0;
+        HashMap<Character, Integer> map = new HashMap<Character, Integer>();
+        int j = 0, biggestLength = 0;
+       // StringBuffer str = new StringBuffer();
+        for(int i = 0; i < s.length(); i++) {
+            j = i;
+            while(j < s.length() && !map.containsKey(s.charAt(j))) {
+                map.put(s.charAt(j), 1);
+                System.out.println("Char = "+s.charAt(j));
+                j++;
+            }
+            if(map.size() > biggestLength) {
+                biggestLength = map.size();
+                System.out.println("Size = "+biggestLength);
+            }
+            map = null;
+        }
+        return biggestLength;
+    }
+	
+	public int lengthOfLongestSubstringANSWER(String s) {
+	    if (s.length() == 0) return 0;
+	    HashMap<Character, Integer> map = new HashMap<Character, Integer>();
+	    int max = 0;
+	    for (int i = 0, j = 0; i < s.length(); ++i) {
+	        if (map.containsKey(s.charAt(i))) {
+	            j = Math.max(j, map.get(s.charAt(i)) + 1);
+	        }
+	        map.put(s.charAt(i), i);
+	        max = Math.max(max, i - j + 1);
+	    }
+	    return max;
 	}
 
 	/**
