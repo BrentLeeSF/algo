@@ -4,6 +4,8 @@ public class Medium1 {
 
 	public static void main(String[] args) {
 		
+		Medium1 med = new Medium1();
+		
 		int[] rankingArrOne = {100,100,50,40,40,20,10};
 		int[] rankingArrTwo = {5,25,50,120};
 		printRankings(rankingArrOne, rankingArrTwo);
@@ -14,7 +16,7 @@ public class Medium1 {
 		
 		veryLongFactorial(25);
 	}
-	
+		
 	
 	/** return ranking of scores based off two arrays. Do not count duplicates
 	 * Ex. 
