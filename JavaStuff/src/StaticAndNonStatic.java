@@ -37,8 +37,31 @@ class OuterClass {
 
 class StaticAndNonStatic {
 
+	// static variable
+	static int a = 10;
+	static int b;
+	int c = 10;
+	int d = 0;
+
+	// static block
+	static {
+		System.out.println("Static block initialized.");
+		b = a * 4;
+	}
+
+	public void test() {
+		d = c * 4;
+		System.out.println("NON - Static function = "+d);
+	}
+
 	/** How to create instance of static and non static nested class? */
 	public static void main(String args[]) {
+
+		System.out.println("from main");
+		System.out.println("Value of a : " + a);
+		System.out.println("Value of b : " + b);
+		StaticAndNonStatic st = new StaticAndNonStatic();
+		st.test();
 
 		OuterClass.NestedStaticClass printer = new OuterClass.NestedStaticClass();
 
