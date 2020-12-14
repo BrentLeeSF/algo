@@ -142,8 +142,8 @@ public class StringArray {
 		System.out.println(strArr.LetterChanges("input herez"));
 
 		int[] nums1 = { 1, 2, 3, 0, 0, 0 };
-		int[] nums2 = { 2, 5, 6 };
-		strArr.mergeThese(nums1, nums2);
+		int[] nums2 = { 2, 5, 6, 2, 4, 1 };
+		strArr.mergeTwoArraysInOrder(nums1, nums2);
 		
 		int largestSumArr[] = {1,2,3,1,3,2,5,0,1,2};
 		int arraySize = 8;
@@ -203,36 +203,41 @@ public class StringArray {
 		return new ReturnSum(index, largestSum, finalList);
 	}
 
-	public void mergeThese(int[] nums1, int[] nums2) {
-		
-		ArrayList<Integer> list = new ArrayList<Integer>();
-		
-		int thisLength = nums1.length + nums2.length;
-		int num1Count = 0, num2Count = 0;
-		int num1Current = 0, num2Current = 0;
-		
-		System.out.println("Length = " + thisLength);
-		
-		for (int i = 0; i < thisLength; i++) {
+	public void mergeTwoArraysInOrder(int[] arrayA, int[] arrayB) {
 
-			if (num1Count <= nums1.length) {
-				num1Current = nums1[num1Count];
-			}
-			if (num2Count <= nums2.length) {
-				num2Current = nums2[num2Count];
-			}
-			if (num1Current <= num2Current && num1Current != 0) {
-				list.add(num1Current);
-				num1Count++;
-			}
-			if (num2Current <= num1Current && num2Current != 0) {
-				list.add(num2Current);
-				num2Count++;
+		Arrays.sort(arrayA);
+		Arrays.sort(arrayB);
+		int[] resultArray = new int[arrayA.length + arrayB.length];
+		int arrayACount = 0, arrayBCount = 0, resultArrayCount = 0;
+		
+		while (arrayACount < arrayA.length && arrayBCount < arrayB.length) {
+			if(arrayA[arrayACount] <= arrayB[arrayBCount]) {
+				resultArray[resultArrayCount] = arrayA[arrayACount];
+				arrayACount += 1;
+				resultArrayCount += 1;
+			} else {
+				resultArray[resultArrayCount] = arrayB[arrayBCount];
+				arrayBCount += 1;
+				resultArrayCount += 1;
 			}
 		}
-		for(int j = 0; j < list.size(); j++) {
-			System.out.println("Hey = "+list.get(j));
+
+		// Merging remaining
+		while (arrayACount < arrayA.length) {
+			resultArray[resultArrayCount] = arrayA[arrayACount];
+			arrayACount += 1;
+			resultArrayCount += 1;
 		}
+		while (arrayBCount < arrayB.length) {
+			resultArray[resultArrayCount] = arrayB[arrayBCount];
+			arrayBCount += 1;
+			resultArrayCount += 1;
+		}
+		System.out.println("Two arrays merged in order");
+		for(int i = 0; i < resultArray.length; i++) {
+			System.out.print(resultArray[i]);
+		}
+		System.out.println();
 	}
 
 	public String FirstReverse(String str) {
