@@ -1,3 +1,4 @@
+import java.util.*;
 
 public class Easy {
 
@@ -17,6 +18,11 @@ public class Easy {
 		
 		int[] robHousesArray = {2,7,9,3,1};
 		System.out.println("Total of every other house = "+es.robHouses(robHousesArray));
+
+		int[] twoSumNumsArray = {2,7,11,15};
+		int twoSumNumsTarget = 26;
+		int[] twoSumNumsReturnedArray = es.twoSumNums(twoSumNumsArray, twoSumNumsTarget);
+		System.out.println("Two Sum Nums values are: "+twoSumNumsArray[twoSumNumsReturnedArray[0]]+ " and "+twoSumNumsArray[twoSumNumsReturnedArray[1]]+" = "+twoSumNumsTarget);
 	}
 
 	/** https://leetcode.com/problems/house-robber/ */
@@ -33,6 +39,28 @@ public class Easy {
 			returnSum[i] = Math.max(returnSum[i-2] + arr[i], returnSum[i-1]);
 		}
 		return returnSum[arr.length-1];
+	}
+
+	public int[] twoSumNums(int[] nums, int target) {
+
+		if(nums == null || nums.length < 2) { return null; }
+		if(nums.length == 2 && nums[1]+nums[0] != target) { return null; }
+
+		int needed = 0;
+		int[] arr = new int[2];
+		HashMap<Integer, Integer> map = new HashMap<Integer, Integer>();
+		for(int i = 0; i < nums.length; i++) {
+			needed = target - nums[i];
+			if(map.containsKey(needed)) {
+				arr[0] = map.get(needed);
+				arr[1] = i;
+				return arr;
+			}
+			if(!map.containsKey(nums[i])) {
+				map.put(nums[i], i);
+			}
+		}
+		return arr;
 	}
 	
 	/**
