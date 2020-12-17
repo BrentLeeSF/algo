@@ -35,6 +35,9 @@ public class LinkListin {
 		ls.deleteData(9);
 		ls.print("Delete Data 9");
 
+		ls.deleteAtIndex(3);
+		ls.print("Delete At Index 3");
+
 		ls.removeDuplicates();
 		ls.print("Remove Duplicates");
 
@@ -143,6 +146,28 @@ public class LinkListin {
 		}
 
 		current.next = current.next.next;
+	}
+
+	public void deleteAtIndex(int index) {
+		LinkNode current = list.head;
+		int count = 0;
+		if(current == null) {
+			return;
+		}
+		if(index == 0) {
+			current = current.next;
+			return;
+		}
+		while(current != null && count < index-1) {
+			current = current.next;
+			count++;
+		}
+		if(current == null || current.next == null) {
+			return;
+		}
+		LinkNode next = current.next.next;
+		current.next = next;
+		return;
 	}
 
 	public void removeDuplicates() {
