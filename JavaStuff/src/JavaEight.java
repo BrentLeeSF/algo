@@ -28,15 +28,16 @@ which allow the interfaces to have methods with implementation without
 affecting the classes that implement the interface. */
 
 /*Streams - JS type functions (map, filter, etc)
-* process collections of objects. A stream is a sequence of objects
-* that supports various methods which can be pipelined to produce the desired result. */
+ * process collections of objects. A stream is a sequence of objects
+ * that supports various methods which can be pipelined to produce the desired result. */
 
-interface Messageable{
+interface Messageable {
     Message getMessage(String msg);
 }
-class Message{
-    Message(String msg){
-        System.out.print("Message = "+msg);
+
+class Message {
+    Message(String msg) {
+        System.out.print("Message = " + msg);
     }
 }
 
@@ -64,13 +65,13 @@ interface functionalInterface {
     int calculateFunctionalInterface(int x);
 }
 
-interface interfaceWithVoidMethod{
+interface interfaceWithVoidMethod {
     void say();
 }
 
 class TestDefaultMethodTestClass implements TestDefaultMethodInterface {
     public void square(int a) {
-        System.out.println("implementation of square abstract method = "+(a*a));
+        System.out.println("implementation of square abstract method = " + (a * a));
     }
 }
 
@@ -89,11 +90,11 @@ public class JavaEight {
         return mathOperation.operationForLambda(a, b);
     }
 
-    public static void staticMethodForMethodReference(){
+    public static void staticMethodForMethodReference() {
         System.out.println("Hello, this is static method.");
     }
 
-    public void nonStaticmethodForMethodReference(){
+    public void nonStaticmethodForMethodReference() {
         System.out.println("Hello, this is a non-static method.");
     }
 
@@ -136,7 +137,7 @@ public class JavaEight {
         for (int i = 0; i < j8.arrayListSize; i++) {
             j8.arList.add(i);
         }
-        j8.arList.forEach(n -> System.out.print(n+", "));
+        j8.arList.forEach(n -> System.out.print(n + ", "));
         System.out.println();
 
         // functional interface
@@ -171,7 +172,7 @@ public class JavaEight {
 
         //Optional.of - throws NullPointerException if passed parameter is null
         Optional<Integer> b = Optional.of(value2);
-        System.out.println("OPTIONALS = "+j8.sumWithOptionals(a,b));
+        System.out.println("OPTIONALS = " + j8.sumWithOptionals(a, b));
 
         // default method
         TestDefaultMethodTestClass d = new TestDefaultMethodTestClass();
@@ -180,25 +181,25 @@ public class JavaEight {
         d.show();
 
         // streams https://www.geeksforgeeks.org/stream-in-java/
-        List<Integer> ListOfInts = Arrays.asList(2,3,4,5);
+        List<Integer> ListOfInts = Arrays.asList(2, 3, 4, 5);
 
         // demonstration of map method
-        List<Integer> squareOfInts = ListOfInts.stream().map(x -> x*x).collect(Collectors.toList());
-        System.out.println("Map = "+squareOfInts);
+        List<Integer> squareOfInts = ListOfInts.stream().map(x -> x * x).collect(Collectors.toList());
+        System.out.println("Map = " + squareOfInts);
 
         List<String> listOfStrings = Arrays.asList("Reflection", "Collection", "Stream", "testing", "Second value");
 
-        List<String> result = listOfStrings.stream().filter(s->s.startsWith("S")).collect(Collectors.toList());
-        System.out.println("Filtered = "+result);
+        List<String> result = listOfStrings.stream().filter(s -> s.startsWith("S")).collect(Collectors.toList());
+        System.out.println("Filtered = " + result);
 
         List<String> sortedResults = listOfStrings.stream().sorted().collect(Collectors.toList());
-        System.out.println("Sorted Results = "+sortedResults);
+        System.out.println("Sorted Results = " + sortedResults);
 
         System.out.println("For Each");
-        ListOfInts.stream().map(x->x*x).forEach(y->System.out.print(y+", "));
+        ListOfInts.stream().map(x -> x * x).forEach(y -> System.out.print(y + ", "));
 
         // Spliterator
-        List<Integer> ListOfInts2 = Arrays.asList(1,2,-3,-4,5);
+        List<Integer> ListOfInts2 = Arrays.asList(1, 2, -3, -4, 5);
         Stream<Integer> str = ListOfInts2.stream();
         Spliterator<Integer> splitr1 = str.spliterator();
         // hasCharacteristics and characteristics method
@@ -206,7 +207,7 @@ public class JavaEight {
 
         System.out.print("Content of arraylist: ");
         // forEachRemaining method
-        splitr1.forEachRemaining((n) -> System.out.print(n+", "));
+        splitr1.forEachRemaining((n) -> System.out.print(n + ", "));
         System.out.println();
 
         // Obtaining another  Stream to the array list.
@@ -216,13 +217,13 @@ public class JavaEight {
         // trySplit() method
         Spliterator<Integer> splitr2 = splitr1.trySplit();
         // If splitr1 could be split, use splitr2 first.
-        if(splitr2 != null) {
+        if (splitr2 != null) {
             System.out.println("Output from splitr2: ");
-            splitr2.forEachRemaining((n) -> System.out.print(n+", "));
+            splitr2.forEachRemaining((n) -> System.out.print(n + ", "));
         }
 
         System.out.println("\nOutput from splitr1: ");
-        splitr1.forEachRemaining((n) -> System.out.print(n+", "));
+        splitr1.forEachRemaining((n) -> System.out.print(n + ", "));
 
         System.out.println();
         System.out.println();
