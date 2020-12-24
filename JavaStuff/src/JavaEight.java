@@ -25,13 +25,20 @@ implementation code has to be provided in the class implementing
 the same interface.
 To overcome this issue, Java 8 has introduced the concept of default methods
 which allow the interfaces to have methods with implementation without
-affecting the classes that implement the interface. */
+affecting the classes that implement the interface.
+**Java 8 - ‘List’ or ‘Collection’ interfaces do not have ‘forEach’ method declaration.
+Thus, adding such method will simply break the collection framework implementations.
+Java 8 introduces default method so that List/Collection interface can have a
+default implementation of forEach method, and the class implementing these interfaces
+need not implement the same. */
 
 /*Streams - JS type functions (map, filter, etc)
  * process collections of objects. A stream is a sequence of objects
  * that supports various methods which can be pipelined to produce the desired result. */
 
-interface Messageable {
+/* Spliterators, like other Iterators, are for traversing the elements of a source.  */
+
+interface MessageableInterfaceWithObjectConstructor {
     Message getMessage(String msg);
 }
 
@@ -86,8 +93,8 @@ public class JavaEight {
         System.out.println(result);
     }
 
-    private int operateForLambda(int a, int b, MathOperationInterfaceForLambda mathOperation) {
-        return mathOperation.operationForLambda(a, b);
+    private int operateForLambda(int a, int b, MathOperationInterfaceForLambda mathOperationInterface) {
+        return mathOperationInterface.operationForLambda(a, b);
     }
 
     public static void staticMethodForMethodReference() {
@@ -122,6 +129,7 @@ public class JavaEight {
         JavaEight j8 = new JavaEight();
 
         // lambda with stored-in values
+        // calls funct( with lambda value that value is of interface)
         j8.printFormattedForLambda("Hello", j8.exclaim);
         j8.printFormattedForLambda("Hello", j8.ask);
 
@@ -129,7 +137,7 @@ public class JavaEight {
         MathOperationInterfaceForLambda subtraction = (a, b) -> a - b;
         MathOperationInterfaceForLambda addition = (a, b) -> a + b;
         MathOperationInterfaceForLambda multiplication = (a, b) -> a * b;
-
+        // calls funct( with lambda value, value is value of Interface)
         System.out.println("10 - 5 = " + j8.operateForLambda(10, 5, subtraction));
         System.out.println("10 + 5 = " + j8.operateForLambda(10, 5, addition));
         System.out.println("10 * 5 = " + j8.operateForLambda(10, 5, multiplication));
@@ -141,37 +149,42 @@ public class JavaEight {
         System.out.println();
 
         // functional interface
+        // create lambda of interface which has funct(), call that funct(with value)
         functionalInterface funcInterfaceLambda = (int x) -> x * x;
         int functionalInterfaceAnswer = funcInterfaceLambda.calculateFunctionalInterface(5);
         System.out.println("Functional Interface = " + functionalInterfaceAnswer);
 
         // Method references
         // Referring static method
+        // reference to class method as interface, which has funct(), then calling interface funct()
         interfaceWithVoidMethod referencingStaticMethod = JavaEight::staticMethodForMethodReference;
         // Calling interface method
         referencingStaticMethod.say();
 
         // Referring non-static method using reference
+        // reference to class method as interface, which has funct(), then calling interface funct()
         interfaceWithVoidMethod referencingNonStaticMethod = j8::nonStaticmethodForMethodReference;
         referencingNonStaticMethod.say();
 
         // Referring non-static method using anonymous object
         // You can use anonymous object also
+        // reference to class method as interface, which has funct(), then calling interface funct()
         interfaceWithVoidMethod referencingNonStaticMethod2 = new JavaEight()::nonStaticmethodForMethodReference;
         // Calling interface method
         referencingNonStaticMethod2.say();
 
         // reference to a constructor
-        Messageable hello = Message::new;
+        // value of Interface with Object constructor, create new object with constructor
+        MessageableInterfaceWithObjectConstructor hello = Message::new;
         hello.getMessage("Hello from Reference to a Constructor");
 
-        Integer value1 = null;
-        Integer value2 = 10;
+        Integer valueNull = null;
+        Integer valueTen = 10;
         //Optional.ofNullable - allows passed parameter to be null.
-        Optional<Integer> a = Optional.ofNullable(value1);
+        Optional<Integer> a = Optional.ofNullable(valueNull);
 
         //Optional.of - throws NullPointerException if passed parameter is null
-        Optional<Integer> b = Optional.of(value2);
+        Optional<Integer> b = Optional.of(valueTen);
         System.out.println("OPTIONALS = " + j8.sumWithOptionals(a, b));
 
         // default method
