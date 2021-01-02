@@ -35,8 +35,16 @@ public class LinkListin {
 		ls.deleteData(9);
 		ls.print("Delete Data 9");
 
-		ls.deleteAtIndex(3);
-		ls.print("Delete At Index 3");
+		ls.deleteAtIndexGoingForward(3);
+		ls.print("Delete Going Forward At Index 3 Where First Index = 0");
+
+		LinkNode hey = ls.deleteAtIndexGoingBackward(ls.list.head, 3);
+		System.out.println("Deleting Going Backward at Index 3 Where Last = 1");
+		while(hey != null) {
+			System.out.print(hey.data+", ");
+			hey = hey.next;
+		}
+		System.out.println("\n");
 
 		ls.removeDuplicates();
 		ls.print("Remove Duplicates");
@@ -148,7 +156,7 @@ public class LinkListin {
 		current.next = current.next.next;
 	}
 
-	public void deleteAtIndex(int index) {
+	public void deleteAtIndexGoingForward(int index) {
 		LinkNode current = list.head;
 		int count = 0;
 		if(current == null) {
@@ -168,6 +176,22 @@ public class LinkListin {
 		LinkNode next = current.next.next;
 		current.next = next;
 		return;
+	}
+
+	public LinkNode deleteAtIndexGoingBackward(LinkNode head, int n) {
+		LinkNode dummy = new LinkNode(0);
+		dummy.next = head;
+		LinkNode first = dummy;
+		LinkNode second = dummy;
+		for (int i = 0; i < n + 1; i++ ){
+			first = first.next;
+		}
+		while(first != null) {
+			first = first.next;
+			second = second.next;
+		}
+		second.next = second.next.next;
+		return dummy.next;
 	}
 
 	public void removeDuplicates() {
