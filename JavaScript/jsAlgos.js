@@ -1,36 +1,10 @@
+let year = 2000;
+let numArr = Array.from(String(year), Number);
+console.log("orig = ",year," array from string = ",numArr);
+
+
 /*Given a year, return century it is in.
 Century = 1-100, so 1 = 100, and 100 = 100, but 101 = 200 */
-centuryFromYearOne = (year) => {
-  let numArr = Array.from(String(year), Number);
-  console.log("orig = ",year," array from string = ",numArr);
-  if(numArr.length < 4) {
-    if(year.length <= 2) {
-      return 1;
-    }
-    if(numArr[2] === 0 && numArr[1] === 0) {
-      return numArr[0];
-    } else {
-      return numArr[0]+1;
-    }
-  } else {
-    let first = numArr[0];
-    let second = numArr[1];
-    let str = ""
-    if(numArr[3] === 0 && numArr[2] === 0) {
-      str = str+first+second;
-      return(parseInt(str));
-    } else {
-      second += 1;
-      if(second === 10) {
-        return 20;
-      }
-      str = str+first+second;
-      return(parseInt(str));
-    }
-    return year;
-  }
-}
-
 function centuryFromYear(year) {
   let centuryCount = 0;
   while (year > 0){
@@ -39,8 +13,6 @@ function centuryFromYear(year) {
   }
   return centuryCount;
 }
-console.log("Year 2000 century = ",centuryFromYearOne(2000));
-console.log("Year 2001 century = ",centuryFromYearOne(2001));
 console.log("Year 1 century = ",centuryFromYear(1));
 console.log("Year 100 century = ",centuryFromYear(100));
 console.log("Year 101 century = ",centuryFromYear(101));
