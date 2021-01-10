@@ -1,6 +1,7 @@
 let year = 2000;
 let numArr = Array.from(String(year), Number);
 console.log("orig = ",year," array from string = ",numArr);
+// orig =  2000  array from string =  [ 2, 0, 0, 0 ]
 
 
 /*Given a year, return century it is in.
