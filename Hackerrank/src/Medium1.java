@@ -1,4 +1,5 @@
 import java.math.BigInteger;
+import java.util.Scanner;
 
 public class Medium1 {
 
@@ -15,6 +16,47 @@ public class Medium1 {
 		encryptString(feed);
 		
 		veryLongFactorial(25);
+		String[] arrs1 = {"ab", "bb", "hefg", "dhck", "dkhc"};
+		for(int i = 0; i < arrs1.length; i++) {
+			System.out.println("orig = "+arrs1[i]+" - "+lexicographicalOrder(arrs1[i]));
+		}
+
+	}
+
+	/* https://www.hackerrank.com/challenges/linkedin-practice-bigger-is-greater/problem */
+	static String lexicographicalOrder(String word) {
+		int a, b = 0, firstIndex = 0, secondIndex = 0;
+		boolean found = false;
+		char letterA = 'a', letterB = 'b';
+		StringBuilder sb = new StringBuilder();
+		for(int i = word.length()-1; i >= 0; i--) {
+			a = (int)word.charAt(i);
+			letterA = word.charAt(i);
+			for(int j = word.length()-2; j >= 0; j--) {
+				b = (int)word.charAt(j);
+				letterB = word.charAt(j);
+				if(a > b) {
+					firstIndex = i;
+					secondIndex = j;
+					found = true;
+					break;
+				}
+			}
+			if(found) {
+				break;
+			}
+		}
+		for(int k = 0; k < word.length(); k++) {
+			if(k == secondIndex) {
+				sb.append(letterA);
+			} else if(k == firstIndex) {
+				sb.append(letterB);
+			} else {
+				sb.append(word.charAt(k));
+			}
+		}
+		String finalAnswer = sb.toString();
+		return finalAnswer.equals(word) ? "no answer" : sb.toString();
 	}
 		
 	
