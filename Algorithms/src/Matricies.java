@@ -1,3 +1,4 @@
+import javax.sound.midi.SysexMessage;
 import java.util.*;
 
 public class Matricies {
@@ -15,6 +16,11 @@ public class Matricies {
 		} else {
 			System.out.println("No\n");
 		}
+		System.out.println("Rotate Clockwise");
+		matricies.rotateNewClockwise(mat);
+		System.out.println("\nRotate CounterClickwise");
+		matricies.rotateNewCounterClockwise(mat);
+		System.out.println("");
 
 		int[][] hourGlassArray = { { 1, 1, 1, 0, 0, 0 }, { 0, 1, 0, 0, 0, 0 }, { 1, 1, 1, 0, 0, 0 },
 				{ 0, 0, 2, 4, 4, 0 }, { 0, 0, 0, 2, 0, 0 }, { 0, 0, 1, 2, 4, 0 } };
@@ -105,7 +111,7 @@ public class Matricies {
 	}
 
 	// An Inplace function to rotate a N x N matrix
-	// by 90 degrees in anti-clockwise direction
+	// by 90 degrees in counter-clockwise direction
 	public void rotateMatrix(int N, int mat[][]) {
 
 		// Consider all squares one by one
@@ -347,6 +353,62 @@ public class Matricies {
 			System.out.println();
 		}
 		System.out.println();
+	}
+
+	public void rotateNewClockwise(int[][] mat) {
+
+		int N = mat.length;
+		// Transpose the matrix
+		for (int i = 0; i < N; i++) {
+			for (int j = 0; j < i; j++) {
+				int temp = mat[i][j];
+				mat[i][j] = mat[j][i];
+				mat[j][i] = temp;
+			}
+		}
+		// swap columns
+		for (int i = 0; i < N; i++) {
+			for (int j = 0; j < N / 2; j++) {
+				int temp = mat[i][j];
+				mat[i][j] = mat[i][N - j - 1];
+				mat[i][N - j - 1] = temp;
+			}
+		}
+		for(int i = 0; i < mat.length; i++) {
+			for(int j = 0; j < mat.length; j++) {
+				System.out.print(mat[i][j]+", ");
+			}
+			System.out.println();
+		}
+	}
+
+	public void rotateNewCounterClockwise(int[][] mat) {
+		final int N = mat.length;
+
+		// Transpose the matrix
+		for (int i = 0; i < N; i++) {
+			for (int j = 0; j < i; j++) {
+				// swap mat[i][j] with mat[j][i]
+				int temp = mat[i][j];
+				mat[i][j] = mat[j][i];
+				mat[j][i] = temp;
+			}
+		}
+		// swap rows
+		for (int i = 0; i < N/2; i++) {
+			for (int j = 0; j < N; j++) {
+				// swap mat[i][j] with mat[N-i-1][j]
+				int temp = mat[i][j];
+				mat[i][j] = mat[N-i-1][j];
+				mat[N-i-1][j] = temp;
+			}
+		}
+		for(int i = 0; i < mat.length; i++) {
+			for(int j = 0; j < mat.length; j++) {
+				System.out.print(mat[i][j]+", ");
+			}
+			System.out.println();
+		}
 	}
 
 }
