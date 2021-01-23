@@ -12,7 +12,7 @@ public class Combinations {
 
 		System.out.println("\nCombinations of 1,2,3,4");
 		List<List<Integer>> permuteArrayList = new ArrayList<List<Integer>>();
-		permuteArrayList = combo.permute(arrPermute);
+		permuteArrayList = combo.combinationsOfNumbers(arrPermute);
 
 		for (int i = 0; i < permuteArrayList.size(); i++) {
 			for (int j = 0; j < permuteArrayList.get(i).size(); j++) {
@@ -23,7 +23,7 @@ public class Combinations {
 
 		System.out.println("\nCombinations 2 - of 1,2,3,4");
 		ArrayList<ArrayList<Integer>> permuteArrayList2 = new ArrayList<ArrayList<Integer>>();
-		permuteArrayList2 = combo.permute2(arrPermute);
+		permuteArrayList2 = combo.combinationsOfNumbersTwo(arrPermute);
 
 		for (int i = 0; i < permuteArrayList2.size(); i++) {
 			for (int j = 0; j < permuteArrayList2.get(i).size(); j++) {
@@ -33,11 +33,14 @@ public class Combinations {
 		}
 
 		String letterCombo = "2345";
+		System.out.println("\nGiven this Telephone Number = "+letterCombo+", These are the letter combinations");
 		List<String> stringComboResult = combo.letterCombinations(letterCombo);
-		System.out.println();
 
 		for (int i = 0; i < stringComboResult.size(); i++) {
 			System.out.print(stringComboResult.get(i) + ", ");
+			if(i != 0 && i%9 == 0) {
+				System.out.println();
+			}
 		}
 		System.out.println();
 
@@ -73,9 +76,43 @@ public class Combinations {
 			System.out.println(huh.get(j));
 		}
 
+		//int[] combinationSum = {2,3,6,7};
+		int[] combinationSum = {2,3,5};
+		//int combinationSumTargetInteger = 7;
+		int combinationSumTargetInteger = 8;
+		List<List<Integer>> returnedCombinationSumLists = combo.combinationSumWithTarget(combinationSum, combinationSumTargetInteger);
+		System.out.println("\nReturned combinations of "+Arrays.toString(combinationSum)+" with target = "+combinationSumTargetInteger+", including duplicates");
+		for(int i = 0; i < returnedCombinationSumLists.size(); i++) {
+			for(int j = 0; j < returnedCombinationSumLists.get(i).size(); j++) {
+				System.out.print(returnedCombinationSumLists.get(i).get(j)+", ");
+			}
+			System.out.println();
+		}
 	}
 
-	/** Combinations of letters, like on a phone */
+	/** https://leetcode.com/problems/combination-sum/ */
+	public List<List<Integer>> combinationSumWithTarget(int[] arr, int target) {
+		List<List<Integer>> ans = new ArrayList<>();
+		if (arr == null || arr.length == 0) { return ans; }
+		dfsCombination(arr, target, 0, 0, new ArrayList<>(), ans);
+		return ans;
+	}
+
+	public void dfsCombination(int[] candidates, int target, int sum, int index, List<Integer> currentList, List<List<Integer>> ans) {
+		if (target == sum) {
+			ans.add(currentList);
+			return;
+		}
+		for (int i = index; i < candidates.length; i++) {
+			if (sum + candidates[i] <= target) {
+				List<Integer> newList = new ArrayList<>(currentList);
+				newList.add(candidates[i]);
+				dfsCombination(candidates, target, sum + candidates[i], i, newList, ans);
+			}
+		}
+	}
+
+	/** Combinations of letters, like on a phone given certain numbers */
 	public List<String> letterCombinations(String digits) {
 
 		List<String> result = new ArrayList<String>();
@@ -98,14 +135,13 @@ public class Combinations {
 		}
 
 		String letters = mapping[digits.charAt(index) - '0'];
-		System.out.println("Letters = " + letters);
 		for (int i = 0; i < letters.length(); i++) {
 			letterCombinationsRecursive(result, digits, currentString + letters.charAt(i), index + 1, mapping);
 		}
 	}
 
 	/** Combinations of numbers */
-	public List<List<Integer>> permute(int[] nums) {
+	public List<List<Integer>> combinationsOfNumbers(int[] nums) {
 
 		List<List<Integer>> totalList = new ArrayList<List<Integer>>();
 
@@ -138,7 +174,7 @@ public class Combinations {
 	}
 
 	/** Combinations of numbers */
-	public ArrayList<ArrayList<Integer>> permute2(int[] num) {
+	public ArrayList<ArrayList<Integer>> combinationsOfNumbersTwo(int[] num) {
 
 		ArrayList<ArrayList<Integer>> result = new ArrayList<ArrayList<Integer>>();
 
