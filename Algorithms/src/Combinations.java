@@ -83,9 +83,7 @@ public class Combinations {
 		List<List<Integer>> returnedCombinationSumLists = combo.combinationSumWithTarget(combinationSum, combinationSumTargetInteger);
 		System.out.println("\nReturned combinations of "+Arrays.toString(combinationSum)+" with target = "+combinationSumTargetInteger+", including duplicates");
 		for(int i = 0; i < returnedCombinationSumLists.size(); i++) {
-			for(int j = 0; j < returnedCombinationSumLists.get(i).size(); j++) {
-				System.out.print(returnedCombinationSumLists.get(i).get(j)+", ");
-			}
+			System.out.print(returnedCombinationSumLists.get(i).toString()+", ");
 			System.out.println();
 		}
 	}
