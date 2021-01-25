@@ -159,6 +159,9 @@ public class StringArray {
         } else {
             System.out.println("Please enter a valid array and/or number to search from the array");
         }
+
+        int[] maxAreaArray = {1,5,2,8,6,2,4,8,3,7};
+        System.out.println("Max area from "+Arrays.toString(maxAreaArray)+" = "+strArr.maxArea(maxAreaArray));
     }
 
     public ReturnSum returnLargestSumFromArray(int[] arr, int num, ArrayList<Integer> finalList) {
@@ -302,7 +305,6 @@ public class StringArray {
         if (s.length() == 0) return 0;
         HashMap<Character, Integer> map = new HashMap<Character, Integer>();
         int j = 0, biggestLength = 0;
-        // StringBuffer str = new StringBuffer();
         for (int i = 0; i < s.length(); i++) {
             j = i;
             while (j < s.length() && !map.containsKey(s.charAt(j))) {
@@ -837,6 +839,16 @@ public class StringArray {
 
         }
         return sb.toString();
+    }
+
+    public int maxArea(int[] height) {
+        int maxArea = 0, i = 0, j = height.length - 1;
+        while (i < j) {
+            maxArea = Math.max(maxArea, Math.min(height[i], height[j]) * (j - i));
+            if (height[i] < height[j]) ++i;
+            else --j;
+        }
+        return maxArea;
     }
 
 }
