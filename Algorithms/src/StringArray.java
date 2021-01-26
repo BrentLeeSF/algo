@@ -162,6 +162,33 @@ public class StringArray {
 
         int[] maxAreaArray = {1,5,2,8,6,2,4,8,3,7};
         System.out.println("Max area from "+Arrays.toString(maxAreaArray)+" = "+strArr.maxArea(maxAreaArray));
+
+        String palindromePermutationString = "raceCars aree ears";
+        System.out.println("Is "+palindromePermutationString+" a palindrome Permutation? = "+strArr.palindromePermutation(palindromePermutationString));
+    }
+
+    public  boolean palindromePermutation(String str) {
+
+        HashMap<Character, Integer> mappin = new HashMap<>();
+        String ignoreSpace = str.trim();
+        boolean odd = ignoreSpace.length()%2 == 0 ? false : true;
+        int oddCount = 0;
+        String hey = str.toLowerCase();
+        for (int i = 0; i < hey.length(); i++) {
+            if(!mappin.containsKey(hey.charAt(i))) {
+                mappin.put(hey.charAt(i),1);
+            } else {
+                mappin.put(hey.charAt(i), mappin.get(hey.charAt(i))+1);
+            }
+        }
+        for(Character a : mappin.keySet()) {
+            if(a != ' ' && (mappin.get(a)%2 != 0 || odd)) {
+                oddCount++;
+            }
+        }
+        if(oddCount > 1 && odd) { return false; }
+        if(oddCount >= 1 && !odd) { return false; }
+        return  true;
     }
 
     public ReturnSum returnLargestSumFromArray(int[] arr, int num, ArrayList<Integer> finalList) {
