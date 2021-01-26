@@ -165,6 +165,10 @@ public class StringArray {
 
         String palindromePermutationString = "raceCars aree ears";
         System.out.println("Is "+palindromePermutationString+" a palindrome Permutation? = "+strArr.palindromePermutation(palindromePermutationString));
+
+        String rotateString = "watterbottles";
+        String rotateThisString = "ottlewatterbse";
+        System.out.println(strArr.rotateThisString(rotateString, rotateThisString));
     }
 
     public  boolean palindromePermutation(String str) {
@@ -876,6 +880,43 @@ public class StringArray {
             else --j;
         }
         return maxArea;
+    }
+
+    public boolean rotateThisString(String str1, String str2) {
+        if(str1 == null || str2 == null || str1.length() != str2.length()) {
+            return false;
+        }
+        int str2Count = 0, bothCount = 0;
+        for(int i = 0; i < str1.length(); i++) {
+            while(str2Count < str2.length() && str1.charAt(i) != str2.charAt(str2Count)) {
+                if(str2Count >= str2.length()) {
+                    return false;
+                }
+                str2Count++;
+            }
+            if(str2Count >= str2.length()) {
+                str2Count = 0;
+            }
+            if(str1.charAt(i) == str2.charAt(str2Count)) {
+                while(i < str1.length() && str1.charAt(i) == str2.charAt(str2Count)) {
+                    bothCount++;
+                    str2Count++;
+
+                    if(str2Count >= str2.length()) {
+                        str2Count = 0;
+                    }
+                    if(i >= str1.length()) {
+                        return false;
+                    }
+                    i++;
+                }
+                if(bothCount != str2.length()) {
+                    return  false;
+                }
+            }
+        }
+        System.out.println("str2Count = "+bothCount);
+        return bothCount == str2.length();
     }
 
 }
