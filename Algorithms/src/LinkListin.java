@@ -206,7 +206,6 @@ public class LinkListin {
 
 				if (temp.next.data == current.data) {
 					temp.next = temp.next.next;
-
 				} else {
 					temp = temp.next;
 				}
