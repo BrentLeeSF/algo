@@ -34,7 +34,7 @@ public class Matricies {
 		int N = 4;
 
 		matricies.printIntArrayMatricy(matty);
-		matricies.rotateMatrix(N, matty);
+		matricies.rotateMatrixCounterClockWise(N, matty);
 
 		matricies.rotateImage();
 
@@ -112,7 +112,7 @@ public class Matricies {
 
 	// An Inplace function to rotate a N x N matrix
 	// by 90 degrees in counter-clockwise direction
-	public void rotateMatrix(int N, int mat[][]) {
+	public void rotateMatrixCounterClockWise(int N, int mat[][]) {
 
 		// Consider all squares one by one
 		for (int x = 0; x < N / 2; x++) {
