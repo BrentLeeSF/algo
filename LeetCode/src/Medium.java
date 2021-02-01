@@ -38,6 +38,49 @@ public class Medium {
 
         int[] robberArray = {2,1,1,2};
         System.out.println("Max of "+Arrays.toString(robberArray)+" = "+ med.houseRobber(robberArray));
+
+        int powerN = -3;
+        double powerX = 3.0;
+        System.out.println("Power of "+powerX+" to the power of "+powerN+" = "+med.powerReturn(powerX, powerN));
+
+        int[] containerWithMostWaterArray = {1,8,6,2,5,4,8,3,7};
+        System.out.println("Container with most water from "+Arrays.toString(containerWithMostWaterArray)+" = "+med.containerWithMostWater(containerWithMostWaterArray));
+    }
+
+    /** https://leetcode.com/problems/container-with-most-water/ */
+    public int containerWithMostWater(int[] height) {
+        int end = height.length-1, start = 0, min = 0, total = 0, diff = 0;
+        for(int i = 0; i < height.length; i++) {
+            min = Math.min(height[start], height[end]);
+            diff = min*(end-start);
+            if(diff > total) {
+                total = diff;
+            }
+            if(height[end] > height[start]) {
+                start++;
+            } else {
+                end--;
+            }
+        }
+        return total;
+    }
+
+    public double powerReturn(double x, int n) {
+        double num = x;
+        if(n < 0) {
+            int newNum = n;
+            while(newNum < -2) {
+                x /= (double)num;
+                newNum++;
+            }
+            return x;
+        } else {
+            while(n > 2) {
+                x *= num;
+                n--;
+            }
+            return x;
+        }
     }
 
     /* https://leetcode.com/problems/house-robber/ */
