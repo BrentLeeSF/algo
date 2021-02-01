@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Stack;
 
 
@@ -62,11 +64,29 @@ public class BinarySearchTree {
 		BSTNode curr = bst.LowestCommonAncestor(newestRoot, 0, 2);
 		System.out.println("\n\nLowest Common Ancestor is " + curr.data);
 		
-		
+		List<Integer> inOrderTraversalList = bst.bstInorderTraversal(newestRoot);
+		System.out.println("\nInorder Traversal returned list");
+		for(int i = 0; i < inOrderTraversalList.size(); i++) {
+			System.out.print(inOrderTraversalList.get(i)+", ");
+		}
+		System.out.println();
 		/**
 		 * Serialize and Deserialize Tree
 		 * https://www.programcreek.com/2014/05/leetcode-serialize-and-deserialize-binary-tree-java/
 		 */
+	}
+
+	public List<Integer> bstInorderTraversal(BSTNode root) {
+		List<Integer> thisList = new ArrayList<Integer>();
+		midTraversal(root, thisList);
+		return thisList;
+	}
+
+	public void midTraversal(BSTNode root, List<Integer> result) {
+		if (root == null) return;
+		midTraversal(root.left, result);
+		result.add(root.data);
+		midTraversal(root.right, result);
 	}
 
 	/** Check if BST */
