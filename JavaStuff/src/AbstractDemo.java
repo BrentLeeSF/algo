@@ -35,7 +35,7 @@ class Rectangle extends Shape {
 
 	@Override
 	public double area() {
-		return (double) (length * width);
+		return (double) (this.length * this.width);
 	}
 }
 
