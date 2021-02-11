@@ -42,7 +42,6 @@ class CircleInterfaceDemo implements ShapeInterfaceDemo {
 
 	@Override
 	public double area() {
-
 		return (double) ((pi * radius * radius) / 2);
 	}
 }
