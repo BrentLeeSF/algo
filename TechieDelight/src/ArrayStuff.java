@@ -18,6 +18,33 @@ public class ArrayStuff {
 
         String[] anagrams = {"CARS", "REPAID", "DUES", "NOSE", "SIGNED", "LANE", "PAIRED", "ARCS", "GRAB", "USED", "ONES", "BRAG", "SUED", "LEAN", "SCAR", "DESIGN"};
         ar.arrangeAnagrams(anagrams);
+
+        String longestSubString = "abbcdafeegh";
+        ar.longestDistinctSubString(longestSubString);
+    }
+
+    /* https://www.techiedelight.com/find-longest-substring-given-string-containing-distinct-characters/ */
+    public void longestDistinctSubString(String str) {
+        int total = 0;
+        StringBuilder sb = new StringBuilder();
+        HashMap<Character, Integer> map = new HashMap<>();
+        String finalString = null;
+        for(int i = 0; i < str.length(); i++) {
+            if(!map.containsKey(str.charAt(i))) {
+                map.put(str.charAt(i), 1);
+                sb.append(str.charAt(i));
+            } else {
+                if(sb.toString().length() > total) {
+                    finalString = sb.toString();
+                    sb = new StringBuilder();
+                    map = new HashMap<>();
+                    total = finalString.length();
+                    map.put(str.charAt(i), 1);
+                    sb.append(str.charAt(i));
+                }
+            }
+        }
+        System.out.println("Longest subString of "+str+" = "+finalString);
     }
 
     /* https://www.techiedelight.com/group-anagrams-together-given-list-words/ */
