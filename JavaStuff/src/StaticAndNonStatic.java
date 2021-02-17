@@ -1,9 +1,5 @@
 
-/**
- * Java program to demonstrate how to implement static and non-static classes in
- * a java program.
- */
-
+/** Implement static and non-static classes in java */
 class OuterClass {
 
 	private static String msg = "GeeksForGeeks";

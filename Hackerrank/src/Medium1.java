@@ -25,13 +25,16 @@ public class Medium1 {
 
 	/* https://www.hackerrank.com/challenges/linkedin-practice-bigger-is-greater/problem */
 	static String lexicographicalOrder(String word) {
+
 		int a, b = 0, firstIndex = 0, secondIndex = 0;
 		boolean found = false;
 		char letterA = 'a', letterB = 'b';
 		StringBuilder sb = new StringBuilder();
+
 		for(int i = word.length()-1; i >= 0; i--) {
 			a = (int)word.charAt(i);
 			letterA = word.charAt(i);
+
 			for(int j = word.length()-2; j >= 0; j--) {
 				b = (int)word.charAt(j);
 				letterB = word.charAt(j);
@@ -46,6 +49,7 @@ public class Medium1 {
 				break;
 			}
 		}
+
 		for(int k = 0; k < word.length(); k++) {
 			if(k == secondIndex) {
 				sb.append(letterA);
