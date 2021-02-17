@@ -1,9 +1,12 @@
 import java.util.*;
 
 public class ArrayStuff {
+
     public static void main(String[] args) {
-        int[] maxSumArray = {2, 1, -5, 4, -3, 1, -3, 4, -1}; //{-3, 1, -3, 4, -1, 2, 1, -5, 4};
+
         ArrayStuff ar = new ArrayStuff();
+
+        int[] maxSumArray = {2, 1, -5, 4, -3, 1, -3, 4, -1}; //{-3, 1, -3, 4, -1, 2, 1, -5, 4};
         System.out.println("Original Array = "+ Arrays.toString(maxSumArray));
         int[] returnedArr = ar.maxSumCircularSubarray(maxSumArray);
         int thisTotal = 0;
@@ -13,8 +16,39 @@ public class ArrayStuff {
         }
         System.out.println("Final total = "+thisTotal);
 
+        String[] anagrams = {"CARS", "REPAID", "DUES", "NOSE", "SIGNED", "LANE", "PAIRED", "ARCS", "GRAB", "USED", "ONES", "BRAG", "SUED", "LEAN", "SCAR", "DESIGN"};
+        ar.arrangeAnagrams(anagrams);
     }
 
+    /* https://www.techiedelight.com/group-anagrams-together-given-list-words/ */
+    public void arrangeAnagrams(String[] anagrams) {
+        Map<String, List<String>> map = new HashMap<String, List<String>>();
+        char[] arr;
+        List<String> list;
+        for(int i = 0; i < anagrams.length; i++) {
+            arr = anagrams[i].toCharArray();
+            Arrays.sort(arr);
+            String newString = new String(arr);
+            if(!map.containsKey(newString)) {
+                list = new ArrayList<>();
+                list.add(anagrams[i]);
+                map.put(newString, list);
+            } else {
+                list = map.get(newString);
+                list.add(anagrams[i]);
+                map.put(newString, list);
+            }
+        }
+        for(String thisString: map.keySet()) {
+            List thisList = map.get(thisString);
+            for(int j = 0; j < thisList.size(); j++) {
+                System.out.print(thisList.get(j)+" ");
+            }
+            System.out.println();
+        }
+    }
+
+    /** https://www.techiedelight.com/maximum-sum-circular-subarray/ */
     public int[] maxSumCircularSubarray(int[] arr) {
         int currentTotal = 0, maxTotal = Integer.MIN_VALUE, currentIndex = 0;
         int finalCount = arr.length*2;
