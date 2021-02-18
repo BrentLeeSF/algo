@@ -71,26 +71,26 @@ const target = [
 ];
 
 function deepIterator(target) {
-  if (typeof target === 'object') {
-  	if(target.id === "0003") {
-  		console.log();
-    	console.log("******0003******");
-    	console.log(target);
-    }
-    if(target.id > "5002") {
-    	console.log();
-    	console.log("*** LARGE ID ***");
-    	console.log(target);
-    }
-    if(target.type === "Glazed") {
-    	console.log();
-    	console.log("---Glazed---");
-    	console.log("Glazed = ",target.type,", id = ",target.id);
-    }
-    for (const key in target) {
-      deepIterator(target[key]);
-    }
-  }
+  	if (typeof target === 'object') {
+	  	if(target.id === "0003") {
+	  		console.log();
+	    	console.log("******0003******");
+	    	console.log(target);
+	    }
+	    if(target.id > "5002") {
+	    	console.log();
+	    	console.log("*** LARGE ID ***");
+	    	console.log(target);
+	    }
+	    if(target.type === "Glazed") {
+	    	console.log();
+	    	console.log("---Glazed---");
+	    	console.log("Glazed = ",target.type,", id = ",target.id);
+	    }
+	    for (const key in target) {
+	      deepIterator(target[key]);
+	    }
+  	}
 }
 console.log("Deep Iterator");
 console.log(deepIterator(target));
