@@ -88,7 +88,7 @@ function deepIterator(target) {
 	    	console.log("Glazed = ",target.type,", id = ",target.id);
 	    }
 	    for (const key in target) {
-	      deepIterator(target[key]);
+	      	deepIterator(target[key]);
 	    }
   	}
 }
