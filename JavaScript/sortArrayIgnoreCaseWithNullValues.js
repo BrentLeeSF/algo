@@ -11,7 +11,10 @@ sortArrayIgnoreCaseWithNullValues = (arr) => {
 	}
 	console.log("New arr without null values and bad characters = ",newArr);
 
-	// sort array ignoring case
+	/* sort array ignoring case
+	localeCompare() method returns a number indicating whether a 
+	reference string comes before, or after, or is the same as the 
+	given string in sort order. */
 	newArr.sort(function (a, b) {
     	return a.toLowerCase().localeCompare(b.toLowerCase());
 	});
