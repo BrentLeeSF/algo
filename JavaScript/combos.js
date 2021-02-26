@@ -25,35 +25,26 @@ console.log("original array = ",originalComboArray, ", size = ",comboSize);
 console.log(combinationOfGivenArray(originalComboArray,comboSize));
 
 
-/* ONLY WORKS WITH SIZE OF 2
-
-combinationsOfGivenNumber = (comboArr, comboSize) => {
-	let outterArray = [];
-	let innerArray = [];
-	for(let i = 0; i < comboArr.length-comboSize+1; i++) {
-		for(let j = i+1; j < comboArr.length; j++) {
-			if(!innerArray.length || innerArray.length === 0) {
-				let innerArray = [];
-				innerArray.push(comboArr[i]);
-				innerArray.push(comboArr[j]);
-				outterArray.push(innerArray);
-			} else {
-				innerArray = outterArray[i];
-				outterArray.push(...innerArray, comboArr[i], comboArr[j]);
-			}
-		}
-	}
-	return outterArray;
-
+const subArraySum = (nums, k) => {
+  const results = [];
+  for (let start = 0; start < nums.length; start++) {
+    let sum = 0;
+    for (let end = start; end <= nums.length; end++) {
+      sum += nums[end];
+      if (sum === k) {
+        results.push(nums.slice(start, end + 1));
+      }
+    }
+  }
+  return results;
 }
 
+let summArray = [4, 2, -3, -1, 0, 4];
+console.log();
+console.log(subArraySum(summArray, 0));
+let secondArr = [6, 3, -1, -3, 4, -2, 2, 4, 6, -12, -7];
+console.log();
+console.log(subArraySum(secondArr, 0));
 
-
-
-let comboArr = [1,2,3,4];
-let comboNum = 3;
-console.log("original array = ",comboArr,", combos = ",comboNum);
-console.log(combinationsOfGivenNumber(comboArr, comboNum));
-console.log();*/
 
 
