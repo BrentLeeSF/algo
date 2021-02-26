@@ -1,5 +1,5 @@
 
-
+/*Return sub arrays of given size */
 const combinationOfGivenArray = function(originalArray, sizeLimit) {
      let currentArray = [];
      let finalResults = [];
@@ -25,6 +25,7 @@ console.log("original array = ",originalComboArray, ", size = ",comboSize);
 console.log(combinationOfGivenArray(originalComboArray,comboSize));
 
 
+/* Return sub arrays that equal given number */
 const subArraySum = (nums, k) => {
   const results = [];
   for (let start = 0; start < nums.length; start++) {
