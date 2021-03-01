@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+	<body>
+
+		<h2>JavaScript Function Sequence</h2>
+
+		<p>JavaScript functions are executed in the sequence they are called.</p>
+
+		<p id="demo"></p>
+		<p id="demoTwo"></p>
+		<p id="demoThree"></p>
+		<p id="currentTime"></p>
+
+		<script>
+			function myDisplayer(some) {
+			  document.getElementById("demo").innerHTML = some;
+			}
+
+			function myFirst() {
+			  myDisplayer("Hello");
+			}
+
+			function mySecond() {
+			  myDisplayer("Goodbye");
+			}
+
+			myFirst();
+			mySecond();
+			// This example will end up displaying "Goodbye":
+
+
+
+			/*Sequence Control
+			Sometimes you would like to have better control over when to execute a function.
+			Suppose you want to do a calculation, and then display the result.*/
+			function myDisplayerTwo(some) {
+			  document.getElementById("demoTwo").innerHTML = some;
+			}
+
+			function myCalculator(num1, num2) {
+			  let sum = num1 + num2;
+			  myDisplayerTwo(sum);
+			}
+
+			myCalculator(5, 5);
+			/*The problem is that you cannot prevent the calculator function from displaying the result.
+			Now it is time to bring in a callback.*/
+
+
+			/*A callback is a function passed as an argument to another function.
+			Using a callback, you could call the calculator function (myCalculator) with a callback, and let the calculator function run the callback after the calculation is finished:*/
+			function myDisplayerThree(some) {
+			  document.getElementById("demoThree").innerHTML = some;
+			}
+
+			function myCalculatorTwo(num1, num2, myCallback) {
+			  let sum = num1 + num2;
+			  myCallback(sum);
+			}
+
+			myCalculatorTwo(6, 6, myDisplayerThree);
+
+
+			/*Callback called each second to display time*/
+			setInterval(myTimer, 1000);
+
+			function myTimer() {
+			  let d = new Date();
+			  document.getElementById("currentTime").innerHTML = d.toLocaleTimeString();
+			}
+		</script>
+
+	</body>
+</html>
