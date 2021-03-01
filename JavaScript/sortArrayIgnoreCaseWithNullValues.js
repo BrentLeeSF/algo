@@ -1,12 +1,28 @@
 
-
+/*If contains invalid, replace with replaced, return sorted*/
 sortArrayIgnoreCaseWithNullValues = (arr) => {
 
 	let newArr = [];
+	let invalidString = "invalid";
+	let letters = /^[A-Za-z]+$/;
 
 	for(let i = 0; i < arr.length; i++) {
-		if(typeof arr[i] === "string") {
-			newArr.push(arr[i]);
+
+		let isValid = letters.test(arr[i]);
+
+		if(typeof arr[i] === "string" && isValid) {
+			/* compare string ignore case 
+			The localeCompare() method returns a number indicating whether a reference string 
+			comes before, or after, or is the same as the given string in sort order.*/
+			/*The { sensitivity: 'accent' } tells localeCompare() to treat two variants 
+			of the same base letter as the same unless they have different accents 
+			(as in the third example) above.
+			https://stackoverflow.com/questions/2140627/how-to-do-case-insensitive-string-comparison*/
+			if(invalidString.localeCompare(arr[i], undefined, { sensitivity: 'accent' }) !== 0) {
+				newArr.push(arr[i]);
+			} else {
+				newArr.push("replaced");
+			}
 		}
 	}
 	console.log("New arr without null values and bad characters = ",newArr);
@@ -29,6 +45,6 @@ sortArrayIgnoreCaseWithNullValues = (arr) => {
 }
 
 console.log();
-let arr = ['Hey', 'Yo', 'be', , ,'invalid', 'valid', 'InVaLid', 5, 'aa', '5', -4];
+let arr = ['Hey', 'Yo', 'be', , ,'invalid', 'valid', 'InVaL7id', 5, 'aa', 'InVaLid', '5', -4];
 console.log("Original array = ",arr);
 console.log("Sorted array returned = ",sortArrayIgnoreCaseWithNullValues(arr));
