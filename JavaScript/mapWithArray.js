@@ -47,25 +47,23 @@ func = (arr) => {
   let newArr;
 
   for(let i = 0; i < arr.length; i++) {
+
     if(!map.has(arr[i].userId)) {
-      let newArr = [];
-      newArr.push(arr[i].action);
-      map.set(arr[i].userId, newArr);
+      map.set(arr[i].userId, [arr[i].action]);
+
     } else {
-      newArr = map.get(arr[i].userId);
-      map.set(arr[i].userId, [arr[i].action, ...newArr]);
+      map.set(arr[i].userId, [arr[i].action, ...map.get(arr[i].userId)]);
     }
   }
 
   let alpha = ['A','B','C'];
   let returnArr = [];
-  let thisArray = [];
   add = true;
 
   for (let [key, value] of map) {
-    thisArray = value;
     for(let j = 0; j < alpha.length; j++) {
-      if(alpha[j] !== thisArray[thisArray.length-1-j]) {
+
+      if(alpha[j] !== value[value.length-1-j]) {
         add = false;
       }
     }
