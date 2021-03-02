@@ -30,22 +30,30 @@ Your goal is to return a comma-separated string containing the numbers that
 occur in elements of strArr in sorted order. If there is no intersection, 
 return the string false.*/
 function FindIntersection(strArr) { 
+
   let StringArr1 = strArr[0].split(",");
   let StringArr2 = strArr[1].split(",");
   let first;
   let second;
   let finalString = "";
+
   for(let i = 0; i < StringArr1.length; i++) {
+
     first = StringArr1[i];
+
     for(let j = 0; j < StringArr2.length; j++) {
+
       second = StringArr2[j];
+
       if(first === second) {
         finalString += first+",";
       }
     }
   }
+
   finalString = finalString.slice(0, -1);
   finalString = finalString.split(" ").join("");
+
   return finalString !== "" ? finalString : false; 
 
 }
@@ -60,14 +68,17 @@ console.log(FindIntersection(["1, 3, 9, 10, 17, 18", "2, 4, 8, 11"]));
 
 /* Return the difference from multiplication of digits to addition */
 digitsManipulations = (n) => {
+
   let digits = (""+n).split("");
   console.log("orig = ",n," after split = ",digits);
   let multiply = 1;
   let add = 0;
+
   for(let i = 0; i < digits.length; i++) {
     multiply *= parseInt(digits[i]);
     add += parseInt(digits[i]);
   }
+
   return multiply-add;
 }
 // expected: 699
@@ -88,22 +99,28 @@ cod!=100, ode!=100, des!=100, esi!=100, sig!= 100
 output = 0,
 */
 matchPattern = (pattern, s) => {
+
   let digits = (""+s).split("");
   let finalCount = 0;
+
   for(let i = 0; i < pattern.length-digits.length; i++) {
     let count = 1;
     let patternCount = i;
+
     for(let j = 0; j < digits.length; j++) {
+
       if(pattern.charAt(patternCount) === 'a' && digits[j] === '0' || pattern.charAt(patternCount) === 'e' && digits[j] === '0' || pattern.charAt(patternCount) === 'i' && digits[j] === '0' || pattern.charAt(patternCount) === 'o' && digits[j] === '0' || pattern.charAt(patternCount) === 'u' && digits[j] === '0' || pattern.charAt(patternCount) === 'y' && digits[j] === '0') {
         count += 1;
       }
       patternCount += 1;
     }
+
     if(count === digits.length) {
       console.log("i = ",i);
       finalCount++;
     }
   }
+
   return finalCount;
 }
 // expected: 2
