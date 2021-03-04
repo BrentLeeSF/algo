@@ -8,9 +8,7 @@ sortArrayIgnoreCaseWithNullValues = (arr) => {
 
 	for(let i = 0; i < arr.length; i++) {
 
-		let isValid = letters.test(arr[i]);
-
-		if(typeof arr[i] === "string" && isValid) {
+		if(typeof arr[i] === "string" && letters.test(arr[i])) {
 			/* compare string ignore case 
 			The localeCompare() method returns a number indicating whether a reference string 
 			comes before, or after, or is the same as the given string in sort order.*/
