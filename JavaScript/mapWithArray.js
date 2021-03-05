@@ -85,3 +85,62 @@ console.log();
 console.log("original array = ",firstArr)
 console.log(func(firstArr));
 
+
+/* Given a non-empty array of non-negative integers nums, the degree of 
+this array is defined as the maximum frequency of any one of its elements.
+
+Your task is to find the smallest possible length of a (contiguous) subarray 
+of nums, that has the same degree as nums.*/
+/* Example 1:
+
+Input: nums = [1,2,2,3,1]
+Output: 2
+Explanation: 
+The input array has a degree of 2 because both elements 1 and 2 appear twice.
+Of the subarrays that have the same degree:
+[1, 2, 2, 3, 1], [1, 2, 2, 3], [2, 2, 3, 1], [1, 2, 2], [2, 2, 3], [2, 2]
+The shortest length is 2. So return 2.
+Example 2:
+
+Input: nums = [1,2,2,3,1,4,2]
+Output: 6
+Explanation: 
+The degree is 3 because the element 2 is repeated 3 times.
+So [2,2,3,1,4,2] is the shortest subarray, therefore returning 6. */
+const findShortestSubArray = function(nums) {
+
+    let map = new Map();
+    let diff = 0, thisMin = 0, maxLength = 0;
+
+    for(let i = 0; i < nums.length; i++) {
+        if(map.has(nums[i])) {
+            map.set(nums[i], [...map.get(nums[i]), i]);
+        } else {
+            map.set(nums[i],[i]);
+        }
+    }
+
+    for(let [key, value] of map) {
+        if(value.length === maxLength) {
+            diff = 1 + value[value.length-1] - value[0];
+            if(thisMin === 0) {
+                thisMin = diff;
+            } else {
+                thisMin = Math.min(diff, thisMin);
+            }
+
+        } else if ( value.length > maxLength ) {
+            maxLength = value.length;
+            thisMin = 1 + value[value.length-1] - value[0];
+        }
+    }
+    return thisMin;
+};
+
+
+console.log(findShortestSubArray(
+[1,2,2,3,1]));
+console.log(findShortestSubArray([1,2,2,3,1,4,2]));
+
+
+
