@@ -22,6 +22,8 @@ console.log("Year 1999 century = ",centuryFromYear(1999));
 console.log("Year 2000 century = ",centuryFromYear(2000));
 console.log("Year 2001 century = ",centuryFromYear(2001));
 
+
+
 /* FindIntersection(strArr) read the array of strings stored in strArr which 
 will contain 2 elements: the first element will represent a list of 
 comma-separated numbers sorted in ascending order, the second element will 
@@ -66,6 +68,7 @@ console.log(FindIntersection(["1, 3, 9, 10, 17, 18", "1, 4, 9, 10"]));
 console.log(FindIntersection(["1, 3, 9, 10, 17, 18", "2, 4, 8, 11"]));
 
 
+
 /* Return the difference from multiplication of digits to addition */
 digitsManipulations = (n) => {
 
@@ -86,6 +89,8 @@ console.log(digitsManipulations(123456));
 // expected: -2
 console.log(digitsManipulations(1010));
 
+
+
 /* You are given two strings, pattern and s.
 pattern contains only 0 and 1, s contains only lowercase letters.
 If pattern matches a substring s[1...r] of s, if the following conditions are met:
@@ -96,8 +101,7 @@ Ex: pattern = 010, s = amazing, the output = 2
 ama==010 YES, maz!=010, 010==azi YES, zin!=010, ing!=010
 Ex: pattern = 100, s = codesignal, output = 0
 cod!=100, ode!=100, des!=100, esi!=100, sig!= 100
-output = 0,
-*/
+output = 0, */
 matchPattern = (pattern, s) => {
 
   let digits = (""+s).split("");
