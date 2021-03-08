@@ -2,14 +2,9 @@
  deposit
 * withdrawl
 user - id, money, loginPW, first, lastname, email */
-
 import java.text.DecimalFormat;
 import java.util.HashMap;
 
-class AllUsers {
-
-
-}
 
 class ATMUser {
 
@@ -53,7 +48,7 @@ class ATMUser {
 
 
 
-class ATM {
+class FirstATM {
 
     public static void main(String[] args) {
         ATMUser allUsers = new ATMUser();
