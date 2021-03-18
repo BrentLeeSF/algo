@@ -144,3 +144,57 @@ console.log(findShortestSubArray([1,2,2,3,1,4,2]));
 
 
 
+const exampleTasks = [
+  {task: "buy groceries", depends: ["get groceries for sandwich"]},
+  {task: "make sandwich", depends: ["go inside with groceries"]},
+  {task: "drive back home with groceries", depends: ["buy groceries"]},
+  {task: "get groceries for sandwich", depends: ["arrive at the store"]},
+  {task: "go inside with groceries", depends: ["drive back home with groceries"]},
+  {task :"drive to the store", depends: ["get into the car to drive to the store"]},
+  {task: "arrive at the store", depends: ["drive to the store"]},
+  {task: "eat sandwich", depends: ["make sandwich"]},
+  {task: "get into the car to drive to the store", depends: []}
+];
+
+
+determineOrder = (arr, givenString) => {
+
+  let newArr = [];
+  let map = new Map();
+  let start = [];
+  givenArrayIndex = 0;
+
+  if(givenString.length === 0 || arr.length === 0) return ['The array is empty'];
+  if(givenString.length > arr.length) return ['The array is too big'];
+
+  for(let i = 0; i < arr.length; i++) {
+    map.set(arr[i].depends, [arr[i].task.toString()]);
+    if(givenString[givenArrayIndex] === arr[i].task) start = [arr[i].task.toString()]; 
+  }
+
+  if(start.length > 0) {
+    while(newArr.length < givenString.length) {
+      for(let [key, value] of map) {
+        if(givenString[givenArrayIndex] === key[0]) {
+          if(newArr[newArr.length-1] !== key[0]) newArr.push(key[0]);
+          start[0] = value[0];
+          givenArrayIndex++;
+        }
+        if(givenString[givenArrayIndex] !== start[0]) {
+          return ['Sorry, those elements are not in the array of objects'];
+        }
+      }
+      newArr.push(start[0]);
+    }
+  }
+  return newArr.length === givenString.length ? newArr : ['Sorry, those elements are not in the array of objects'];
+}
+
+console.log(determineOrder(exampleTasks, ['get into the car to drive to the store', 'drive to the store', 'arrive at the store', 'get groceries for sandwich', 'buy groceries', 'drive back home with groceries', 'go inside with groceries', 'make sandwich', 'eat sandwich']));
+console.log(determineOrder(exampleTasks, ['get into the car to drive to the store', 'drive to the store', 'arrive at the store', 'get groceries for sandwich', 'buy groceries', 'drive back home with groceries', 'go inside with groceries', 'make sandwich', 'eat sandwich', 'get into the car to drive to the store']));
+console.log(determineOrder(exampleTasks, []));
+console.log(determineOrder(exampleTasks, ['get into the car to drive to the store', 'drive to the store', 'arrive at the store', 'get groceries for sandwich', 'buy groceries', 'drive back home with groceries', 'go inside with groceries', 'eat sandwich']));
+console.log(determineOrder(exampleTasks, ['get into the car to drive to the store', 'drive to * the store', 'arrive at the store']));
+console.log(determineOrder(exampleTasks, ['get into the car to drive to the store', 'drive to the store', 'eat sandwich']));
+console.log(determineOrder(exampleTasks, ['get into the car to drive to the store', 'drive to the store', '']));
+
