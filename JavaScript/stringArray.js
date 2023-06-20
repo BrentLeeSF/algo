@@ -1,3 +1,32 @@
+/**
+STRING FUNCTIONS TO KNOW
+str.charAt()
+str.concat()
+str.includes()
+str.match() - retrieves the result of matching a string against a regex.
+str.replace('dog', 'monkey') - replaces dog with monkey
+
+str.slice() - extracts a section of a string and returns it as a new string, without modifying the original string
+const str = 'The quick brown fox jumps over the lazy dog.';
+console.log(str.slice(31));
+// Expected output: "the lazy dog."
+console.log(str.slice(4, 19));
+// Expected output: "quick brown fox"
+console.log(str.slice(-4));
+// Expected output: "dog."
+console.log(str.slice(-9, -5));
+// Expected output: "lazy"
+
+
+
+*/
+//str.split() - takes a pattern and divides a String into an ordered list of substrings by searching for the pattern, puts these substrings into an array, and returns the array
+str = 'The big lazy dog';
+console.log('Split = ',str.split(' ')); // array of all words
+console.log('Split = ',str.split()); // array of one word
+
+console.log('Substring - ',str.substring(4,7)); // big - (beginning index, ending index)
+
 /* Remove All Adjacent Duplicates In String
 Input: "abbacacc" remove "bb" -> "aacacc"
 "aacacc" remove "aa" -> "cacc"
@@ -14,7 +43,6 @@ removeDuplicates = (S) => {
 
             stringArray.splice(i, 2);
             i = -1;
-            continue;
         }
     }
     return stringArray.join("");
@@ -41,34 +69,32 @@ console.log();
 
 
 
-/* https://www.techiedelight.com/rearrange-the-array-with-alternate-high-and-low-elements/ */
+/* https://www.techiedelight.com/rearrange-the-array-with-alternate-high-and-low-elements/ 
+Given an integer array, rearrange it such that every second element becomes greater than its left and right elements.
+No duplicates */
 secondNumberIsGreater = arr => {
-
-    let currentGreatest = 0, greatest = 0;
-    arr = arr.toString().split(",");
+    const sortedArray = arr.sort();
     let returnedArr = [];
-
-    for(let i = 0; i < arr.length; i++) {
-
-        if(i%2 != 0 && i < arr.length-1) {
-
-            currentGreatest = Math.max(parseInt(arr[i-1]), parseInt(arr[i+1]));
-            greatest = parseInt(arr[i]) > currentGreatest ? parseInt(arr[i]) : ++currentGreatest;
-            returnedArr.push(greatest);
-
-        } else {
-            returnedArr.push(parseInt(arr[i]));
+    for (let i = 0; i < sortedArray.length; i++) {
+        if (i !== 0 && i%2 !== 0 && sortedArray[i+1]) {
+            let numToSwitch = sortedArray[i];
+            returnedArr.push(sortedArray[i+1]);
+            sortedArray[i+1] = numToSwitch;
+        }
+        else {
+            returnedArr.push(sortedArray[i]);
         }
     }
     return returnedArr;
 }
 
-let secondNumGreater = ["1, 5, 3, 4, 5, 6, 7, 8, 9"];
+let secondNumGreater = [1, 5, 3, 4, 0, 6, 7, 2, 8, 10, 9];
 console.log("original array = ",secondNumGreater);
 console.log("Return every other element is largest from immediate left to immediate right = ",secondNumberIsGreater(secondNumGreater));
 
 
 
+// Square numbers in n
 function numSquaresOne(n) {
 
     let map = new Map();
@@ -86,12 +112,13 @@ function numSquaresOne(n) {
     console.log();
 }
 
-const squares = 100;
+const squares = 81;
 numSquaresOne(squares);
 
 
 
-/* https://algodaily.com/challenges/sum-of-perfect-squares */
+/* https://algodaily.com/challenges/sum-of-perfect-squares 
+find perfect squares like 1, (2) 4, (3) 9, (4) 16, (5) 25, etc*/
 function howManySquares(n) {
 
     let perfectSqNumsLength = 1;
