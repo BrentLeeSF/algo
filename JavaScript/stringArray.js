@@ -35,7 +35,6 @@ return "ca"*/
 removeDuplicates = (S) => {
 
     let stringArray = S.split("");
-    console.log("S = ",S," string array = ",stringArray);
 
     for (let i = 0; i < stringArray.length; i++) {
 
@@ -116,6 +115,38 @@ const squares = 81;
 numSquaresOne(squares);
 
 
+
+function reverseNum(x) {
+    const str = x.toString();
+    let i = str.length;
+    let hey = '';
+    let reversed = '';
+    if (str.charAt(0) === '-') {
+        i = str.length-1;
+        hey += '-';
+        reversed = str.split("").slice(1,str.length).reverse().join("");
+    }
+    else {
+        reversed = str.split("").reverse().join("");
+    }
+    while (reversed.charAt(i) === '0' && i > 0) {
+        i--;
+    }
+    for(let j = 0; j < i; j++) {
+        hey += reversed.charAt(j);
+    }
+    return Number(hey);
+};
+
+const firstNum = 123;
+const secondNum = -123;
+const thirdNum = 120;
+console.log('Reverse of ',firstNum,' = ',reverseNum(firstNum));
+//console.log();
+console.log('Reverse of ',secondNum,' = ',reverseNum(secondNum));
+//console.log();
+console.log('Reverse of ',thirdNum,' = ',reverseNum(thirdNum));
+//console.log();
 
 /* https://algodaily.com/challenges/sum-of-perfect-squares 
 find perfect squares like 1, (2) 4, (3) 9, (4) 16, (5) 25, etc*/
