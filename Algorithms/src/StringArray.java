@@ -167,10 +167,59 @@ public class StringArray {
         System.out.println("Is "+palindromePermutationString+" a palindrome Permutation? = "+strArr.palindromePermutation(palindromePermutationString));
 
         String rotateString = "watterbottles";
-        String rotateThisString = "ottlewatterbse";
-        System.out.println(strArr.rotateThisString(rotateString, rotateThisString));
+        String rotateThisString = "ottleswatterb";
+        System.out.println("Is "+rotateString+" a rotation of "+rotateThisString+" = "+strArr.rotateThisString(rotateString, rotateThisString));
+        
+        String romanNumeralThree = "III";
+        System.out.println("Roman Numeral of  "+romanNumeralThree+" = "+strArr.romanToInt(romanNumeralThree));
+        String romanNumeralNine = "IX";
+        System.out.println("Roman Numeral of  "+romanNumeralNine+" = "+strArr.romanToInt(romanNumeralNine));
+        String romanNumeralFourNineNine = "CDXCIX";
+        System.out.println("Roman Numeral of  "+romanNumeralFourNineNine+" = "+strArr.romanToInt(romanNumeralFourNineNine));
+        String romanNumeralOneNineNineFour = "MCMXCIV";
+        System.out.println("Roman Numeral of  "+romanNumeralOneNineNineFour+" = "+strArr.romanToInt(romanNumeralOneNineNineFour));
+    }
+    
+    /**
+     * Roman Numerals to Integer
+     * https://leetcode.com/problems/roman-to-integer/
+     * @param s Roman Numeral String
+     * @return Number converted from roman numerals
+     */
+    public int romanToInt(String s) {
+        int numberToReturn = 0;
+        HashMap<String, Integer> romanMap = new HashMap<String, Integer>();
+        romanMap.put("I",1);
+        romanMap.put("V",5);
+        romanMap.put("X",10);
+        romanMap.put("L",50);
+        romanMap.put("C",100);
+        romanMap.put("D",500);
+        romanMap.put("M",1000);
+        for(int i = 0; i < s.length(); i++) {
+            if (
+		        (s.charAt(i) == 'I' && i+1 < s.length() && s.charAt(i+1) == 'V') ||
+		        (s.charAt(i) == 'I' && i+1 < s.length() && s.charAt(i+1) == 'X') ||
+		        (s.charAt(i) == 'X' && i+1 < s.length() && s.charAt(i+1) == 'L') ||
+		        (s.charAt(i) == 'X' && i+1 < s.length() && s.charAt(i+1) == 'C') ||
+		        (s.charAt(i) == 'X' && i+1 < s.length() && s.charAt(i+1) == 'C') ||
+		        (s.charAt(i) == 'C' && i+1 < s.length() && s.charAt(i+1) == 'D') ||
+		        (s.charAt(i) == 'C' && i+1 < s.length() && s.charAt(i+1) == 'M')
+            ) {
+                numberToReturn += romanMap.get(String.valueOf(s.charAt(i+1))) - romanMap.get(String.valueOf(s.charAt(i)));
+                i++;
+            }
+            else {
+            	numberToReturn += romanMap.get(String.valueOf(s.charAt(i)));
+            }
+            
+        }
+        return numberToReturn;
     }
 
+    /** 
+     * Determines if string can be a permutation. Ex aab can be a perm of aba
+     * */
     public  boolean palindromePermutation(String str) {
 
         HashMap<Character, Integer> mappin = new HashMap<>();
