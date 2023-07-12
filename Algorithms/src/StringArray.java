@@ -197,16 +197,16 @@ public class StringArray {
         romanMap.put("D",500);
         romanMap.put("M",1000);
         for(int i = 0; i < s.length(); i++) {
-            if (
-		        (s.charAt(i) == 'I' && i+1 < s.length() && s.charAt(i+1) == 'V') ||
-		        (s.charAt(i) == 'I' && i+1 < s.length() && s.charAt(i+1) == 'X') ||
-		        (s.charAt(i) == 'X' && i+1 < s.length() && s.charAt(i+1) == 'L') ||
-		        (s.charAt(i) == 'X' && i+1 < s.length() && s.charAt(i+1) == 'C') ||
-		        (s.charAt(i) == 'X' && i+1 < s.length() && s.charAt(i+1) == 'C') ||
-		        (s.charAt(i) == 'C' && i+1 < s.length() && s.charAt(i+1) == 'D') ||
-		        (s.charAt(i) == 'C' && i+1 < s.length() && s.charAt(i+1) == 'M')
-            ) {
-                numberToReturn += romanMap.get(String.valueOf(s.charAt(i+1))) - romanMap.get(String.valueOf(s.charAt(i)));
+        	if (
+        		(s.charAt(i) == 'I' && i+1 < s.length() && s.charAt(i+1) == 'V') ||
+        		(s.charAt(i) == 'I' && i+1 < s.length() && s.charAt(i+1) == 'X') ||
+        		(s.charAt(i) == 'X' && i+1 < s.length() && s.charAt(i+1) == 'L') ||
+        		(s.charAt(i) == 'X' && i+1 < s.length() && s.charAt(i+1) == 'C') ||
+        		(s.charAt(i) == 'X' && i+1 < s.length() && s.charAt(i+1) == 'C') ||
+        		(s.charAt(i) == 'C' && i+1 < s.length() && s.charAt(i+1) == 'D') ||
+        		(s.charAt(i) == 'C' && i+1 < s.length() && s.charAt(i+1) == 'M')
+        	) {
+        		numberToReturn += romanMap.get(String.valueOf(s.charAt(i+1))) - romanMap.get(String.valueOf(s.charAt(i)));
                 i++;
             }
             else {
