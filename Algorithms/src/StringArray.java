@@ -178,6 +178,46 @@ public class StringArray {
         System.out.println("Roman Numeral of  "+romanNumeralFourNineNine+" = "+strArr.romanToInt(romanNumeralFourNineNine));
         String romanNumeralOneNineNineFour = "MCMXCIV";
         System.out.println("Roman Numeral of  "+romanNumeralOneNineNineFour+" = "+strArr.romanToInt(romanNumeralOneNineNineFour));
+        
+        String longestPalindromeOne = "babad";
+        String longestPalindromeTwo = "cbbd";
+        System.out.println("longest Palindrome of "+longestPalindromeOne+" = "+strArr.longestPalindromicSubstring(longestPalindromeOne));
+        System.out.println("longest Palindrome of "+longestPalindromeTwo+" = "+strArr.longestPalindromicSubstring(longestPalindromeTwo));
+    }
+    
+    /**
+     * 5. Longest Palindromic Substring
+	 * https://leetcode.com/problems/longest-palindromic-substring/
+	 * return longest palindrone of substring (reads same forwards and backwards)
+     */
+    public String longestPalindromicSubstring(String s) {
+    	
+    	StringBuilder sbFirst = new StringBuilder();
+        StringBuilder sbLast = new StringBuilder();
+        
+        char first = 'a', last = 'b';
+        boolean isOdd = (s.length()-1)%2 == 0 ? true : false;
+        char mid = s.charAt(s.length()/2);
+        
+        for(int i = 0; i < s.length()/2; i++) {
+            first = s.charAt(i);
+            last = s.charAt(s.length()-i-1);
+            if (first == last) {
+                sbFirst.append(first);
+                sbLast.append(last);
+            }
+            else {
+                sbFirst = new StringBuilder();
+                sbLast = new StringBuilder();
+            }
+        }
+        if (isOdd) {
+        	sbFirst.append(mid);
+        }
+        if (sbLast != null) {
+            sbLast.reverse();
+        }
+        return sbFirst.toString()+sbLast.toString();
     }
     
     /**
