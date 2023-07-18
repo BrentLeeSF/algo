@@ -183,6 +183,44 @@ public class StringArray {
         String longestPalindromeTwo = "cbbd";
         System.out.println("longest Palindrome of "+longestPalindromeOne+" = "+strArr.longestPalindromicSubstring(longestPalindromeOne));
         System.out.println("longest Palindrome of "+longestPalindromeTwo+" = "+strArr.longestPalindromicSubstring(longestPalindromeTwo));
+        
+        System.out.println("Does this string have all unique characters - "+strArr.uniqueStringTest+" - "+strArr.doesStringHaveAllUniqueCharacters(strArr.uniqueStringTest));
+        System.out.println("Does this string have all unique characters - "+strArr.uniqueStringTest2+" - "+strArr.doesStringHaveAllUniqueCharacters(strArr.uniqueStringTest2));
+        String permString1 = "abcd";
+        String permString2 = "adcb";
+        System.out.println("is "+permString1+" a permutation of "+permString2+" - "+strArr.areTheseStringsPermutations(permString1, permString2));
+    }
+    
+    /**
+     * Determine if string has all unique characters
+     */
+    public boolean doesStringHaveAllUniqueCharacters(String s) {
+    	HashMap<Integer, Integer> uniqueMap = new HashMap<Integer, Integer>();
+    	for(int i = 0; i < s.length(); i++) {
+    		if (uniqueMap.get((int)s.charAt(i)) != null) {
+    			return false;
+    		}
+    		uniqueMap.put((int)s.charAt(i), 1);
+    	}
+    	return true;
+    }
+    
+    /**
+     * Determine if 2 strings are permutations of each other
+     * WITHOUT datastructures
+     */
+    public boolean areTheseStringsPermutations(String s1, String s2) {
+    	if (s1.length() != s2.length()) {
+    		return false;
+    	}
+    	char[] chars = s1.trim().toCharArray();
+        Arrays.sort(chars);
+        String sorted1 = new String(chars);
+        
+        char[] chars2 = s2.trim().toCharArray();
+        Arrays.sort(chars2);
+        String sorted2 = new String(chars2);
+    	return sorted1.equals(sorted2);
     }
     
     /**
