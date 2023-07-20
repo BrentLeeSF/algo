@@ -17,8 +17,14 @@ public class Matricies {
 			System.out.println("No\n");
 		}
 		System.out.println("Rotate Clockwise");
+		System.out.println("ORIGINAL");
+		matricies.printIntArrayMatricy(mat);
+		System.out.println("\nCLOCKWISE");
 		matricies.rotateNewClockwise(mat);
 		System.out.println("\nRotate CounterClickwise");
+		System.out.println("ORIGINAL");
+		matricies.printIntArrayMatricy(mat);
+		System.out.println("");
 		matricies.rotateNewCounterClockwise(mat);
 		System.out.println("");
 
