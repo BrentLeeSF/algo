@@ -30,18 +30,17 @@ public class LinkinTwo {
 			l2.add(arr[i]);
 		}
 		l2.print();
-		l2.removeIndex(3);
+		l2.removeAtIndex(3);
 		l2.print();
 	}
 	
-	public LinkNodeTwo add(int num) {
+	public void add(int num) {
 		
 		LinkNodeTwo thisNode = list.head;
 
 		if(thisNode == null) {
 			thisNode = new LinkNodeTwo(num);
 			list.head = thisNode;
-			return thisNode;
 		}
 
 		LinkNodeTwo current = thisNode;
@@ -50,7 +49,6 @@ public class LinkinTwo {
 			current = current.next;
 		}
 		current.next = new LinkNodeTwo(num);
-		return thisNode;
 	}
 	
 	public void print() {
@@ -62,19 +60,21 @@ public class LinkinTwo {
 		System.out.println();
 	}
 	
-	public LinkNodeTwo removeIndex(int index) {
+	public void removeAtIndex(int index) {
 
 		LinkNodeTwo current = list.head;
 		int count = 0;
+		if (index == count) {
+			list.head = current.next;
+		}
 
-		while (index != count) {
+		while (count < index) {
 			System.out.println("- " + current.data);
-			current = current.next;
+			current = current.next.next;
 			count++;
 		}
 		if (index == count) {
-			current = current.next;
+			current = current;
 		}
-		return list.head;
 	}
 }

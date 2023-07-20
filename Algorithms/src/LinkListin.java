@@ -32,11 +32,13 @@ public class LinkListin {
 		}
 		ls.print("Create List");
 
-		ls.deleteData(9);
-		ls.print("Delete Data 9");
+		int dataValue = 9;
+		ls.deleteAtData(dataValue);
+		ls.print("Delete Data "+dataValue);
 
-		ls.deleteAtIndexGoingForward(3);
-		ls.print("Delete Going Forward At Index 3 Where First Index = 0");
+		int listIndex = 8;
+		ls.deleteAtIndexGoingForward(listIndex);
+		ls.print("Delete Going Forward At Index "+listIndex);
 
 		LinkNode hey = ls.deleteAtIndexGoingBackward(ls.list.head, 3);
 		System.out.println("Deleting Going Backward at Index 3 Where Last = 1");
@@ -49,14 +51,18 @@ public class LinkListin {
 		ls.removeDuplicates();
 		ls.print("Remove Duplicates");
 
-		ls.addAtEnd(5);
-		ls.print("Add 5 at end");
+		int numberToAddAtEnd = 5;
+		ls.addAtEnd(numberToAddAtEnd);
+		ls.print("Add "+numberToAddAtEnd+" at end");
 
-		ls.addAtFront(2);
-		ls.print("Add 2 at front");
+		int numberToAddAtFront = 2;
+		ls.addAtFront(numberToAddAtFront);
+		ls.print("Add "+numberToAddAtFront+" at front");
 
-		ls.addAfterIndex(3, 9);
-		ls.print("Insert 9 after 3rd index");
+		int afterIndexIndex = 0;
+		int afterIndexData = 9;
+		ls.addAfterIndex(afterIndexIndex, afterIndexData);
+		ls.print("Insert "+afterIndexData+" after "+afterIndexIndex+" index");
 
 		ls.reverse();
 		ls.print("Reverse Linked List");
@@ -136,7 +142,7 @@ public class LinkListin {
 		current.next = new LinkNode(thisData);
 	}
 
-	public void deleteData(int thisData) {
+	public void deleteAtData(int thisData) {
 
 		LinkNode current = list.head;
 
@@ -156,27 +162,27 @@ public class LinkListin {
 		current.next = current.next.next;
 	}
 
-	public void deleteAtIndexGoingForward(int index) {
+	public void deleteAtIndexGoingForward(int indexToFind) {
 		LinkNode current = list.head;
-		int count = 0;
+		int currentIndex = 0;
 		if(current == null) {
 			return;
 		}
-		if(index == 0) {
-			current = current.next;
+		if(indexToFind == 0) {
+			list.head = current.next;
 			return;
 		}
-		while(current != null && count < index-1) {
+		while(current != null && currentIndex < indexToFind-1) {
 			current = current.next;
-			count++;
+			currentIndex++;
 		}
 		if(current == null || current.next == null) {
 			return;
 		}
-		LinkNode next = current.next.next;
-		current.next = next;
+		current.next = current.next.next;
 		return;
 	}
+	
 
 	public LinkNode deleteAtIndexGoingBackward(LinkNode head, int n) {
 		LinkNode dummy = new LinkNode(0);
@@ -240,19 +246,20 @@ public class LinkListin {
 
 		LinkNode newLinkNode = new LinkNode(data);
 		LinkNode current = list.head;
-		int count = 0;
+		int IndexCount = 0;
 
-		while (index != count) {
+		while (index != IndexCount) {
 			current = current.next;
-			count++;
+			IndexCount++;
 		}
 
-		if (index == count) {
+		if (index == IndexCount) {
 			LinkNode next = current.next;
 			current.next = newLinkNode;
 			newLinkNode.next = next;
 		}
 	}
+	
 
 	public void reverse() {
 
@@ -314,3 +321,4 @@ public class LinkListin {
 	 */
 
 }
+
