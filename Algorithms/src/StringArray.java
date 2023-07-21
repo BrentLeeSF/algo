@@ -220,6 +220,7 @@ public class StringArray {
         char[] chars2 = s2.trim().toCharArray();
         Arrays.sort(chars2);
         String sorted2 = new String(chars2);
+        
     	return sorted1.equals(sorted2);
     }
     

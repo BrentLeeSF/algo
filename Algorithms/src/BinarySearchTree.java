@@ -2,6 +2,20 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Stack;
 
+class BSTNode {
+
+	BSTNode left, right, root;
+	int data;
+
+	public BSTNode() {
+		this.root = null;
+	}
+
+	public BSTNode(int data) {
+		this.data = data;
+		left = right = null;
+	}
+}
 
 public class BinarySearchTree {
 
@@ -34,21 +48,26 @@ public class BinarySearchTree {
 		bst.printPostOrder(thisRoot);
 		System.out.println();
 
-		System.out.println("In Order");
-		bst.printInOrder(thisRoot, 1);
+		int inOrderIndex = 0;
+		System.out.println("In Order starting at index "+inOrderIndex);
+		bst.printInOrder(thisRoot, inOrderIndex);
 		System.out.println();
 
-		BSTNode foundNode = bst.findNode(thisRoot, 5);
-		System.out.println("Found node = " + foundNode.data);
+		int findNodeWithData = 7;
+		BSTNode foundNodeData = bst.findNodeData(thisRoot, findNodeWithData);
+		System.out.println("Found node = " + foundNodeData.data);
 
 		System.out.println("\nHeight = " + bst.height(thisRoot));
 
 		System.out.println("\nBalanced? = " + bst.balance(thisRoot));
 
-		System.out.println("Smallest Node = " + bst.smallestNode(thisRoot));
+		System.out.println("Smallest Node = " + bst.returnSmallestNode(thisRoot));
 
-		System.out.println("After deleting 5");
-		BSTNode newestRoot = bst.delete(thisRoot, 5);
+		int deleteNodeWithData = 5;
+		System.out.println("After deleting node with data "+deleteNodeWithData);
+		BSTNode newestRoot = bst.delete(thisRoot, deleteNodeWithData);
+		bst.printInOrder(newestRoot);
+		System.out.println();
 		System.out.println("The Root node is: " + newestRoot.data);
 		bst.printInOrder(newestRoot);
 		System.out.println();
@@ -75,6 +94,19 @@ public class BinarySearchTree {
 		 * https://www.programcreek.com/2014/05/leetcode-serialize-and-deserialize-binary-tree-java/
 		 */
 	}
+	
+	public BSTNode insert(int num, BSTNode curr) {
+		if (curr == null) {
+			return new BSTNode(num);
+		}
+		if (num <= curr.data) {
+			curr.left = insert(num, curr.left);
+			return curr;
+		} else {
+			curr.right = insert(num, curr.right);
+			return curr;
+		}
+	}
 
 	public List<Integer> bstInorderTraversal(BSTNode root) {
 		List<Integer> thisList = new ArrayList<Integer>();
@@ -91,30 +123,17 @@ public class BinarySearchTree {
 
 	/** Check if BST */
 	boolean checkBST(BSTNode root) {
-		return check(root, Integer.MIN_VALUE, Integer.MAX_VALUE);
+		return checkEachBSTNode(root, Integer.MIN_VALUE, Integer.MAX_VALUE);
 	}
 
-	boolean check(BSTNode node, int min, int max) {
+	boolean checkEachBSTNode(BSTNode node, int min, int max) {
 		if (node == null) {
 			return true;
 		}
 		if (node.data < min || node.data > max) {
 			return false;
 		}
-		return check(node.left, min, node.data - 1) && check(node.right, node.data + 1, max);
-	}
-
-	public BSTNode insert(int num, BSTNode curr) {
-		if (curr == null) {
-			return new BSTNode(num);
-		}
-		if (num <= curr.data) {
-			curr.left = insert(num, curr.left);
-			return curr;
-		} else {
-			curr.right = insert(num, curr.right);
-			return curr;
-		}
+		return checkEachBSTNode(node.left, min, node.data - 1) && checkEachBSTNode(node.right, node.data + 1, max);
 	}
 
 	public void printInOrder(BSTNode curr) {
@@ -144,7 +163,6 @@ public class BinarySearchTree {
 	}
 
 	public void printInOrder(BSTNode curr, int indent) {
-		
 		if (curr != null) {
 			for (int i = 0; i < indent; i++) {
 				System.out.print(" ");
@@ -152,18 +170,17 @@ public class BinarySearchTree {
 			printInOrder(curr.left, indent + 1);
 			System.out.println(curr.data);
 			printInOrder(curr.right, indent + 1);
-			
 		}
 	}
 
-	public BSTNode findNode(BSTNode curr, int num) {
+	public BSTNode findNodeData(BSTNode curr, int num) {
 		if (curr.data == num) {
 			return curr;
 		}
 		if (curr.data > num) {
-			return findNode(curr.left, num);
+			return findNodeData(curr.left, num);
 		}
-		return findNode(curr.right, num);
+		return findNodeData(curr.right, num);
 	}
 
 	public int height(BSTNode thisRoot) {
@@ -180,12 +197,11 @@ public class BinarySearchTree {
 		return height(thisRoot.left) == height(thisRoot.right);
 	}
 
-	public int smallestNode(BSTNode thisRoot) {
+	public int returnSmallestNode(BSTNode thisRoot) {
 		if (thisRoot.left == null) {
 			return thisRoot.data;
 		}
-		// return thisRoot.data = smallestNode(thisRoot.left);
-		return smallestNode(thisRoot.left);
+		return returnSmallestNode(thisRoot.left);
 	}
 
 	public BSTNode LowestCommonAncestor(BSTNode root, int data1, int data2) {
@@ -210,37 +226,47 @@ public class BinarySearchTree {
 
 	public BSTNode delete(BSTNode thisNode, int data) {
 
-		// if null
 		if (thisNode == null) {
 			return thisNode;
 		}
 
-		// delete node date == data
 		if (thisNode.data == data) {
 			if (thisNode.left == null) {
 				return thisNode.right;
-			} else if (thisNode.right == null) {
+			}
+			else if (thisNode.right == null) {
 				return thisNode.left;
-
-			} else {
+			}
+			else {
 				if (thisNode.right.left == null) {
 					thisNode.data = thisNode.right.data;
 					thisNode.right = thisNode.right.right;
-				} else {
-					thisNode.data = smallestNode(thisNode.right);
+					return thisNode;
+				}
+				else {
+					thisNode.data = removeSmallestNode(thisNode.right);
 					return thisNode;
 				}
 			}
 		}
-
-		// if delete node data < || > data
 		if (thisNode.data > data) {
 			thisNode.left = delete(thisNode.left, data);
-		} else if (thisNode.data < data) {
+		}
+		else if (thisNode.data < data) {
 			thisNode.right = delete(thisNode.right, data);
 		}
-
 		return thisNode;
+	}
+	
+	public int removeSmallestNode(BSTNode nodeToRemove) {
+		if (nodeToRemove.left.left == null) {
+			int smallestNode = nodeToRemove.left.data;
+			nodeToRemove.left = nodeToRemove.left.right;
+			return smallestNode;
+		}
+		else {
+			return removeSmallestNode(nodeToRemove.left);
+		}
 	}
 
 	public int countNodes(BSTNode thisNode) {
@@ -299,17 +325,4 @@ public class BinarySearchTree {
 	}
 }
 
-class BSTNode {
 
-	BSTNode left, right, root;
-	int data;
-
-	public BSTNode() {
-		this.root = null;
-	}
-
-	public BSTNode(int data) {
-		this.data = data;
-		left = right = null;
-	}
-}
