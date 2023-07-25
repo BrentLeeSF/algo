@@ -38,20 +38,22 @@ public class BinarySearchTree {
 
 		System.out.println("In Order");
 		bst.printInOrder(thisRoot);
-		System.out.println();
+		System.out.println("\n");
 
 		System.out.println("Pre Order");
 		bst.printPreOrder(thisRoot);
-		System.out.println();
+		System.out.println("\n");
 
 		System.out.println("Post Order");
 		bst.printPostOrder(thisRoot);
-		System.out.println();
+		System.out.println("\n");
 
 		int inOrderIndex = 0;
 		System.out.println("In Order starting at index "+inOrderIndex);
 		bst.printInOrder(thisRoot, inOrderIndex);
 		System.out.println();
+		
+		System.out.println("Is this structure a BST? = "+bst.checkIfBST(thisRoot));
 
 		int findNodeWithData = 7;
 		BSTNode foundNodeData = bst.findNodeData(thisRoot, findNodeWithData);
@@ -59,23 +61,23 @@ public class BinarySearchTree {
 
 		System.out.println("\nHeight = " + bst.height(thisRoot));
 
-		System.out.println("\nBalanced? = " + bst.balance(thisRoot));
+		System.out.println("\nIs BST Balanced? = " + bst.isBSTBalanced(thisRoot)+"\n");
 
-		System.out.println("Smallest Node = " + bst.returnSmallestNode(thisRoot));
+		System.out.println("Smallest Node = " + bst.returnSmallestNode(thisRoot)+"\n");
 
 		int deleteNodeWithData = 5;
 		System.out.println("After deleting node with data "+deleteNodeWithData);
 		BSTNode newestRoot = bst.delete(thisRoot, deleteNodeWithData);
 		bst.printInOrder(newestRoot);
-		System.out.println();
+		System.out.println("\n");
 		System.out.println("The Root node is: " + newestRoot.data);
 		bst.printInOrder(newestRoot);
-		System.out.println();
+		System.out.println("\n");
 		bst.printInOrder(newestRoot, 1);
 
 		System.out.println("Count Nodes = " + bst.countNodes(newestRoot));
 
-		System.out.println("Is this a Binary Search Tree? = " + bst.balance(newestRoot));
+		System.out.println("Is this a Binary Search Tree? = " + bst.isBSTBalanced(newestRoot));
 
 		System.out.println("\nTop View");
 		bst.top_view(newestRoot);
@@ -101,41 +103,12 @@ public class BinarySearchTree {
 		}
 		if (num <= curr.data) {
 			curr.left = insert(num, curr.left);
-			return curr;
 		} else {
 			curr.right = insert(num, curr.right);
-			return curr;
 		}
+		return curr;
 	}
-
-	public List<Integer> bstInorderTraversal(BSTNode root) {
-		List<Integer> thisList = new ArrayList<Integer>();
-		midTraversal(root, thisList);
-		return thisList;
-	}
-
-	public void midTraversal(BSTNode root, List<Integer> result) {
-		if (root == null) return;
-		midTraversal(root.left, result);
-		result.add(root.data);
-		midTraversal(root.right, result);
-	}
-
-	/** Check if BST */
-	boolean checkBST(BSTNode root) {
-		return checkEachBSTNode(root, Integer.MIN_VALUE, Integer.MAX_VALUE);
-	}
-
-	boolean checkEachBSTNode(BSTNode node, int min, int max) {
-		if (node == null) {
-			return true;
-		}
-		if (node.data < min || node.data > max) {
-			return false;
-		}
-		return checkEachBSTNode(node.left, min, node.data - 1) && checkEachBSTNode(node.right, node.data + 1, max);
-	}
-
+	
 	public void printInOrder(BSTNode curr) {
 		if (curr != null) {
 			printInOrder(curr.left);
@@ -173,6 +146,34 @@ public class BinarySearchTree {
 		}
 	}
 
+	public List<Integer> bstInorderTraversal(BSTNode root) {
+		List<Integer> thisList = new ArrayList<Integer>();
+		midTraversal(root, thisList);
+		return thisList;
+	}
+
+	public void midTraversal(BSTNode root, List<Integer> result) {
+		if (root == null) return;
+		midTraversal(root.left, result);
+		result.add(root.data);
+		midTraversal(root.right, result);
+	}
+
+	/** Check if BST */
+	public boolean checkIfBST(BSTNode root) {
+		return checkEachBSTNode(root, Integer.MIN_VALUE, Integer.MAX_VALUE);
+	}
+
+	public boolean checkEachBSTNode(BSTNode node, int min, int max) {
+		if (node == null) {
+			return true;
+		}
+		if (node.data < min || node.data > max) {
+			return false;
+		}
+		return checkEachBSTNode(node.left, min, node.data - 1) && checkEachBSTNode(node.right, node.data + 1, max);
+	}
+
 	public BSTNode findNodeData(BSTNode curr, int num) {
 		if (curr.data == num) {
 			return curr;
@@ -190,10 +191,7 @@ public class BinarySearchTree {
 		return 1 + Math.max(height(thisRoot.left), height(thisRoot.right));
 	}
 
-	public boolean balance(BSTNode thisRoot) {
-		int left = height(thisRoot.left);
-		int right = height(thisRoot.right);
-		System.out.println("Left height = " + left + ", right height = " + right);
+	public boolean isBSTBalanced(BSTNode thisRoot) {
 		return height(thisRoot.left) == height(thisRoot.right);
 	}
 
