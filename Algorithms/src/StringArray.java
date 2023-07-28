@@ -210,6 +210,24 @@ public class StringArray {
         }
         return max;
     }
+    /**
+     * BETER SOLUTION - TIME COMPLEXITY = N
+     * public int maxArea(int[] height) {
+        int maxArea = -1;
+        int left = 0;
+        int right = height.length - 1;
+        while (left < right) {
+            if (height[left] < height[right]) {
+                maxArea = Math.max(maxArea, height[left] * (right - left));
+                left++;
+            } else {
+                maxArea = Math.max(maxArea, height[right] * (right - left));
+                right--;
+            }
+        }
+        return maxArea;
+    }
+     */
     
     /**
      * Determine if string has all unique characters
