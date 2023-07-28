@@ -189,6 +189,26 @@ public class StringArray {
         String permString1 = "abcd";
         String permString2 = "adcb";
         System.out.println("is "+permString1+" a permutation of "+permString2+" - "+strArr.areTheseStringsPermutations(permString1, permString2));
+        
+        int[] arrayOfWaterHeights = {1,8,6,2,5,4,8,3,7};
+        System.out.println("Container with most water = "+strArr.returnContainerWithMostWater(arrayOfWaterHeights));
+    }
+    
+    /** https://leetcode.com/problems/container-with-most-water/
+     * Find the maximum amount of water of a container
+     * @param height
+     * @return amount of water held
+     */
+    public int returnContainerWithMostWater(int[] height) {
+    	int min, maxLength, max = 0;
+        for(int i = 0; i < height.length; i++) {
+            maxLength = height.length-i-1;
+            for (int j = 0; j < maxLength; j++) {
+                min = Math.min(height[j], height[maxLength]);
+                max = Math.max(max, min*(maxLength-j));
+            }
+        }
+        return max;
     }
     
     /**
