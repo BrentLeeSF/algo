@@ -1,5 +1,6 @@
 
 import java.util.*;
+import java.util.Map.Entry;
 
 class Roots {
 
@@ -192,6 +193,45 @@ public class StringArray {
         
         int[] arrayOfWaterHeights = {1,8,6,2,5,4,8,3,7};
         System.out.println("Container with most water = "+strArr.returnContainerWithMostWater(arrayOfWaterHeights));
+        
+        String[] anagramArray = {"eat","tea","tan","ate","nat","bat"};
+        HashMap<String, List<String>> anagramResults = strArr.groupAnagrams(anagramArray);
+        for(Entry<String, List<String>> mapElement : anagramResults.entrySet()) {
+        	List<String> anagramList = mapElement.getValue();
+        	for(int i = 0; i < anagramList.size(); i++) {
+        		System.out.print(anagramList.get(i)+", ");
+        	}
+        	System.out.println("");
+        }
+    }
+    
+    
+    /**
+     * Given a list of strings, return a list of grouped anagrams
+     * (original uses List<List<String>> but HashMap is more effective
+     * https://leetcode.com/problems/group-anagrams/
+     * @param strs
+     * @return
+     */
+    public HashMap<String, List<String>> groupAnagrams(String[] strs) {
+        HashMap<String, List<String>> mapOfAnagrams = new HashMap();
+        char[] sortedCharArray = null;
+        String sortedWord = "";
+        for(int i = 0; i < strs.length; i++) {
+        	sortedCharArray = strs[i].toLowerCase().trim().toCharArray();
+            Arrays.sort(sortedCharArray);
+            sortedWord = new String(sortedCharArray);
+            if (mapOfAnagrams.get(sortedWord) != null) {
+            	List<String> currentList = mapOfAnagrams.get(sortedWord);
+            	currentList.add(strs[i]);
+            }
+            else {
+            	List<String> currentArrayList = new ArrayList<String>();
+            	currentArrayList.add(strs[i]);
+            	mapOfAnagrams.put(sortedWord, currentArrayList);
+            }
+        }
+        return mapOfAnagrams;
     }
     
     /** https://leetcode.com/problems/container-with-most-water/
