@@ -203,6 +203,62 @@ public class StringArray {
         	}
         	System.out.println("");
         }
+        System.out.println("Return Trailing zeros from factorial = "+strArr.trailingZeroes(13));
+        
+        String hey = "Help Me Out 985 yup! ";
+        System.out.println("Character Counts "+hey);
+        strArr.characterCounts(hey);
+    }
+    
+    public void characterCounts(String str) {
+    	int letterCount = str.replaceAll("[^a-zA-Z]", "").length();
+    	int numberCount = str.replaceAll("[^0-9]", "").length();
+    	int letterAndNumberCount = str.replaceAll("[^a-zA-Z0-9]", "").length();
+    	ArrayList<Integer> letterIndecies = new ArrayList<Integer>();
+    	ArrayList<Integer> numberIndecies = new ArrayList<Integer>();
+    	ArrayList<Integer> spacesIndecies = new ArrayList<Integer>();
+    	ArrayList<Integer> specialCharacterIndecies = new ArrayList<Integer>();
+    	for (int i = 0; i < str.length(); i++) {
+    		if (Character.isLetter(str.charAt(i))) {
+    			letterIndecies.add(i);
+    		}
+    		else if (Character.isDigit(str.charAt(i))) {
+    			numberIndecies.add(i);
+    		}
+    		else if (str.charAt(i) == ' ') {
+    			spacesIndecies.add(i);
+    		}
+    		else {
+    			specialCharacterIndecies.add(i);
+    		}
+    	}
+    	System.out.println("Letter Count = "+letterCount+", Number Count = "+numberCount+", Letter and Number = "+letterAndNumberCount);
+    	System.out.println("Letter indexes = "+letterIndecies.toString());
+    	System.out.println("Number indexes = "+numberIndecies.toString());
+    	System.out.println("Space indexes = "+spacesIndecies.toString());
+    	System.out.println("Special character indexes = "+specialCharacterIndecies.toString());
+    }
+    
+    public int trailingZeroes(int n) {
+    	if (n == 0) return 0;
+        int count = n;
+        --n;
+        while(n > 1 && count*n > 0) {
+            count *= n;
+            --n;
+        }
+        char[] numAsString = ("" + count).toCharArray();
+        int zeroCount = 0;
+        for(int i = 0; i < numAsString.length; i++) {
+        	if (numAsString[numAsString.length-i-1] == '0') {
+        		zeroCount++;
+        	}
+        	else {
+        		return zeroCount;
+        	}
+        	
+        }
+        return zeroCount;
     }
     
     
