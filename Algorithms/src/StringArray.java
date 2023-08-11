@@ -203,13 +203,17 @@ public class StringArray {
         	}
         	System.out.println("");
         }
-        System.out.println("Return Trailing zeros from factorial = "+strArr.trailingZeroes(13));
+        System.out.println("Return Trailing zeros from factorial = "+strArr.trailingZeroes(6));
         
         String hey = "Help Me Out 985 yup! ";
         System.out.println("Character Counts "+hey);
         strArr.characterCounts(hey);
     }
     
+    /**
+     * Printing how many letters, numbers, characters, etc or their location in string
+     * @param str
+     */
     public void characterCounts(String str) {
     	int letterCount = str.replaceAll("[^a-zA-Z]", "").length();
     	int numberCount = str.replaceAll("[^0-9]", "").length();
@@ -239,6 +243,12 @@ public class StringArray {
     	System.out.println("Special character indexes = "+specialCharacterIndecies.toString());
     }
     
+    /**
+     * return trailing zeros from factorial
+     * n = 5 -> 5*4*3*2 = 120, return 1
+     * @param n
+     * @return
+     */
     public int trailingZeroes(int n) {
     	if (n == 0) return 0;
         int count = n;
