@@ -227,13 +227,11 @@ public class StringArray {
         boolean dividendNegative = false, divisorNegative = false;
         if (dividend < 0) {
         	dividendNegative = true;
-        	String hey = Integer. toString(dividend);
-        	dividend = Integer.valueOf(hey.substring(1));
+        	dividend = divisionHelper(dividend);
         }
         if (divisor < 0) {
         	divisorNegative = true;
-        	String hey = Integer. toString(divisor);
-        	divisor = Integer.valueOf(hey.substring(1));
+        	divisor = divisionHelper(divisor);
         }
         while (dividend >= divisor) {
             dividend -= divisor;
@@ -246,6 +244,11 @@ public class StringArray {
         	return -count;
         }
         return count;
+    }
+    
+    public int divisionHelper(int numToConvert) {
+    	String numberToString = Integer.toString(numToConvert);
+    	return Integer.valueOf(numberToString.substring(1));
     }
     
     /**
