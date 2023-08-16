@@ -208,6 +208,44 @@ public class StringArray {
         String hey = "Help Me Out 985 yup! ";
         System.out.println("Character Counts "+hey);
         strArr.characterCounts(hey);
+        
+        System.out.println("Return division = "+strArr.divide(-110, 3));
+    }
+    
+    /**
+     * Leetcode 29. Divide Two Integers 
+     * Divide two integers without using multiplication, division, and mod operator.
+     * @param dividend
+     * @param divisor
+     * @return
+     */
+    public int divide(int dividend, int divisor) {
+        int count = 0;
+        if (divisor == 0) {
+        	return 0;
+        }
+        boolean dividendNegative = false, divisorNegative = false;
+        if (dividend < 0) {
+        	dividendNegative = true;
+        	String hey = Integer. toString(dividend);
+        	dividend = Integer.valueOf(hey.substring(1));
+        }
+        if (divisor < 0) {
+        	divisorNegative = true;
+        	String hey = Integer. toString(divisor);
+        	divisor = Integer.valueOf(hey.substring(1));
+        }
+        while (dividend >= divisor) {
+            dividend -= divisor;
+            count++;
+        };
+        if (
+        	dividendNegative == true && !divisorNegative ||
+        	!dividendNegative  && divisorNegative == true
+        ) {
+        	return -count;
+        }
+        return count;
     }
     
     /**
