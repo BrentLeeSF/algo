@@ -231,7 +231,7 @@ const findKthLargest = function(nums, k) {
 };
 
 
-console.log(findKthLargest([3,2,3,1,2,4,5,5,6],4));
+console.log('Kth largest = ',findKthLargest([3,2,3,1,2,4,5,5,6],4));
 
 /*Create a function that will print an array from 1,2,3,4,5,6,7,8,9
 into: 3,2,1,6,5,4,9,8,7*/
@@ -248,12 +248,13 @@ function arrayDecrease(breakNum, increaseNum, index, arr) {
         arrayDecrease(breakNum, increaseNum, index, arr);
     }
     else {
-        return;
+        return 0;
     }
 }
 let arrToDecrease = [1,2,3,4,5,6,7,8,9];
 const breakNum = 3;
 let increaseNum = 1;
-let index = 2;
-console.log(arrayDecrease(breakNum, increaseNum, index, arrToDecrease));
+let arrayDecreaseIndex = 2;
+console.log('Break num');
+console.log(arrayDecrease(breakNum, increaseNum, arrayDecreaseIndex, arrToDecrease));
 
