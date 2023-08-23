@@ -142,11 +142,8 @@ const firstNum = 123;
 const secondNum = -123;
 const thirdNum = 120;
 console.log('Reverse of ',firstNum,' = ',reverseNum(firstNum));
-//console.log();
 console.log('Reverse of ',secondNum,' = ',reverseNum(secondNum));
-//console.log();
 console.log('Reverse of ',thirdNum,' = ',reverseNum(thirdNum));
-//console.log();
 
 /* https://algodaily.com/challenges/sum-of-perfect-squares 
 find perfect squares like 1, (2) 4, (3) 9, (4) 16, (5) 25, etc*/
@@ -236,4 +233,27 @@ const findKthLargest = function(nums, k) {
 
 console.log(findKthLargest([3,2,3,1,2,4,5,5,6],4));
 
+/*Create a function that will print an array from 1,2,3,4,5,6,7,8,9
+into: 3,2,1,6,5,4,9,8,7*/
+function arrayDecrease(breakNum, increaseNum, index, arr) {
+    if (increaseNum*breakNum <= arr.length) {
+        let pos = increaseNum*breakNum-1;
+        while(index >= 0) {
+            console.log(arr[pos]);
+            pos--;
+            index--;
+        }
+        increaseNum++;
+        index = 2;
+        arrayDecrease(breakNum, increaseNum, index, arr);
+    }
+    else {
+        return;
+    }
+}
+let arrToDecrease = [1,2,3,4,5,6,7,8,9];
+const breakNum = 3;
+let increaseNum = 1;
+let index = 2;
+console.log(arrayDecrease(breakNum, increaseNum, index, arrToDecrease));
 
