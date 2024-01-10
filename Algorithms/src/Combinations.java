@@ -1,6 +1,4 @@
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+import java.util.*;
 
 public class Combinations {
 
@@ -10,9 +8,8 @@ public class Combinations {
 
 		int[] arrPermute = { 1, 2, 3, 4 };
 
-		System.out.println("\nCombinations of 1,2,3,4");
-		List<List<Integer>> permuteArrayList = new ArrayList<List<Integer>>();
-		permuteArrayList = combo.combinationsOfNumbers(arrPermute);
+		System.out.println("\nCombinations of "+Arrays.toString(arrPermute));
+		List<List<Integer>> permuteArrayList = combo.combinationsOfNumbers(arrPermute);
 
 		for (int i = 0; i < permuteArrayList.size(); i++) {
 			for (int j = 0; j < permuteArrayList.get(i).size(); j++) {
@@ -21,9 +18,8 @@ public class Combinations {
 			System.out.println();
 		}
 
-		System.out.println("\nCombinations 2 - of 1,2,3,4");
-		ArrayList<ArrayList<Integer>> permuteArrayList2 = new ArrayList<ArrayList<Integer>>();
-		permuteArrayList2 = combo.combinationsOfNumbersTwo(arrPermute);
+		System.out.println("\nCombinations 2 - of "+Arrays.toString(arrPermute));
+		ArrayList<ArrayList<Integer>> permuteArrayList2 = combo.combinationsOfNumbersTwo(arrPermute);
 
 		for (int i = 0; i < permuteArrayList2.size(); i++) {
 			for (int j = 0; j < permuteArrayList2.get(i).size(); j++) {
@@ -76,8 +72,9 @@ public class Combinations {
 			System.out.println(huh.get(j));
 		}
 
-		//int[] combinationSum = {2,3,6,7};
-		int[] combinationSum = {2,3,5};
+		System.out.println();
+		int[] combinationSum = {2,3,6,7};
+		//int[] combinationSum = {2,3,5};
 		//int combinationSumTargetInteger = 7;
 		int combinationSumTargetInteger = 8;
 		List<List<Integer>> returnedCombinationSumLists = combo.combinationSumWithTarget(combinationSum, combinationSumTargetInteger);
@@ -86,9 +83,57 @@ public class Combinations {
 			System.out.print(returnedCombinationSumLists.get(i).toString()+", ");
 			System.out.println();
 		}
+		
+		int targetSize = 5, targetLength = 3;
+		System.out.println("Target Size = "+targetSize+", Length = "+targetLength);
+		List<List<Integer>> combosYo = combo.combine(targetSize, targetLength);
+		for (int i = 0; i < combosYo.size(); i++) {
+			System.out.print("[");
+			for (int j = 0; j < combosYo.get(i).size(); j++) {
+				System.out.print(combosYo.get(i).get(j) + " ");
+			}
+			System.out.println("]");
+		}
 	}
+	
+	/**
+	 * https://leetcode.com/problems/combinations/
+	 * Given two integers targetSize and targetLength, return all possible 
+	 * combinations of targetLength numbers chosen from the range 
+	 * [1, targetSize]
+	 * @param targetSize
+	 * @param targetLength
+	 * @return
+	 */
+	public List<List<Integer>> combine(int targetSize, int targetLength) {
+		List<List<Integer>> list = new ArrayList<>();
+        combinationHelper(list, new ArrayList<>(), targetSize, targetLength, 1);
+        return list;
+    }
+    
+	public void combinationHelper(
+		List<List<Integer>> list,
+		List<Integer> tempList,
+		int targetSize,
+		int targetLength,
+		int start
+	){
+        if(tempList.size() == targetLength) {
+        	list.add(new ArrayList<>(tempList));
+        }
+        
+        for(int i = start; i <= targetSize; i++){
+        	tempList.add(i);
+            combinationHelper(list, tempList, targetSize, targetLength, ++start);
+            tempList.remove(tempList.size() - 1);
+        }
+    }
 
-	/** https://leetcode.com/problems/combination-sum/ */
+	/** https://leetcode.com/problems/combination-sum/
+	 * Given an array of distinct integers candidates and a target integer target, 
+	 * return a list of all unique combinations of candidates where the 
+	 * chosen numbers sum to target
+	 * */
 	public List<List<Integer>> combinationSumWithTarget(int[] arr, int target) {
 		List<List<Integer>> ans = new ArrayList<>();
 		if (arr == null || arr.length == 0) { return ans; }
@@ -114,11 +159,9 @@ public class Combinations {
 	public List<String> letterCombinations(String digits) {
 
 		List<String> result = new ArrayList<String>();
-
 		if (digits == null || digits.length() == 0) {
 			return result;
 		}
-
 		String[] mapping = { "0", "1", "abc", "def", "ghi", "jkl", "mno", "pqrs", "tuv", "wxyz" };
 		letterCombinationsRecursive(result, digits, "", 0, mapping);
 		return result;

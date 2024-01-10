@@ -6,7 +6,7 @@ class Animal {
 }
 
 class Dog extends Animal {
-	void run() {
+	@Override void run() {
 		System.out.println("Dog runs faster than goat");
 	}
 	void bark() {
@@ -20,7 +20,7 @@ class Dog extends Animal {
 }
 
 class TestSuper {
-	public static void main(String args[]){
+	public static void main(String args[]) {
 		Dog d = new Dog();
 		d.work();
 	}
